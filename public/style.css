@@ -699,7 +699,7 @@ footer p {
         background: rgba(0, 0, 0, 0.7);
         z-index: 1500;
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.15s ease;
     }
     
     .nav-overlay.active {
@@ -715,6 +715,7 @@ footer p {
     .mode-card,
     .stat-card {
         padding: 20px;
+        transition: none;
     }
     
     .mode-card:hover,
@@ -751,6 +752,7 @@ footer p {
     .hot-chart-container {
         height: 300px;
         padding: 20px;
+        transition: none;
     }
     
     .data-table-wrapper {
@@ -798,6 +800,7 @@ footer p {
         text-align: center;
         padding: 12px 16px;
         min-height: 48px;
+        transition: none;
     }
 
     .point-filters {
@@ -811,6 +814,7 @@ footer p {
         font-size: 0.9em;
         min-height: 48px;
         text-align: center;
+        transition: none;
     }
 
     .map-points-grid {
@@ -820,6 +824,7 @@ footer p {
 
     .map-point-card {
         padding: 20px;
+        transition: none;
     }
 
     .map-point-card h3 {
@@ -839,6 +844,7 @@ footer p {
     
     .map-card {
         padding: 20px;
+        transition: none;
     }
     
     .weapons-grid {
@@ -847,6 +853,7 @@ footer p {
     
     .weapon-card {
         padding: 20px;
+        transition: none;
     }
     
     .economy-stats {
@@ -860,6 +867,7 @@ footer p {
     .export-btn {
         width: 100%;
         min-height: 48px;
+        transition: none;
     }
     
     .search-box {
@@ -888,6 +896,7 @@ footer p {
     .chart-container {
         height: 300px;
         padding: 10px;
+        transition: none;
     }
     
     .toast {
@@ -897,6 +906,7 @@ footer p {
         bottom: 20px;
         max-width: 90vw;
         text-align: center;
+        transition: transform 0.15s ease;
     }
     
     .toast.show {
