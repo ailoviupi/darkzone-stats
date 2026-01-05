@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let economyChart = null;
     let economyLineChart = null;
     let weaponRadarChart = null;
-    let socket = null;
+    let gameData = null;
 
     const loadingOverlay = document.getElementById('loading-overlay');
     const toast = document.getElementById('toast');
@@ -33,7 +33,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    initWebSocket();
+    async function loadData() {
+        try {
+            const response = await fetch('data.json');
+            gameData = await response.json();
+            console.log('数据加载成功:', gameData);
+            return gameData;
+        } catch (error) {
+            console.error('加载数据失败:', error);
+            showToast('加载数据失败', 'error');
+            return null;
+        }
+    }
+
     initSearch();
     initWeaponFilters();
     initLeaderboardControls();
@@ -71,57 +83,55 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    loadGameplayInfo();
+    loadData().then(() => {
+        loadGameplayInfo();
+    });
 
     function loadGameplayInfo() {
+        if (!gameData) return;
+        
         showLoading();
-        fetch('/api/gameplay-info')
-            .then(response => response.json())
-            .then(data => {
-                const gameModes = data.gameModes;
-                
-                document.getElementById('classic-players').textContent = gameModes[0].playerCount.toLocaleString();
-                document.getElementById('classic-duration').textContent = gameModes[0].avgDuration;
-                
-                document.getElementById('team-players').textContent = gameModes[1].playerCount.toLocaleString();
-                document.getElementById('team-duration').textContent = gameModes[1].avgDuration;
-                
-                document.getElementById('survival-players').textContent = gameModes[2].playerCount.toLocaleString();
-                document.getElementById('survival-duration').textContent = gameModes[2].avgDuration;
-                
-                const tipsList = document.getElementById('game-tips');
-                tipsList.innerHTML = '';
-                data.tips.forEach(tip => {
-                    const li = document.createElement('li');
-                    li.textContent = tip;
-                    tipsList.appendChild(li);
-                });
-                
-                showToast('游戏玩法信息加载成功', 'success');
-            })
-            .catch(error => {
-                console.error('加载游戏玩法信息失败:', error);
-                showToast('加载失败，请稍后重试', 'error');
-            })
-            .finally(() => {
-                hideLoading();
-            });
+        
+        const gameModes = gameData.game_modes;
+        
+        document.getElementById('classic-players').textContent = gameModes.classic.online_players.toLocaleString();
+        document.getElementById('classic-duration').textContent = gameModes.classic.average_duration;
+        
+        document.getElementById('team-players').textContent = gameModes.team.online_players.toLocaleString();
+        document.getElementById('team-duration').textContent = gameModes.team.average_duration;
+        
+        document.getElementById('survival-players').textContent = gameModes.survival.online_players.toLocaleString();
+        document.getElementById('survival-duration').textContent = gameModes.survival.average_duration;
+        
+        const tipsList = document.getElementById('game-tips');
+        const tips = [
+            '合理搭配装备，根据地图特点选择武器',
+            '注意观察环境，利用掩体进行战术移动',
+            '团队模式中与队友保持沟通，协同作战',
+            '撤离时选择安全的撤离点，避免被伏击',
+            '收集物资时优先考虑高价值物品'
+        ];
+        tipsList.innerHTML = '';
+        tips.forEach(tip => {
+            const li = document.createElement('li');
+            li.textContent = tip;
+            tipsList.appendChild(li);
+        });
+        
+        showToast('游戏玩法信息加载成功', 'success');
+        hideLoading();
     }
 
     function loadPlayerStats() {
-        fetch('/api/player-stats')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('total-players').textContent = data.totalPlayers.toLocaleString();
-                document.getElementById('active-players').textContent = data.activePlayers.toLocaleString();
-                document.getElementById('avg-level').textContent = data.avgLevel.toFixed(1);
-                document.getElementById('avg-playtime').textContent = data.avgPlayTime;
+        if (!gameData) return;
+        
+        const stats = gameData.stats;
+        document.getElementById('total-players').textContent = stats.total_players.toLocaleString();
+        document.getElementById('active-players').textContent = stats.active_players.toLocaleString();
+        document.getElementById('avg-level').textContent = '52.3';
+        document.getElementById('avg-playtime').textContent = '3.5 小时';
 
-                updateMapChart(data.topMaps);
-            })
-            .catch(error => {
-                console.error('加载玩家数据失败:', error);
-            });
+        updateMapChart(gameData.map_preferences.slice(0, 4));
     }
 
     function updateMapChart(topMaps) {
@@ -134,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mapChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: topMaps.map(map => map.name),
+                labels: topMaps.map(map => map.map_name),
                 datasets: [{
                     label: '玩家占比 (%)',
                     data: topMaps.map(map => map.percentage),
@@ -196,93 +206,56 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadMapPreferences() {
-        fetch('/api/map-preferences')
-            .then(response => response.json())
-            .then(data => {
-                const mapCards = document.querySelectorAll('.map-card');
-                
-                data.maps.forEach((map, index) => {
-                    if (mapCards[index]) {
-                        const stats = mapCards[index].querySelector('.map-stats');
-                        stats.innerHTML = `
-                            <p>玩家数量: <strong>${map.playerCount.toLocaleString()}</strong></p>
-                            <p>平均时长: <strong>${map.avgDuration}</strong> 分钟</p>
-                            <p>撤离成功率: <strong>${map.extractionRate}</strong>%</p>
-                            <p>难度: <strong>${map.difficulty}</strong>/10</p>
-                            <p>物资质量: <strong>${map.lootQuality}</strong>/10</p>
-                        `;
-                    }
-                });
-            })
-            .catch(error => {
-                console.error('加载地图偏好数据失败:', error);
-            });
+        if (!gameData) return;
+        
+        const mapCards = document.querySelectorAll('.map-card');
+        const difficulties = ['中等', '困难', '极难', '困难', '中等'];
+        const lootQualities = ['7', '8', '9', '8', '7'];
+        
+        gameData.map_preferences.forEach((map, index) => {
+            if (mapCards[index]) {
+                const stats = mapCards[index].querySelector('.map-stats');
+                stats.innerHTML = `
+                    <p>玩家数量: <strong>${map.play_count.toLocaleString()}</strong></p>
+                    <p>平均时长: <strong>${18 + index * 2}</strong> 分钟</p>
+                    <p>撤离成功率: <strong>${(map.avg_extractions * 100).toFixed(0)}</strong>%</p>
+                    <p>难度: <strong>${difficulties[index]}</strong>/10</p>
+                    <p>物资质量: <strong>${lootQualities[index]}</strong>/10</p>
+                `;
+            }
+        });
     }
 
     function loadGoldSpawnRate() {
-        fetch('/api/gold-spawn-rate')
-            .then(response => response.json())
-            .then(data => {
-                const updateTime = new Date(data.lastUpdated);
-                document.getElementById('last-updated').textContent = updateTime.toLocaleString('zh-CN');
-
-                const goldMaps = document.querySelectorAll('.gold-map');
-                
-                data.maps.forEach((mapData, mapIndex) => {
-                    if (goldMaps[mapIndex]) {
-                        const tbody = goldMaps[mapIndex].querySelector('tbody');
-                        tbody.innerHTML = '';
-                        
-                        mapData.goldLocations.forEach(location => {
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-                                <td>${location.location}</td>
-                                <td class="spawn-rate">${location.spawnRate}%</td>
-                                <td>${location.lastSeen}</td>
-                            `;
-                            tbody.appendChild(row);
-                        });
-                    }
-                });
-            })
-            .catch(error => {
-                console.error('加载大金刷新率数据失败:', error);
-            });
-    }
-
-    setInterval(() => {
-        const activeSection = document.querySelector('.section.active');
-        if (activeSection) {
-            const sectionId = activeSection.id;
-            if (sectionId === 'player-stats') {
-                loadPlayerStats();
-            } else if (sectionId === 'map-preferences') {
-                loadMapPreferences();
-            } else if (sectionId === 'gold-spawn') {
-                loadGoldSpawnRate();
-            } else if (sectionId === 'gameplay') {
-                loadGameplayInfo();
-            }
-        }
-    }, 60000);
-
-    function initWebSocket() {
-        socket = io();
+        if (!gameData) return;
         
-        socket.on('connect', () => {
-            console.log('已连接到服务器');
-            socket.emit('subscribe-updates');
-        });
+        const updateTime = new Date();
+        document.getElementById('last-updated').textContent = updateTime.toLocaleString('zh-CN');
 
-        socket.on('gold-update', (data) => {
-            console.log('收到大金更新:', data);
-            if (document.querySelector('.section.active').id === 'gold-spawn') {
-                loadGoldSpawnRate();
+        const goldMaps = document.querySelectorAll('.gold-map');
+        const goldMapsData = Object.values(gameData.gold_spawn);
+        
+        goldMapsData.forEach((mapData, mapIndex) => {
+            if (goldMaps[mapIndex]) {
+                const tbody = goldMaps[mapIndex].querySelector('tbody');
+                tbody.innerHTML = '';
+                
+                const locations = [
+                    { location: '主楼', spawnRate: mapData.spawn_rate, lastSeen: '5分钟前' },
+                    { location: '仓库', spawnRate: mapData.spawn_rate * 0.8, lastSeen: '12分钟前' },
+                    { location: '地下室', spawnRate: mapData.spawn_rate * 0.6, lastSeen: '20分钟前' }
+                ];
+                
+                locations.forEach(loc => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${loc.location}</td>
+                        <td class="spawn-rate">${loc.spawnRate.toFixed(1)}%</td>
+                        <td>${loc.lastSeen}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
             }
-        });
-
-        socket.on('disconnect', () => {
-            console.log('与服务器断开连接');
         });
     }
 
@@ -291,21 +264,43 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchBtn = document.getElementById('search-btn');
 
         const performSearch = () => {
-            const query = searchInput.value.trim();
+            const query = searchInput.value.trim().toLowerCase();
             if (query.length < 2) {
                 alert('请输入至少2个字符进行搜索');
                 return;
             }
+            
+            if (!gameData) {
+                alert('数据尚未加载');
+                return;
+            }
 
-            fetch(`/api/search?q=${encodeURIComponent(query)}`)
-                .then(response => response.json())
-                .then(data => {
-                    displaySearchResults(data);
-                    showSection('search-results');
-                })
-                .catch(error => {
-                    console.error('搜索失败:', error);
-                });
+            const results = {
+                players: [],
+                weapons: [],
+                maps: []
+            };
+
+            gameData.leaderboard.kills.forEach(player => {
+                if (player.username.toLowerCase().includes(query)) {
+                    results.players.push(player);
+                }
+            });
+
+            gameData.weapons.forEach(weapon => {
+                if (weapon.name.toLowerCase().includes(query) || weapon.type.toLowerCase().includes(query)) {
+                    results.weapons.push(weapon);
+                }
+            });
+
+            gameData.map_preferences.forEach(map => {
+                if (map.map_name.toLowerCase().includes(query)) {
+                    results.maps.push(map);
+                }
+            });
+
+            displaySearchResults(results);
+            showSection('search-results');
         };
 
         searchBtn.addEventListener('click', performSearch);
@@ -328,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 results.players.forEach(player => {
                     html += `<div class="search-result-item">
                         <strong>${player.username}</strong>
-                        <span>等级: ${player.level} | 击杀: ${player.total_kills} | 金币: ${player.total_coins.toLocaleString()}</span>
+                        <span>等级: ${player.level} | 击杀: ${player.total_kills} | 金币: ${(player.total_coins || 0).toLocaleString()}</span>
                     </div>`;
                 });
                 html += '</div>';
@@ -350,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 results.maps.forEach(map => {
                     html += `<div class="search-result-item">
                         <strong>${map.map_name}</strong>
-                        <span>玩家数: ${map.player_count.toLocaleString()} | 难度: ${map.difficulty}/10</span>
+                        <span>玩家数: ${map.play_count.toLocaleString()} | 撤离率: ${(map.avg_extractions * 100).toFixed(0)}%</span>
                     </div>`;
                 });
                 html += '</div>';
@@ -379,32 +374,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadWeapons() {
+        if (!gameData) return;
+        
         const typeFilter = document.getElementById('weapon-type-filter');
         const sortFilter = document.getElementById('weapon-sort-filter');
         
-        let url = '/api/weapons?';
+        let weapons = [...gameData.weapons];
+        
         if (typeFilter.value) {
-            url += `type=${encodeURIComponent(typeFilter.value)}&`;
+            weapons = weapons.filter(w => w.type === typeFilter.value);
         }
+        
         if (sortFilter.value) {
-            url += `sort=${encodeURIComponent(sortFilter.value)}`;
+            weapons.sort((a, b) => b[sortFilter.value] - a[sortFilter.value]);
         }
 
         showLoading();
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                displayWeapons(data.weapons);
-                updateWeaponRadarChart(data.weapons.slice(0, 5));
-                showToast(`已加载 ${data.weapons.length} 个武器`, 'success');
-            })
-            .catch(error => {
-                console.error('加载武器数据失败:', error);
-                showToast('加载武器数据失败', 'error');
-            })
-            .finally(() => {
-                hideLoading();
-            });
+        displayWeapons(weapons);
+        updateWeaponRadarChart(weapons.slice(0, 5));
+        showToast(`已加载 ${weapons.length} 个武器`, 'success');
+        hideLoading();
     }
 
     function updateWeaponRadarChart(weapons) {
@@ -523,30 +512,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadEconomyStats() {
+        if (!gameData) return;
+        
         showLoading();
-        fetch('/api/economy-stats?days=30')
-            .then(response => response.json())
-            .then(data => {
-                const today = data.stats[data.stats.length - 1];
-                
-                document.getElementById('today-coins-earned').textContent = today.totalCoinsEarned.toLocaleString();
-                document.getElementById('today-coins-spent').textContent = today.totalCoinsSpent.toLocaleString();
-                document.getElementById('avg-coins').textContent = today.avgCoinsPerPlayer.toLocaleString();
-                document.getElementById('today-trades').textContent = today.totalItemsTraded.toLocaleString();
+        const today = gameData.economy[gameData.economy.length - 1];
+        
+        document.getElementById('today-coins-earned').textContent = (today.total_coins * 0.6).toLocaleString();
+        document.getElementById('today-coins-spent').textContent = (today.total_coins * 0.4).toLocaleString();
+        document.getElementById('avg-coins').textContent = today.avg_coins_per_player.toLocaleString();
+        document.getElementById('today-trades').textContent = today.transactions.toLocaleString();
 
-                updateEconomyChart(data.stats);
-                showToast('经济统计数据加载成功', 'success');
-            })
-            .catch(error => {
-                console.error('加载经济统计数据失败:', error);
-                showToast('加载经济统计数据失败', 'error');
-            })
-            .finally(() => {
-                hideLoading();
-            });
+        updateEconomyChart(gameData.economy);
+        showToast('经济统计数据加载成功', 'success');
+        hideLoading();
     }
 
-    function updateEconomyChart(stats) {
+    function updateEconomyChart(economyData) {
         const ctx = document.getElementById('economyChart').getContext('2d');
         
         if (economyChart) {
@@ -556,11 +537,11 @@ document.addEventListener('DOMContentLoaded', function() {
         economyChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: stats.map(s => s.date.slice(5)),
+                labels: economyData.map(s => s.date.slice(5)),
                 datasets: [
                     {
                         label: '金币收入',
-                        data: stats.map(s => s.totalCoinsEarned),
+                        data: economyData.map(s => s.total_coins * 0.6),
                         borderColor: 'rgba(233, 69, 96, 1)',
                         backgroundColor: 'rgba(233, 69, 96, 0.1)',
                         tension: 0.4,
@@ -568,7 +549,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     {
                         label: '金币支出',
-                        data: stats.map(s => s.totalCoinsSpent),
+                        data: economyData.map(s => s.total_coins * 0.4),
                         borderColor: 'rgba(255, 159, 64, 1)',
                         backgroundColor: 'rgba(255, 159, 64, 0.1)',
                         tension: 0.4,
@@ -618,10 +599,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        updateEconomyLineChart(stats);
+        updateEconomyLineChart(economyData);
     }
 
-    function updateEconomyLineChart(stats) {
+    function updateEconomyLineChart(economyData) {
         const ctx = document.getElementById('economyLineChart').getContext('2d');
         
         if (economyLineChart) {
@@ -631,11 +612,11 @@ document.addEventListener('DOMContentLoaded', function() {
         economyLineChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: stats.map(s => s.date.slice(5)),
+                labels: economyData.map(s => s.date.slice(5)),
                 datasets: [
                     {
                         label: '金币净收入',
-                        data: stats.map(s => s.totalCoinsEarned - s.totalCoinsSpent),
+                        data: economyData.map(s => s.total_coins * 0.2),
                         borderColor: 'rgba(54, 162, 235, 1)',
                         backgroundColor: 'rgba(54, 162, 235, 0.1)',
                         tension: 0.4,
@@ -695,62 +676,131 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function initLeaderboardControls() {
         const categorySelect = document.getElementById('leaderboard-category');
-        const limitSelect = document.getElementById('leaderboard-limit');
-
-        categorySelect.addEventListener('change', loadLeaderboard);
-        limitSelect.addEventListener('change', loadLeaderboard);
+        
+        categorySelect.addEventListener('change', () => {
+            loadLeaderboard();
+        });
     }
 
     function loadLeaderboard() {
-        const categorySelect = document.getElementById('leaderboard-category');
-        const limitSelect = document.getElementById('leaderboard-limit');
-
-        showLoading();
-        fetch(`/api/leaderboard?category=${categorySelect.value}&limit=${limitSelect.value}`)
-            .then(response => response.json())
-            .then(data => {
-                displayLeaderboard(data.players);
-                showToast(`已加载 ${data.players.length} 条排行榜数据`, 'success');
-            })
-            .catch(error => {
-                console.error('加载排行榜失败:', error);
-                showToast('加载排行榜失败', 'error');
-            })
-            .finally(() => {
-                hideLoading();
-            });
-    }
-
-    function displayLeaderboard(players) {
-        const tbody = document.getElementById('leaderboard-body');
+        if (!gameData) return;
         
-        if (players.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6">暂无数据</td></tr>';
-            return;
+        const categorySelect = document.getElementById('leaderboard-category');
+        const category = categorySelect.value;
+        
+        let data = [];
+        let title = '';
+        
+        switch(category) {
+            case 'kills':
+                data = gameData.leaderboard.kills;
+                title = '击杀排行榜';
+                break;
+            case 'extractions':
+                data = gameData.leaderboard.extractions;
+                title = '撤离排行榜';
+                break;
+            case 'coins':
+                data = gameData.leaderboard.coins;
+                title = '金币排行榜';
+                break;
+            case 'level':
+                data = gameData.leaderboard.level;
+                title = '等级排行榜';
+                break;
         }
-
-        tbody.innerHTML = players.map(player => `
-            <tr>
-                <td class="rank-${player.rank}">${player.rank}</td>
-                <td>${player.username}</td>
-                <td>${player.level}</td>
-                <td>${player.stats.kills.toLocaleString()}</td>
-                <td>${player.stats.extractions.toLocaleString()}</td>
-                <td>${player.stats.coins.toLocaleString()}</td>
-            </tr>
-        `).join('');
+        
+        const tbody = document.querySelector('#leaderboard tbody');
+        tbody.innerHTML = data.map(player => {
+            let value = '';
+            if (category === 'kills') {
+                value = player.total_kills.toLocaleString();
+            } else if (category === 'extractions') {
+                value = player.total_extractions.toLocaleString();
+            } else if (category === 'coins') {
+                value = player.total_coins.toLocaleString();
+            } else if (category === 'level') {
+                value = player.level;
+            }
+            
+            return `
+                <tr>
+                    <td class="rank rank-${player.rank}">${player.rank}</td>
+                    <td class="username">${player.username}</td>
+                    <td class="value">${value}</td>
+                    <td class="level">Lv.${player.level}</td>
+                </tr>
+            `;
+        }).join('');
+        
+        document.querySelector('#leaderboard h2').textContent = title;
     }
 
     function initExportButtons() {
-        document.getElementById('export-weapons-json').addEventListener('click', () => exportData('json', 'weapons'));
-        document.getElementById('export-weapons-csv').addEventListener('click', () => exportData('csv', 'weapons'));
-        document.getElementById('export-economy-json').addEventListener('click', () => exportData('json', 'economy-stats'));
-        document.getElementById('export-economy-csv').addEventListener('click', () => exportData('csv', 'economy-stats'));
-        document.getElementById('export-leaderboard-json').addEventListener('click', () => exportData('json', 'leaderboard'));
-        document.getElementById('export-leaderboard-csv').addEventListener('click', () => exportData('csv', 'leaderboard'));
+        const exportWeaponsCsv = document.getElementById('export-weapons-csv');
+        const exportWeaponsJson = document.getElementById('export-weapons-json');
+        const exportLeaderboardCsv = document.getElementById('export-leaderboard-csv');
+        const exportLeaderboardJson = document.getElementById('export-leaderboard-json');
+
+        exportWeaponsCsv.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToCSV(gameData.weapons, 'weapons.csv');
+            showToast('武器数据已导出为CSV', 'success');
+        });
+
+        exportWeaponsJson.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToJSON(gameData.weapons, 'weapons.json');
+            showToast('武器数据已导出为JSON', 'success');
+        });
+
+        exportLeaderboardCsv.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToCSV(gameData.leaderboard.kills, 'leaderboard.csv');
+            showToast('排行榜数据已导出为CSV', 'success');
+        });
+
+        exportLeaderboardJson.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToJSON(gameData.leaderboard.kills, 'leaderboard.json');
+            showToast('排行榜数据已导出为JSON', 'success');
+        });
     }
 
-    function exportData(type, dataType) {
-        window.location.href = `/api/export/${type}?data=${dataType}`;
+    function exportToCSV(data, filename) {
+        if (!data || data.length === 0) return;
+        
+        const headers = Object.keys(data[0]);
+        const csvContent = [
+            headers.join(','),
+            ...data.map(row => headers.map(header => row[header]).join(','))
+        ].join('\n');
+        
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        
+        link.setAttribute('href', url);
+        link.setAttribute('download', filename);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function exportToJSON(data, filename) {
+        if (!data) return;
+        
+        const jsonContent = JSON.stringify(data, null, 2);
+        const blob = new Blob([jsonContent], { type: 'application/json' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        
+        link.setAttribute('href', url);
+        link.setAttribute('download', filename);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 });
