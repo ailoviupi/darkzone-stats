@@ -1043,9 +1043,150 @@ document.addEventListener('DOMContentLoaded', function() {
         const timeFilter = document.getElementById('market-time-filter');
         const tabs = document.querySelectorAll('.market-tab');
         let currentTab = 'rise';
+        let marketChart = null;
+        let currentSort = { column: 'rank', direction: 'asc' };
+        
+        const sortData = (data, column, direction) => {
+            return [...data].sort((a, b) => {
+                let valA = a[column];
+                let valB = b[column];
+                
+                if (typeof valA === 'string') {
+                    valA = valA.toLowerCase();
+                    valB = valB.toLowerCase();
+                }
+                
+                if (direction === 'asc') {
+                    return valA > valB ? 1 : valA < valB ? -1 : 0;
+                } else {
+                    return valA < valB ? 1 : valA > valB ? -1 : 0;
+                }
+            });
+        };
+        
+        const updateChart = () => {
+            const ctx = document.getElementById('market-trends-chart').getContext('2d');
+            let data = currentTab === 'rise' ? gameData.market_trends.rise : gameData.market_trends.fall;
+            
+            const topItems = data.slice(0, 5);
+            const labels = topItems.map(item => item.item_name);
+            const prices = topItems.map(item => item.current_price);
+            const changes = topItems.map(item => item.change_rate);
+            
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, currentTab === 'rise' ? 'rgba(76, 175, 80, 0.3)' : 'rgba(244, 67, 54, 0.3)');
+            gradient.addColorStop(1, 'rgba(22, 27, 34, 0)');
+            
+            if (marketChart) {
+                marketChart.destroy();
+            }
+            
+            marketChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: currentTab === 'rise' ? '涨幅 (%)' : '跌幅 (%)',
+                        data: changes,
+                        borderColor: currentTab === 'rise' ? '#4CAF50' : '#F44336',
+                        backgroundColor: gradient,
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: currentTab === 'rise' ? '#4CAF50' : '#F44336',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: currentTab === 'rise' ? '#4CAF50' : '#F44336',
+                        pointHoverBorderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#e0e0e0',
+                                font: {
+                                    size: 14,
+                                    family: 'Microsoft YaHei, sans-serif'
+                                },
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(22, 27, 34, 0.95)',
+                            titleColor: '#e94560',
+                            bodyColor: '#e0e0e0',
+                            borderColor: 'rgba(233, 69, 96, 0.3)',
+                            borderWidth: 1,
+                            padding: 15,
+                            displayColors: true,
+                            callbacks: {
+                                label: function(context) {
+                                    const item = topItems[context.dataIndex];
+                                    return [
+                                        `${item.item_name}`,
+                                        `当前价格: ${item.current_price.toLocaleString()} 柯恩币`,
+                                        `涨跌幅: ${item.change_rate >= 0 ? '+' : ''}${item.change_rate}%`,
+                                        `变化金额: ${item.change_amount >= 0 ? '+' : ''}${item.change_amount.toLocaleString()} 柯恩币`
+                                    ];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(233, 69, 96, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#e0e0e0',
+                                font: {
+                                    size: 12,
+                                    family: 'Microsoft YaHei, sans-serif'
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: 'rgba(233, 69, 96, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#e0e0e0',
+                                font: {
+                                    size: 12,
+                                    family: 'Microsoft YaHei, sans-serif'
+                                },
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        };
         
         const updateTrends = () => {
             let data = currentTab === 'rise' ? gameData.market_trends.rise : gameData.market_trends.fall;
+            data = sortData(data, currentSort.column, currentSort.direction);
             const tbody = document.getElementById('market-trends-body');
             
             tbody.innerHTML = data.map(item => `
@@ -1057,7 +1198,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     <td class="change-${item.change_amount >= 0 ? 'positive' : 'negative'}">${item.change_amount >= 0 ? '+' : ''}${item.change_amount.toLocaleString()}</td>
                 </tr>
             `).join('');
+            
+            updateChart();
         };
+        
+        document.querySelectorAll('#market-trends th.sortable').forEach(th => {
+            th.addEventListener('click', () => {
+                const column = th.dataset.sort;
+                if (currentSort.column === column) {
+                    currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                } else {
+                    currentSort.column = column;
+                    currentSort.direction = 'asc';
+                }
+                
+                document.querySelectorAll('#market-trends th.sortable').forEach(header => {
+                    header.classList.remove('sort-asc', 'sort-desc');
+                });
+                th.classList.add(`sort-${currentSort.direction}`);
+                
+                updateTrends();
+                showToast(`已按${th.textContent.trim().replace('↕', '')}${currentSort.direction === 'asc' ? '升序' : '降序'}排列`, 'info');
+            });
+        });
         
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
@@ -1084,6 +1247,155 @@ document.addEventListener('DOMContentLoaded', function() {
         showLoading();
         const hotTabs = document.querySelectorAll('.hot-tab');
         let currentTab = 'items';
+        let hotChart = null;
+        let currentSort = { column: 'rank', direction: 'asc' };
+        
+        const sortData = (data, column, direction) => {
+            return [...data].sort((a, b) => {
+                let valA = a[column];
+                let valB = b[column];
+                
+                if (typeof valA === 'string') {
+                    valA = valA.toLowerCase();
+                    valB = valB.toLowerCase();
+                }
+                
+                if (direction === 'asc') {
+                    return valA > valB ? 1 : valA < valB ? -1 : 0;
+                } else {
+                    return valA < valB ? 1 : valA > valB ? -1 : 0;
+                }
+            });
+        };
+        
+        const updateChart = () => {
+            const ctx = document.getElementById('market-hot-chart').getContext('2d');
+            let data;
+            let title;
+            
+            switch(currentTab) {
+                case 'items':
+                    data = gameData.market_hot.items;
+                    title = '热门物品';
+                    break;
+                case 'keys':
+                    data = gameData.market_hot.keys;
+                    title = '热门钥匙';
+                    break;
+                case 'price':
+                    data = gameData.market_hot.price;
+                    title = '价格排行榜';
+                    break;
+            }
+            
+            const topItems = data.slice(0, 6);
+            const labels = topItems.map(item => item.item_name);
+            const tradeCounts = topItems.map(item => item.trade_count);
+            
+            const colors = [
+                'rgba(233, 69, 96, 0.8)',
+                'rgba(255, 193, 7, 0.8)',
+                'rgba(76, 175, 80, 0.8)',
+                'rgba(33, 150, 243, 0.8)',
+                'rgba(156, 39, 176, 0.8)',
+                'rgba(255, 87, 34, 0.8)'
+            ];
+            
+            const borderColors = [
+                'rgba(233, 69, 96, 1)',
+                'rgba(255, 193, 7, 1)',
+                'rgba(76, 175, 80, 1)',
+                'rgba(33, 150, 243, 1)',
+                'rgba(156, 39, 176, 1)',
+                'rgba(255, 87, 34, 1)'
+            ];
+            
+            if (hotChart) {
+                hotChart.destroy();
+            }
+            
+            hotChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '热度',
+                        data: tradeCounts,
+                        backgroundColor: colors,
+                        borderColor: borderColors,
+                        borderWidth: 2,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right',
+                            labels: {
+                                color: '#e0e0e0',
+                                font: {
+                                    size: 13,
+                                    family: 'Microsoft YaHei, sans-serif'
+                                },
+                                padding: 15,
+                                usePointStyle: true,
+                                generateLabels: function(chart) {
+                                    const data = chart.data;
+                                    if (data.labels.length && data.datasets.length) {
+                                        return data.labels.map((label, i) => {
+                                            const value = data.datasets[0].data[i];
+                                            const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                            const percentage = ((value / total) * 100).toFixed(1);
+                                            return {
+                                                text: `${label} (${percentage}%)`,
+                                                fillStyle: data.datasets[0].backgroundColor[i],
+                                                strokeStyle: data.datasets[0].borderColor[i],
+                                                lineWidth: data.datasets[0].borderWidth,
+                                                hidden: false,
+                                                index: i
+                                            };
+                                        });
+                                    }
+                                    return [];
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(22, 27, 34, 0.95)',
+                            titleColor: '#e94560',
+                            bodyColor: '#e0e0e0',
+                            borderColor: 'rgba(233, 69, 96, 0.3)',
+                            borderWidth: 1,
+                            padding: 15,
+                            displayColors: true,
+                            callbacks: {
+                                label: function(context) {
+                                    const item = topItems[context.dataIndex];
+                                    const total = tradeCounts.reduce((a, b) => a + b, 0);
+                                    const percentage = ((item.trade_count / total) * 100).toFixed(1);
+                                    return [
+                                        `${item.item_name}`,
+                                        `热度: ${item.trade_count.toLocaleString()}`,
+                                        `占比: ${percentage}%`,
+                                        `当前价格: ${item.current_price.toLocaleString()} 柯恩币`,
+                                        `波动: ${item.trend}`
+                                    ];
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true,
+                        duration: 1000,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        };
         
         const updateHotData = () => {
             let data;
@@ -1104,6 +1416,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     break;
             }
             
+            data = sortData(data, currentSort.column, currentSort.direction);
             const tbody = document.getElementById('market-hot-body');
             tbody.innerHTML = data.map(item => `
                 <tr>
@@ -1116,7 +1429,28 @@ document.addEventListener('DOMContentLoaded', function() {
             `).join('');
             
             document.querySelector('#market-hot h2').textContent = title;
+            updateChart();
         };
+        
+        document.querySelectorAll('#market-hot th.sortable').forEach(th => {
+            th.addEventListener('click', () => {
+                const column = th.dataset.sort;
+                if (currentSort.column === column) {
+                    currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                } else {
+                    currentSort.column = column;
+                    currentSort.direction = 'asc';
+                }
+                
+                document.querySelectorAll('#market-hot th.sortable').forEach(header => {
+                    header.classList.remove('sort-asc', 'sort-desc');
+                });
+                th.classList.add(`sort-${currentSort.direction}`);
+                
+                updateHotData();
+                showToast(`已按${th.textContent.trim().replace('↕', '')}${currentSort.direction === 'asc' ? '升序' : '降序'}排列`, 'info');
+            });
+        });
         
         hotTabs.forEach(tab => {
             tab.addEventListener('click', () => {

@@ -560,15 +560,18 @@
                         <option value="7d">7天</option>
                     </select>
                 </div>
+                <div class="chart-container">
+                    <canvas id="market-trends-chart"></canvas>
+                </div>
                 <div class="data-table">
                     <table>
                         <thead>
                             <tr>
-                                <th>排名</th>
-                                <th>物品名称</th>
-                                <th>当前价格</th>
-                                <th>涨跌幅</th>
-                                <th>变化金额</th>
+                                <th data-sort="rank" class="sortable">排名 <span class="sort-icon">↕</span></th>
+                                <th data-sort="item_name" class="sortable">物品名称 <span class="sort-icon">↕</span></th>
+                                <th data-sort="current_price" class="sortable">当前价格 <span class="sort-icon">↕</span></th>
+                                <th data-sort="change_rate" class="sortable">涨跌幅 <span class="sort-icon">↕</span></th>
+                                <th data-sort="change_amount" class="sortable">变化金额 <span class="sort-icon">↕</span></th>
                             </tr>
                         </thead>
                         <tbody id="market-trends-body">
@@ -589,15 +592,18 @@
                     <button class="market-tab" data-tab="keys">🗝️ 钥匙</button>
                     <button class="market-tab" data-tab="price">💰 价格排行榜</button>
                 </div>
+                <div class="chart-container">
+                    <canvas id="market-hot-chart"></canvas>
+                </div>
                 <div class="data-table">
                     <table>
                         <thead>
                             <tr>
-                                <th>排名</th>
-                                <th>物品名称</th>
-                                <th>价格</th>
-                                <th>热度</th>
-                                <th>波动</th>
+                                <th data-sort="rank" class="sortable">排名 <span class="sort-icon">↕</span></th>
+                                <th data-sort="item_name" class="sortable">物品名称 <span class="sort-icon">↕</span></th>
+                                <th data-sort="current_price" class="sortable">价格 <span class="sort-icon">↕</span></th>
+                                <th data-sort="trade_count" class="sortable">热度 <span class="sort-icon">↕</span></th>
+                                <th data-sort="trend" class="sortable">波动 <span class="sort-icon">↕</span></th>
                             </tr>
                         </thead>
                         <tbody id="market-hot-body">
