@@ -88,9 +88,15 @@ npx http-server public -p 8000
 项目已配置GitHub Actions自动部署到GitHub Pages：
 
 1. Fork本项目到你的GitHub账号
-2. 在仓库设置中启用GitHub Pages，选择GitHub Actions作为部署源
+2. 在仓库设置中启用GitHub Pages：
+   - 访问仓库的 **Settings** → **Pages**
+   - 在 **Build and deployment** → **Source** 下，选择 **Deploy from a branch**
+   - 在 **Branch** 下选择 **gh-pages** 分支，文件夹选择 **/(root)**
+   - 点击 **Save** 保存
 3. 推送代码到main分支，自动触发部署
 4. 访问 `https://你的用户名.github.io/darkzone-stats/`
+
+**重要**: 必须选择 **gh-pages** 分支作为部署源，否则会显示README.md而不是网页。
 
 ### 部署流程
 
