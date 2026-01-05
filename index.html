@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暗区突围-无限 - 游戏数据统计系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>暗区突围-无限</h1>
+            <p class="subtitle">游戏数据统计系统</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="搜索玩家、武器、地图...">
+                <button id="search-btn">搜索</button>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn active" data-section="gameplay">游戏玩法</button>
+                <button class="nav-btn" data-section="player-stats">玩家数据</button>
+                <button class="nav-btn" data-section="map-preferences">地图爱好</button>
+                <button class="nav-btn" data-section="gold-spawn">大金刷新</button>
+                <button class="nav-btn" data-section="weapons">武器装备</button>
+                <button class="nav-btn" data-section="economy">经济统计</button>
+                <button class="nav-btn" data-section="leaderboard">排行榜</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="gameplay" class="section active">
+            <div class="container">
+                <h2>游戏玩法</h2>
+                <div class="game-modes">
+                    <div class="mode-card">
+                        <h3>经典模式</h3>
+                        <p class="mode-desc">传统撤离射击玩法，收集物资并成功撤离</p>
+                        <div class="mode-stats">
+                            <span class="stat">在线玩家: <strong id="classic-players">--</strong></span>
+                            <span class="stat">平均时长: <strong id="classic-duration">--</strong> 分钟</span>
+                        </div>
+                    </div>
+                    <div class="mode-card">
+                        <h3>团队竞技</h3>
+                        <p class="mode-desc">4v4团队对抗，消灭敌方队伍获得胜利</p>
+                        <div class="mode-stats">
+                            <span class="stat">在线玩家: <strong id="team-players">--</strong></span>
+                            <span class="stat">平均时长: <strong id="team-duration">--</strong> 分钟</span>
+                        </div>
+                    </div>
+                    <div class="mode-card">
+                        <h3>生存挑战</h3>
+                        <p class="mode-desc">单人或小队生存模式，坚持到最后</p>
+                        <div class="mode-stats">
+                            <span class="stat">在线玩家: <strong id="survival-players">--</strong></span>
+                            <span class="stat">平均时长: <strong id="survival-duration">--</strong> 分钟</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <h3>游戏技巧</h3>
+                    <ul id="game-tips">
+                        <li>加载中...</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="player-stats" class="section">
+            <div class="container">
+                <h2>玩家数据统计</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>总玩家数</h3>
+                        <p class="stat-value" id="total-players">--</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>活跃玩家</h3>
+                        <p class="stat-value" id="active-players">--</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>平均等级</h3>
+                        <p class="stat-value" id="avg-level">--</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>平均游戏时长(小时)</h3>
+                        <p class="stat-value" id="avg-playtime">--</p>
+                    </div>
+                </div>
+
+                <div class="chart-section">
+                    <h3>热门地图分布</h3>
+                    <div id="map-chart" class="chart-container">
+                        <canvas id="mapChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map-preferences" class="section">
+            <div class="container">
+                <h2>地图爱好统计</h2>
+                <div class="map-grid" id="map-grid">
+                    <div class="map-card">
+                        <h3>农场</h3>
+                        <div class="map-stats">
+                            <p>玩家数量: <strong>--</strong></p>
+                            <p>平均时长: <strong>--</strong> 分钟</p>
+                            <p>撤离成功率: <strong>--</strong>%</p>
+                            <p>难度: <strong>--</strong>/10</p>
+                            <p>物资质量: <strong>--</strong>/10</p>
+                        </div>
+                    </div>
+                    <div class="map-card">
+                        <h3>山谷</h3>
+                        <div class="map-stats">
+                            <p>玩家数量: <strong>--</strong></p>
+                            <p>平均时长: <strong>--</strong> 分钟</p>
+                            <p>撤离成功率: <strong>--</strong>%</p>
+                            <p>难度: <strong>--</strong>/10</p>
+                            <p>物资质量: <strong>--</strong>/10</p>
+                        </div>
+                    </div>
+                    <div class="map-card">
+                        <h3>北山</h3>
+                        <div class="map-stats">
+                            <p>玩家数量: <strong>--</strong></p>
+                            <p>平均时长: <strong>--</strong> 分钟</p>
+                            <p>撤离成功率: <strong>--</strong>%</p>
+                            <p>难度: <strong>--</strong>/10</p>
+                            <p>物资质量: <strong>--</strong>/10</p>
+                        </div>
+                    </div>
+                    <div class="map-card">
+                        <h3>前线要塞</h3>
+                        <div class="map-stats">
+                            <p>玩家数量: <strong>--</strong></p>
+                            <p>平均时长: <strong>--</strong> 分钟</p>
+                            <p>撤离成功率: <strong>--</strong>%</p>
+                            <p>难度: <strong>--</strong>/10</p>
+                            <p>物资质量: <strong>--</strong>/10</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gold-spawn" class="section">
+            <div class="container">
+                <h2>大金刷新率统计</h2>
+                <p class="update-time">最后更新: <span id="last-updated">--</span></p>
+                
+                <div class="gold-maps" id="gold-maps">
+                    <div class="gold-map">
+                        <h3>农场</h3>
+                        <table class="gold-table">
+                            <thead>
+                                <tr>
+                                    <th>位置</th>
+                                    <th>刷新率</th>
+                                    <th>最后发现</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>主楼顶层</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>粮仓地下室</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>拖拉机库</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>温室</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="gold-map">
+                        <h3>山谷</h3>
+                        <table class="gold-table">
+                            <thead>
+                                <tr>
+                                    <th>位置</th>
+                                    <th>刷新率</th>
+                                    <th>最后发现</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>别墅二楼</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>军火库</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>防空洞</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>加油站</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="gold-map">
+                        <h3>北山</h3>
+                        <table class="gold-table">
+                            <thead>
+                                <tr>
+                                    <th>位置</th>
+                                    <th>刷新率</th>
+                                    <th>最后发现</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>酒店顶层</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>科研中心</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>发电厂</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>矿场</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="gold-map">
+                        <h3>前线要塞</h3>
+                        <table class="gold-table">
+                            <thead>
+                                <tr>
+                                    <th>位置</th>
+                                    <th>刷新率</th>
+                                    <th>最后发现</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>指挥中心</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>军械库</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>监狱</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>兵营</td>
+                                    <td class="spawn-rate">--%</td>
+                                    <td>--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="weapons" class="section">
+            <div class="container">
+                <h2>武器装备统计</h2>
+                <div class="filter-controls">
+                    <select id="weapon-type-filter">
+                        <option value="">全部类型</option>
+                        <option value="突击步枪">突击步枪</option>
+                        <option value="狙击步枪">狙击步枪</option>
+                        <option value="冲锋枪">冲锋枪</option>
+                        <option value="手枪">手枪</option>
+                    </select>
+                    <select id="weapon-sort-filter">
+                        <option value="">默认排序</option>
+                        <option value="damage">按伤害</option>
+                        <option value="fire_rate">按射速</option>
+                        <option value="accuracy">按精度</option>
+                        <option value="usage_count">按使用次数</option>
+                    </select>
+                    <button id="export-weapons-json" class="export-btn">导出JSON</button>
+                    <button id="export-weapons-csv" class="export-btn">导出CSV</button>
+                </div>
+                <div class="chart-section">
+                    <h3>武器属性雷达图（Top 5）</h3>
+                    <div class="chart-container">
+                        <canvas id="weaponRadarChart"></canvas>
+                    </div>
+                </div>
+                <div class="weapons-grid" id="weapons-grid">
+                    <div class="weapon-card">
+                        <h3>加载中...</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="economy" class="section">
+            <div class="container">
+                <h2>经济系统统计</h2>
+                <div class="economy-stats">
+                    <div class="economy-card">
+                        <h3>今日金币收入</h3>
+                        <p class="economy-value" id="today-coins-earned">--</p>
+                    </div>
+                    <div class="economy-card">
+                        <h3>今日金币支出</h3>
+                        <p class="economy-value" id="today-coins-spent">--</p>
+                    </div>
+                    <div class="economy-card">
+                        <h3>平均玩家金币</h3>
+                        <p class="economy-value" id="avg-coins">--</p>
+                    </div>
+                    <div class="economy-card">
+                        <h3>今日交易次数</h3>
+                        <p class="economy-value" id="today-trades">--</p>
+                    </div>
+                </div>
+                <div class="chart-section">
+                    <h3>经济趋势（30天）</h3>
+                    <div class="chart-container">
+                        <canvas id="economyChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-section">
+                    <h3>经济趋势折线图</h3>
+                    <div class="chart-container">
+                        <canvas id="economyLineChart"></canvas>
+                    </div>
+                </div>
+                <div class="export-buttons">
+                    <button id="export-economy-json" class="export-btn">导出JSON</button>
+                    <button id="export-economy-csv" class="export-btn">导出CSV</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="leaderboard" class="section">
+            <div class="container">
+                <h2>玩家排行榜</h2>
+                <div class="leaderboard-controls">
+                    <select id="leaderboard-category">
+                        <option value="total_kills">击杀数</option>
+                        <option value="total_extractions">撤离次数</option>
+                        <option value="total_coins">金币数</option>
+                        <option value="level">等级</option>
+                    </select>
+                    <select id="leaderboard-limit">
+                        <option value="10">前10名</option>
+                        <option value="20">前20名</option>
+                        <option value="50">前50名</option>
+                        <option value="100">前100名</option>
+                    </select>
+                    <button id="export-leaderboard-json" class="export-btn">导出JSON</button>
+                    <button id="export-leaderboard-csv" class="export-btn">导出CSV</button>
+                </div>
+                <div class="leaderboard-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>玩家</th>
+                                <th>等级</th>
+                                <th>击杀数</th>
+                                <th>撤离次数</th>
+                                <th>金币数</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <tr>
+                                <td colspan="6">加载中...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="search-results" class="section">
+            <div class="container">
+                <h2>搜索结果</h2>
+                <div id="search-results-content"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy;暗区突围-无限数据统计系统 | 仅供娱乐参考</p>
+        </div>
+    </footer>
+
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script-standalone.js"></script>
+</body>
+</html>

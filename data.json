@@ -1,0 +1,356 @@
+{
+  "stats": {
+    "total_players": 125847,
+    "active_players": 45231,
+    "total_matches": 892341,
+    "total_kills": 12456789,
+    "total_extractions": 6789012
+  },
+  "game_modes": {
+    "classic": {
+      "online_players": 28456,
+      "average_duration": 18
+    },
+    "team": {
+      "online_players": 12345,
+      "average_duration": 12
+    },
+    "survival": {
+      "online_players": 4430,
+      "average_duration": 25
+    }
+  },
+  "gold_spawn": {
+    "farm": {
+      "map_name": "农场",
+      "spawn_rate": 12.5,
+      "locations": 8,
+      "avg_value": 85000
+    },
+    "valley": {
+      "map_name": "山谷",
+      "spawn_rate": 15.8,
+      "locations": 12,
+      "avg_value": 120000
+    },
+    "hotel": {
+      "map_name": "酒店",
+      "spawn_rate": 10.2,
+      "locations": 6,
+      "avg_value": 150000
+    },
+    "armory": {
+      "map_name": "军械库",
+      "spawn_rate": 18.3,
+      "locations": 15,
+      "avg_value": 95000
+    },
+    "frontier": {
+      "map_name": "前线要塞",
+      "spawn_rate": 14.7,
+      "locations": 10,
+      "avg_value": 110000
+    }
+  },
+  "map_preferences": [
+    {
+      "map_name": "山谷",
+      "play_count": 345678,
+      "percentage": 28.5,
+      "avg_extractions": 0.72
+    },
+    {
+      "map_name": "农场",
+      "play_count": 289123,
+      "percentage": 23.8,
+      "avg_extractions": 0.68
+    },
+    {
+      "map_name": "军械库",
+      "play_count": 234567,
+      "percentage": 19.3,
+      "avg_extractions": 0.65
+    },
+    {
+      "map_name": "酒店",
+      "play_count": 198234,
+      "percentage": 16.3,
+      "avg_extractions": 0.71
+    },
+    {
+      "map_name": "前线要塞",
+      "play_count": 145678,
+      "percentage": 12.1,
+      "avg_extractions": 0.69
+    }
+  ],
+  "weapons": [
+    {
+      "id": 1,
+      "name": "AK-74N",
+      "type": "步枪",
+      "damage": 45,
+      "fire_rate": 650,
+      "accuracy": 0.85,
+      "recoil": 0.35,
+      "magazine_size": 30,
+      "usage_count": 45678
+    },
+    {
+      "id": 2,
+      "name": "M4A1",
+      "type": "步枪",
+      "damage": 42,
+      "fire_rate": 750,
+      "accuracy": 0.88,
+      "recoil": 0.32,
+      "magazine_size": 30,
+      "usage_count": 52341
+    },
+    {
+      "id": 3,
+      "name": "MP5",
+      "type": "冲锋枪",
+      "damage": 28,
+      "fire_rate": 900,
+      "accuracy": 0.82,
+      "recoil": 0.28,
+      "magazine_size": 30,
+      "usage_count": 38912
+    },
+    {
+      "id": 4,
+      "name": "AWM",
+      "type": "狙击枪",
+      "damage": 120,
+      "fire_rate": 60,
+      "accuracy": 0.95,
+      "recoil": 0.65,
+      "magazine_size": 5,
+      "usage_count": 12345
+    },
+    {
+      "id": 5,
+      "name": "M870",
+      "type": "霰弹枪",
+      "damage": 95,
+      "fire_rate": 40,
+      "accuracy": 0.70,
+      "recoil": 0.55,
+      "magazine_size": 6,
+      "usage_count": 27856
+    },
+    {
+      "id": 6,
+      "name": "Vector",
+      "type": "冲锋枪",
+      "damage": 22,
+      "fire_rate": 1200,
+      "accuracy": 0.78,
+      "recoil": 0.38,
+      "magazine_size": 25,
+      "usage_count": 34567
+    },
+    {
+      "id": 7,
+      "name": "SCAR-H",
+      "type": "步枪",
+      "damage": 55,
+      "fire_rate": 625,
+      "accuracy": 0.86,
+      "recoil": 0.40,
+      "magazine_size": 20,
+      "usage_count": 23456
+    },
+    {
+      "id": 8,
+      "name": "MP7",
+      "type": "冲锋枪",
+      "damage": 25,
+      "fire_rate": 950,
+      "accuracy": 0.84,
+      "recoil": 0.30,
+      "magazine_size": 40,
+      "usage_count": 41234
+    }
+  ],
+  "economy": [
+    {
+      "date": "2025-12-30",
+      "total_coins": 8923456,
+      "avg_coins_per_player": 4567,
+      "transactions": 234567
+    },
+    {
+      "date": "2025-12-31",
+      "total_coins": 9234567,
+      "avg_coins_per_player": 4789,
+      "transactions": 256789
+    },
+    {
+      "date": "2026-01-01",
+      "total_coins": 9567890,
+      "avg_coins_per_player": 5123,
+      "transactions": 278901
+    },
+    {
+      "date": "2026-01-02",
+      "total_coins": 9876543,
+      "avg_coins_per_player": 5345,
+      "transactions": 290123
+    },
+    {
+      "date": "2026-01-03",
+      "total_coins": 10234567,
+      "avg_coins_per_player": 5567,
+      "transactions": 312345
+    },
+    {
+      "date": "2026-01-04",
+      "total_coins": 10567890,
+      "avg_coins_per_player": 5789,
+      "transactions": 334567
+    },
+    {
+      "date": "2026-01-05",
+      "total_coins": 10901234,
+      "avg_coins_per_player": 6012,
+      "transactions": 356789
+    }
+  ],
+  "leaderboard": {
+    "kills": [
+      {
+        "rank": 1,
+        "username": "暗区猎手",
+        "total_kills": 5678,
+        "level": 85
+      },
+      {
+        "rank": 2,
+        "username": "枪神降临",
+        "total_kills": 5234,
+        "level": 82
+      },
+      {
+        "rank": 3,
+        "username": "战术大师",
+        "total_kills": 4890,
+        "level": 79
+      },
+      {
+        "rank": 4,
+        "username": "暗影杀手",
+        "total_kills": 4567,
+        "level": 76
+      },
+      {
+        "rank": 5,
+        "username": "战场收割者",
+        "total_kills": 4234,
+        "level": 74
+      }
+    ],
+    "extractions": [
+      {
+        "rank": 1,
+        "username": "撤离专家",
+        "total_extractions": 3456,
+        "level": 78
+      },
+      {
+        "rank": 2,
+        "username": "生存之王",
+        "total_extractions": 3123,
+        "level": 75
+      },
+      {
+        "rank": 3,
+        "username": "战术撤离",
+        "total_extractions": 2890,
+        "level": 72
+      },
+      {
+        "rank": 4,
+        "username": "暗区幸存者",
+        "total_extractions": 2567,
+        "level": 70
+      },
+      {
+        "rank": 5,
+        "username": "撤离大师",
+        "total_extractions": 2345,
+        "level": 68
+      }
+    ],
+    "coins": [
+      {
+        "rank": 1,
+        "username": "财富大亨",
+        "total_coins": 5678900,
+        "level": 88
+      },
+      {
+        "rank": 2,
+        "username": "金币猎人",
+        "total_coins": 5234567,
+        "level": 85
+      },
+      {
+        "rank": 3,
+        "username": "商业精英",
+        "total_coins": 4890123,
+        "level": 82
+      },
+      {
+        "rank": 4,
+        "username": "物资收集者",
+        "total_coins": 4567890,
+        "level": 80
+      },
+      {
+        "rank": 5,
+        "username": "暗区商人",
+        "total_coins": 4234567,
+        "level": 78
+      }
+    ],
+    "level": [
+      {
+        "rank": 1,
+        "username": "等级王者",
+        "level": 95,
+        "total_kills": 4567,
+        "total_extractions": 2345
+      },
+      {
+        "rank": 2,
+        "username": "经验大师",
+        "level": 92,
+        "total_kills": 4234,
+        "total_extractions": 2123
+      },
+      {
+        "rank": 3,
+        "username": "升级狂人",
+        "level": 90,
+        "total_kills": 4012,
+        "total_extractions": 1987
+      },
+      {
+        "rank": 4,
+        "username": "暗区老兵",
+        "level": 88,
+        "total_kills": 3789,
+        "total_extractions": 1856
+      },
+      {
+        "rank": 5,
+        "username": "游戏达人",
+        "level": 86,
+        "total_kills": 3567,
+        "total_extractions": 1734
+      }
+    ]
+  }
+}
