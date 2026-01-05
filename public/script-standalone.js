@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 results.players.forEach(player => {
                     html += `<div class="search-result-item">
                         <strong>${player.username}</strong>
-                        <span>等级: ${player.level} | 击杀: ${player.total_kills} | 金币: ${(player.total_coins || 0).toLocaleString()}</span>
+                        <span>等级: ${player.level} | 击杀: ${player.total_kills} | 科恩币: ${(player.total_coins || 0).toLocaleString()}</span>
                     </div>`;
                 });
                 html += '</div>';
@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 labels: economyData.map(s => s.date.slice(5)),
                 datasets: [
                     {
-                        label: '金币收入',
+                        label: '科恩币收入',
                         data: economyData.map(s => s.total_coins * 0.6),
                         borderColor: 'rgba(233, 69, 96, 1)',
                         backgroundColor: 'rgba(233, 69, 96, 0.1)',
@@ -548,7 +548,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         fill: true
                     },
                     {
-                        label: '金币支出',
+                        label: '科恩币支出',
                         data: economyData.map(s => s.total_coins * 0.4),
                         borderColor: 'rgba(255, 159, 64, 1)',
                         backgroundColor: 'rgba(255, 159, 64, 0.1)',
@@ -615,7 +615,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 labels: economyData.map(s => s.date.slice(5)),
                 datasets: [
                     {
-                        label: '金币净收入',
+                        label: '科恩币净收入',
                         data: economyData.map(s => s.total_coins * 0.2),
                         borderColor: 'rgba(54, 162, 235, 1)',
                         backgroundColor: 'rgba(54, 162, 235, 0.1)',
@@ -702,7 +702,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
             case 'coins':
                 data = gameData.leaderboard.coins;
-                title = '金币排行榜';
+                title = '科恩币排行榜';
                 break;
             case 'level':
                 data = gameData.leaderboard.level;

@@ -50,6 +50,18 @@
       "spawn_rate": 14.7,
       "locations": 10,
       "avg_value": 110000
+    },
+    "tv_station": {
+      "map_name": "电视台",
+      "spawn_rate": 16.2,
+      "locations": 9,
+      "avg_value": 135000
+    },
+    "airport": {
+      "map_name": "机场",
+      "spawn_rate": 19.5,
+      "locations": 14,
+      "avg_value": 145000
     }
   },
   "map_preferences": [
@@ -82,6 +94,18 @@
       "play_count": 145678,
       "percentage": 12.1,
       "avg_extractions": 0.69
+    },
+    {
+      "map_name": "电视台",
+      "play_count": 123456,
+      "percentage": 10.2,
+      "avg_extractions": 0.67
+    },
+    {
+      "map_name": "机场",
+      "play_count": 98765,
+      "percentage": 8.1,
+      "avg_extractions": 0.70
     }
   ],
   "weapons": [
@@ -172,6 +196,138 @@
       "recoil": 0.30,
       "magazine_size": 40,
       "usage_count": 41234
+    },
+    {
+      "id": 9,
+      "name": "GROZA",
+      "type": "步枪",
+      "damage": 48,
+      "fire_rate": 670,
+      "accuracy": 0.83,
+      "recoil": 0.38,
+      "magazine_size": 30,
+      "usage_count": 38765
+    },
+    {
+      "id": 10,
+      "name": "SKS",
+      "type": "狙击枪",
+      "damage": 55,
+      "fire_rate": 30,
+      "accuracy": 0.90,
+      "recoil": 0.45,
+      "magazine_size": 10,
+      "usage_count": 29876
+    },
+    {
+      "id": 11,
+      "name": "P90",
+      "type": "冲锋枪",
+      "damage": 23,
+      "fire_rate": 1000,
+      "accuracy": 0.80,
+      "recoil": 0.32,
+      "magazine_size": 50,
+      "usage_count": 35678
+    },
+    {
+      "id": 12,
+      "name": "M249",
+      "type": "机枪",
+      "damage": 38,
+      "fire_rate": 800,
+      "accuracy": 0.72,
+      "recoil": 0.42,
+      "magazine_size": 100,
+      "usage_count": 18923
+    },
+    {
+      "id": 13,
+      "name": "Kar98k",
+      "type": "狙击枪",
+      "damage": 105,
+      "fire_rate": 50,
+      "accuracy": 0.93,
+      "recoil": 0.60,
+      "magazine_size": 5,
+      "usage_count": 15678
+    },
+    {
+      "id": 14,
+      "name": "UMP45",
+      "type": "冲锋枪",
+      "damage": 30,
+      "fire_rate": 600,
+      "accuracy": 0.86,
+      "recoil": 0.25,
+      "magazine_size": 25,
+      "usage_count": 28934
+    },
+    {
+      "id": 15,
+      "name": "M24",
+      "type": "狙击枪",
+      "damage": 115,
+      "fire_rate": 55,
+      "accuracy": 0.94,
+      "recoil": 0.62,
+      "magazine_size": 5,
+      "usage_count": 13456
+    },
+    {
+      "id": 16,
+      "name": "HK416",
+      "type": "步枪",
+      "damage": 44,
+      "fire_rate": 780,
+      "accuracy": 0.87,
+      "recoil": 0.33,
+      "magazine_size": 30,
+      "usage_count": 46789
+    },
+    {
+      "id": 17,
+      "name": "AUG",
+      "type": "步枪",
+      "damage": 43,
+      "fire_rate": 680,
+      "accuracy": 0.86,
+      "recoil": 0.34,
+      "magazine_size": 30,
+      "usage_count": 32456
+    },
+    {
+      "id": 18,
+      "name": "M14",
+      "type": "步枪",
+      "damage": 52,
+      "fire_rate": 750,
+      "accuracy": 0.81,
+      "recoil": 0.41,
+      "magazine_size": 20,
+      "usage_count": 21234
+    },
+    {
+      "id": 19,
+      "name": "Saiga-12",
+      "type": "霰弹枪",
+      "damage": 85,
+      "fire_rate": 300,
+      "accuracy": 0.68,
+      "recoil": 0.50,
+      "magazine_size": 8,
+      "usage_count": 24567
+    },
+    {
+      "id": 20,
+      "name": "PKM",
+      "type": "机枪",
+      "damage": 42,
+      "fire_rate": 650,
+      "accuracy": 0.70,
+      "recoil": 0.45,
+      "magazine_size": 100,
+      "usage_count": 16789
     }
   ],
   "economy": [
@@ -292,7 +448,7 @@
       },
       {
         "rank": 2,
-        "username": "金币猎人",
+        "username": "科恩币猎人",
         "total_coins": 5234567,
         "level": 85
       },
