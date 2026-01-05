@@ -1409,6 +1409,121 @@ footer p {
     border-radius: 4px;
 }
 
+/* Market News Styles */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.news-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.25rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.news-card .news-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.news-icon {
+    font-size: 1.5rem;
+}
+
+.news-card .news-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+}
+
+.news-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.news-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.news-item .news-time {
+    color: #a0a0a0;
+    font-size: 0.85rem;
+}
+
+.news-item .news-tag {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    display: inline-block;
+    width: fit-content;
+}
+
+.news-item .news-tag.tag-重要 {
+    background: rgba(233, 69, 96, 0.2);
+    color: #e94560;
+    border: 1px solid rgba(233, 69, 96, 0.3);
+}
+
+.news-item .news-tag.tag-公告 {
+    background: rgba(33, 150, 243, 0.2);
+    color: #2196f3;
+    border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.news-item .news-tag.tag-涨价 {
+    background: rgba(255, 82, 82, 0.2);
+    color: #ff5252;
+    border: 1px solid rgba(255, 82, 82, 0.3);
+}
+
+.news-item .news-tag.tag-降价 {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.news-item .news-tag.tag-活动 {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.news-item .news-tag.tag-更新 {
+    background: rgba(156, 39, 176, 0.2);
+    color: #9c27b0;
+    border: 1px solid rgba(156, 39, 176, 0.3);
+}
+
+.news-item .news-text {
+    color: #e0e0e0;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Legacy News Styles */
 .news-item {
     background: rgba(22, 27, 34, 0.6);
     backdrop-filter: blur(20px);
@@ -1767,4 +1882,291 @@ footer p {
     .news-container {
         max-height: 400px;
     }
+}
+
+.bullet-diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.bullet-diff-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.25rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.bullet-diff-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.bullet-diff-card.high-profit {
+    border-color: rgba(255, 193, 7, 0.3);
+}
+
+.bullet-diff-card.high-profit:hover {
+    border-color: rgba(255, 193, 7, 0.5);
+}
+
+.bullet-diff-card.high-demand {
+    border-color: rgba(255, 82, 82, 0.3);
+}
+
+.bullet-diff-card.high-demand:hover {
+    border-color: rgba(255, 82, 82, 0.5);
+}
+
+.bullet-diff-card.all-bullets {
+    border-color: rgba(33, 150, 243, 0.3);
+}
+
+.bullet-diff-card.all-bullets:hover {
+    border-color: rgba(33, 150, 243, 0.5);
+}
+
+.bullet-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.bullet-icon {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.bullet-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.bullet-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.bullet-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.bullet-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.bullet-content::-webkit-scrollbar-thumb {
+    background: rgba(233, 69, 96, 0.5);
+    border-radius: 3px;
+}
+
+.bullet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.bullet-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.bullet-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.bullet-item .name {
+    flex-grow: 1;
+    margin: 0 1rem;
+    font-weight: 500;
+}
+
+.bullet-item .price {
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+    color: #e0e0e0;
+}
+
+.bullet-item .profit {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    white-space: nowrap;
+    color: #4caf50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.bullet-item .profit-rate {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    white-space: nowrap;
+    color: #ffc107;
+    background: rgba(255, 193, 7, 0.1);
+}
+
+.restock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.restock-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.25rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.restock-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.restock-card.urgent {
+    border-color: rgba(255, 82, 82, 0.3);
+}
+
+.restock-card.urgent:hover {
+    border-color: rgba(255, 82, 82, 0.5);
+}
+
+.restock-card.high-probability {
+    border-color: rgba(33, 150, 243, 0.3);
+}
+
+.restock-card.high-probability:hover {
+    border-color: rgba(33, 150, 243, 0.5);
+}
+
+.restock-card.all-items {
+    border-color: rgba(76, 175, 80, 0.3);
+}
+
+.restock-card.all-items:hover {
+    border-color: rgba(76, 175, 80, 0.5);
+}
+
+.restock-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.restock-icon {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.restock-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.restock-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.restock-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.restock-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.restock-content::-webkit-scrollbar-thumb {
+    background: rgba(233, 69, 96, 0.5);
+    border-radius: 3px;
+}
+
+.restock-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.restock-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.restock-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.restock-item .name {
+    flex-grow: 1;
+    margin: 0 1rem;
+    font-weight: 500;
+}
+
+.restock-item .stock {
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+    color: #e0e0e0;
+}
+
+.restock-item .time {
+    white-space: nowrap;
+    color: #a0a0a0;
+}
+
+.restock-item .probability {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    white-space: nowrap;
+    color: #2196f3;
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.restock-item .urgency {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.restock-item .urgency.urgency-极高 {
+    color: #ff1744;
+    background: rgba(255, 23, 68, 0.1);
+}
+
+.restock-item .urgency.urgency-高 {
+    color: #ff5252;
+    background: rgba(255, 82, 82, 0.1);
+}
+
+.restock-item .urgency.urgency-中 {
+    color: #ff9800;
+    background: rgba(255, 152, 0, 0.1);
+}
+
+.restock-item .urgency.urgency-低 {
+    color: #4caf50;
+    background: rgba(76, 175, 80, 0.1);
 }

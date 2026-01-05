@@ -3,25 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>暗区突围-无限 - 游戏数据统计系统</title>
+    <title>暗区情报站 - 暗区突围无限数据统计</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>暗区突围-无限</h1>
-            <p class="subtitle">游戏数据统计系统</p>
+            <div class="header-top">
+                <h1>暗区情报站</h1>
+                <p class="subtitle">暗区突围无限数据统计系统</p>
+            </div>
+            <div class="new-year-banner">
+                <div class="new-year-content">
+                    <span class="new-year-icon">🎉</span>
+                    <span class="new-year-text">2026新年快乐：S4赛季携手共进</span>
+                </div>
+            </div>
         </div>
     </header>
 
     <nav>
         <div class="container">
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="搜索玩家、武器、地图...">
-                <button id="search-btn">搜索</button>
-            </div>
             <div class="nav-buttons">
-                <button class="nav-btn active" data-section="gameplay">游戏玩法</button>
+                <button class="nav-btn active" data-section="market-trends">市场涨跌</button>
+                <button class="nav-btn" data-section="workbench-profit">工作台利润</button>
+                <button class="nav-btn" data-section="market-hot">市场热度</button>
+                <button class="nav-btn" data-section="bullet-price-diff">子弹差价榜</button>
+                <button class="nav-btn" data-section="restock-prediction">补货预测</button>
+                <button class="nav-btn" data-section="market-news">市场快讯</button>
+                <button class="nav-btn" data-section="gameplay">游戏玩法</button>
                 <button class="nav-btn" data-section="player-stats">玩家数据</button>
                 <button class="nav-btn" data-section="map-preferences">地图爱好</button>
                 <button class="nav-btn" data-section="gold-spawn">大金刷新</button>
@@ -30,13 +40,7 @@
                 <button class="nav-btn" data-section="map-points">地图点位</button>
                 <button class="nav-btn" data-section="economy">经济统计</button>
                 <button class="nav-btn" data-section="leaderboard">排行榜</button>
-                <button class="nav-btn" data-section="bullet-price-diff">子弹差价榜</button>
-                <button class="nav-btn" data-section="workbench-profit">工作台利润</button>
                 <button class="nav-btn" data-section="mission-flow">任务流程</button>
-                <button class="nav-btn" data-section="restock-prediction">补货预测</button>
-                <button class="nav-btn" data-section="market-trends">市场涨跌</button>
-                <button class="nav-btn" data-section="market-hot">市场热度</button>
-                <button class="nav-btn" data-section="market-news">市场快讯</button>
             </div>
         </div>
     </nav>
@@ -447,69 +451,58 @@
 
         <section id="bullet-price-diff" class="section">
             <div class="container">
-                <h2>子弹差价榜</h2>
-                <div class="table-controls">
-                    <select id="bullet-sort">
-                        <option value="profit_rate">按利润率排序</option>
-                        <option value="profit">按利润排序</option>
-                        <option value="demand">按需求排序</option>
-                    </select>
-                    <button id="export-bullet-json" class="export-btn">导出JSON</button>
-                    <button id="export-bullet-csv" class="export-btn">导出CSV</button>
+                <div class="section-header">
+                    <h2>子弹差价榜</h2>
+                    <span class="time-badge">实时</span>
                 </div>
-                <div class="data-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>子弹名称</th>
-                                <th>买入价格</th>
-                                <th>卖出价格</th>
-                                <th>利润</th>
-                                <th>利润率</th>
-                                <th>需求</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bullet-price-diff-body">
-                            <tr>
-                                <td colspan="6">加载中...</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="bullet-diff-grid">
+                    <div class="bullet-diff-card high-profit">
+                        <div class="bullet-header">
+                            <span class="bullet-icon">💎</span>
+                            <h3>高利润子弹</h3>
+                        </div>
+                        <div class="bullet-content">
+                            <div id="high-profit-list" class="bullet-list">
+                                <p class="no-data">暂无数据</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bullet-diff-card high-demand">
+                        <div class="bullet-header">
+                            <span class="bullet-icon">🔥</span>
+                            <h3>高需求子弹</h3>
+                        </div>
+                        <div class="bullet-content">
+                            <div id="high-demand-list" class="bullet-list">
+                                <p class="no-data">暂无数据</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bullet-diff-card all-bullets">
+                        <div class="bullet-header">
+                            <span class="bullet-icon">📊</span>
+                            <h3>全部子弹</h3>
+                        </div>
+                        <div class="bullet-content">
+                            <div id="all-bullets-list" class="bullet-list">
+                                <p class="no-data">暂无数据</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="workbench-profit" class="section">
             <div class="container">
-                <h2>工作台利润排行</h2>
-                <div class="table-controls">
-                    <select id="workbench-sort">
-                        <option value="profit_rate">按利润率排序</option>
-                        <option value="profit">按利润排序</option>
-                        <option value="difficulty">按难度排序</option>
-                    </select>
-                    <button id="export-workbench-json" class="export-btn">导出JSON</button>
-                    <button id="export-workbench-csv" class="export-btn">导出CSV</button>
+                <div class="section-header">
+                    <h2>工作台利润排行</h2>
+                    <span class="update-badge">实时</span>
                 </div>
-                <div class="data-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>物品名称</th>
-                                <th>制作时间(分钟)</th>
-                                <th>材料成本</th>
-                                <th>卖出价格</th>
-                                <th>利润</th>
-                                <th>利润率</th>
-                                <th>难度</th>
-                            </tr>
-                        </thead>
-                        <tbody id="workbench-profit-body">
-                            <tr>
-                                <td colspan="7">加载中...</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="workbench-content">
+                    <div id="workbench-profit-list" class="profit-list">
+                        <p class="no-data">暂无利润数据</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -533,120 +526,163 @@
 
         <section id="restock-prediction" class="section">
             <div class="container">
-                <h2>系统补货预测</h2>
-                <div class="restock-controls">
-                    <select id="restock-sort">
-                        <option value="urgency">按紧急程度排序</option>
-                        <option value="probability">按概率排序</option>
-                        <option value="restock_time">按补货时间排序</option>
-                    </select>
-                    <button id="export-restock-json" class="export-btn">导出JSON</button>
-                    <button id="export-restock-csv" class="export-btn">导出CSV</button>
+                <div class="section-header">
+                    <h2>系统补货预测</h2>
+                    <span class="update-badge">预测</span>
                 </div>
-                <div class="data-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>物品名称</th>
-                                <th>当前库存</th>
-                                <th>补货时间</th>
-                                <th>补货数量</th>
-                                <th>概率</th>
-                                <th>紧急程度</th>
-                            </tr>
-                        </thead>
-                        <tbody id="restock-prediction-body">
-                            <tr>
-                                <td colspan="6">加载中...</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="restock-grid">
+                    <div class="restock-card urgent">
+                        <div class="restock-header">
+                            <span class="restock-icon">🚨</span>
+                            <h3>紧急补货</h3>
+                        </div>
+                        <div class="restock-content">
+                            <div id="urgent-restock-list" class="restock-list">
+                                <p class="no-data">暂无数据</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="restock-card high-probability">
+                        <div class="restock-header">
+                            <span class="restock-icon">📊</span>
+                            <h3>高概率补货</h3>
+                        </div>
+                        <div class="restock-content">
+                            <div id="high-probability-list" class="restock-list">
+                                <p class="no-data">暂无数据</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="restock-card all-items">
+                        <div class="restock-header">
+                            <span class="restock-icon">📦</span>
+                            <h3>全部物品</h3>
+                        </div>
+                        <div class="restock-content">
+                            <div id="all-restock-list" class="restock-list">
+                                <p class="no-data">暂无数据</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="market-trends" class="section">
             <div class="container">
-                <h2>市场涨跌幅排行</h2>
-                <div class="market-tabs">
-                    <button class="market-tab active" data-tab="rise">📈 涨幅榜</button>
-                    <button class="market-tab" data-tab="fall">📉 跌幅榜</button>
+                <div class="section-header">
+                    <h2>市场涨跌幅排行</h2>
+                    <span class="time-badge">2小时</span>
                 </div>
-                <div class="time-filter">
-                    <select id="market-time-filter">
-                        <option value="2h">2小时</option>
-                        <option value="6h">6小时</option>
-                        <option value="24h">24小时</option>
-                        <option value="7d">7天</option>
-                    </select>
-                </div>
-                <div class="chart-container">
-                    <canvas id="market-trends-chart"></canvas>
-                </div>
-                <div class="data-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th data-sort="rank" class="sortable">排名 <span class="sort-icon">↕</span></th>
-                                <th data-sort="item_name" class="sortable">物品名称 <span class="sort-icon">↕</span></th>
-                                <th data-sort="current_price" class="sortable">当前价格 <span class="sort-icon">↕</span></th>
-                                <th data-sort="change_rate" class="sortable">涨跌幅 <span class="sort-icon">↕</span></th>
-                                <th data-sort="change_amount" class="sortable">变化金额 <span class="sort-icon">↕</span></th>
-                            </tr>
-                        </thead>
-                        <tbody id="market-trends-body">
-                            <tr>
-                                <td colspan="5">加载中...</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="market-trends-grid">
+                    <div class="trend-card rise">
+                        <div class="trend-header">
+                            <span class="trend-icon">📈</span>
+                            <h3>涨幅榜</h3>
+                        </div>
+                        <div class="trend-content">
+                            <div id="rise-list" class="trend-list">
+                                <p class="no-data">暂无涨幅数据</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trend-card fall">
+                        <div class="trend-header">
+                            <span class="trend-icon">📉</span>
+                            <h3>跌幅榜</h3>
+                        </div>
+                        <div class="trend-content">
+                            <div id="fall-list" class="trend-list">
+                                <p class="no-data">暂无跌幅数据</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="market-hot" class="section">
             <div class="container">
-                <h2>市场热度排行</h2>
-                <div class="market-tabs">
-                    <button class="market-tab active" data-tab="items">🔥 热门物品</button>
-                    <button class="market-tab" data-tab="keys">🗝️ 钥匙</button>
-                    <button class="market-tab" data-tab="price">💰 价格排行榜</button>
+                <div class="section-header">
+                    <h2>市场热度排行</h2>
+                    <span class="time-badge">2小时</span>
                 </div>
-                <div class="chart-container">
-                    <canvas id="market-hot-chart"></canvas>
-                </div>
-                <div class="data-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th data-sort="rank" class="sortable">排名 <span class="sort-icon">↕</span></th>
-                                <th data-sort="item_name" class="sortable">物品名称 <span class="sort-icon">↕</span></th>
-                                <th data-sort="price" class="sortable">价格 <span class="sort-icon">↕</span></th>
-                                <th data-sort="hotness" class="sortable">热度 <span class="sort-icon">↕</span></th>
-                                <th data-sort="fluctuation" class="sortable">波动 <span class="sort-icon">↕</span></th>
-                            </tr>
-                        </thead>
-                        <tbody id="market-hot-body">
-                            <tr>
-                                <td colspan="5">加载中...</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="market-hot-grid">
+                    <div class="hot-card items">
+                        <div class="hot-header">
+                            <span class="hot-icon">�</span>
+                            <h3>热门物品</h3>
+                        </div>
+                        <div class="hot-content">
+                            <div id="hot-items-list" class="hot-list">
+                                <p class="no-data">波动 No data</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hot-card keys">
+                        <div class="hot-header">
+                            <span class="hot-icon">🗝️</span>
+                            <h3>钥匙波动</h3>
+                        </div>
+                        <div class="hot-content">
+                            <div id="hot-keys-list" class="hot-list">
+                                <p class="no-data">波动 No data</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hot-card price">
+                        <div class="hot-header">
+                            <span class="hot-icon">💰</span>
+                            <h3>价格排行榜</h3>
+                        </div>
+                        <div class="hot-content">
+                            <div id="hot-price-list" class="hot-list">
+                                <p class="no-data">No data</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="market-news" class="section">
             <div class="container">
-                <h2>市场快讯</h2>
-                <div class="news-list" id="market-news-list">
-                    <div class="news-card">
+                <div class="section-header">
+                    <h2>市场快讯</h2>
+                    <span class="update-badge">实时</span>
+                </div>
+                <div class="news-grid">
+                    <div class="news-card important">
                         <div class="news-header">
-                            <span class="news-time">加载中...</span>
-                            <span class="news-tag">--</span>
+                            <span class="news-icon">🚨</span>
+                            <h3>重要公告</h3>
                         </div>
                         <div class="news-content">
-                            <p>加载中...</p>
+                            <div id="important-news-list" class="news-list">
+                                <p class="no-data">暂无数据</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card latest">
+                        <div class="news-header">
+                            <span class="news-icon">📰</span>
+                            <h3>最新快讯</h3>
+                        </div>
+                        <div class="news-content">
+                            <div id="latest-news-list" class="news-list">
+                                <p class="no-data">暂无数据</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card all-news">
+                        <div class="news-header">
+                            <span class="news-icon">📋</span>
+                            <h3>全部快讯</h3>
+                        </div>
+                        <div class="news-content">
+                            <div id="all-news-list" class="news-list">
+                                <p class="no-data">暂无数据</p>
+                            </div>
                         </div>
                     </div>
                 </div>
