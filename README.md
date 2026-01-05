@@ -90,7 +90,7 @@ npx http-server public -p 8000
 1. Fork本项目到你的GitHub账号
 2. 在仓库设置中启用GitHub Pages，选择GitHub Actions作为部署源
 3. 推送代码到main分支，自动触发部署
-4. 访问 `https://你的用户名.github.io/暗区无限网页/`
+4. 访问 `https://你的用户名.github.io/darkzone-stats/`
 
 ### 部署流程
 
