@@ -1262,6 +1262,24 @@ footer p {
     border-color: rgba(233, 69, 96, 0.6);
     box-shadow: 0 0 20px rgba(233, 69, 96, 0.2);
 }
+
+.chart-container {
+    background: rgba(22, 27, 34, 0.6);
+    backdrop-filter: blur(20px);
+    padding: 35px;
+    border-radius: 16px;
+    border: 1px solid rgba(233, 69, 96, 0.2);
+    margin-bottom: 30px;
+    position: relative;
+    height: 400px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chart-container:hover {
+    border-color: rgba(233, 69, 96, 0.4);
+    box-shadow: 0 8px 32px rgba(233, 69, 96, 0.15);
+}
+
 .data-table {
     background: rgba(22, 27, 34, 0.6);
     backdrop-filter: blur(20px);
@@ -1294,6 +1312,55 @@ footer p {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-weight: 700;
+}
+
+.data-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.data-table th.sortable:hover {
+    background: linear-gradient(135deg, #ff6b8a 0%, #e94560 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transform: translateY(-2px);
+}
+
+.data-table th.sortable .sort-icon {
+    margin-left: 5px;
+    font-size: 0.8em;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.data-table th.sortable:hover .sort-icon {
+    opacity: 1;
+}
+
+.data-table th.sortable.sort-asc .sort-icon::after {
+    content: '↑';
+}
+
+.data-table th.sortable.sort-desc .sort-icon::after {
+    content: '↓';
+}
+
+.data-table th.sortable.sort-asc,
+.data-table th.sortable.sort-desc {
+    background: linear-gradient(135deg, #e94560 0%, #ff6b8a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.data-table th.sortable.sort-asc .sort-icon,
+.data-table th.sortable.sort-desc .sort-icon {
+    opacity: 1;
+    color: #e94560;
 }
 
 .data-table td {
