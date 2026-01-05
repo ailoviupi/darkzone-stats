@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const navBtns = document.querySelectorAll('.nav-btn');
+    const navCategoryBtns = document.querySelectorAll('.nav-category-btn');
     const sections = document.querySelectorAll('.section');
     let mapChart = null;
     let economyChart = null;
@@ -51,12 +52,38 @@ document.addEventListener('DOMContentLoaded', function() {
     initLeaderboardControls();
     initExportButtons();
 
+    navCategoryBtns.forEach(categoryBtn => {
+        categoryBtn.addEventListener('click', function() {
+            const category = this.getAttribute('data-category');
+            
+            navCategoryBtns.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            const dropdown = this.nextElementSibling;
+            if (dropdown && dropdown.classList.contains('nav-dropdown')) {
+                const firstBtn = dropdown.querySelector('.nav-btn');
+                if (firstBtn) {
+                    firstBtn.click();
+                }
+            }
+        });
+    });
+
     navBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             const sectionId = this.getAttribute('data-section');
             
             navBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
+            
+            const parentCategory = this.closest('.nav-category');
+            if (parentCategory) {
+                const categoryBtn = parentCategory.querySelector('.nav-category-btn');
+                if (categoryBtn) {
+                    navCategoryBtns.forEach(btn => btn.classList.remove('active'));
+                    categoryBtn.classList.add('active');
+                }
+            }
             
             sections.forEach(section => {
                 section.classList.remove('active');
