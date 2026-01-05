@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('avg-level').textContent = '52.3';
         document.getElementById('avg-playtime').textContent = '3.5 小时';
 
-        updateMapChart(gameData.map_preferences.slice(0, 4));
+        updateMapChart(gameData.map_preferences);
     }
 
     function updateMapChart(topMaps) {
@@ -159,6 +159,26 @@ document.addEventListener('DOMContentLoaded', function() {
             mapChart.destroy();
         }
 
+        const backgroundColors = [
+            'rgba(233, 69, 96, 0.8)',
+            'rgba(255, 99, 132, 0.8)',
+            'rgba(255, 159, 64, 0.8)',
+            'rgba(255, 205, 86, 0.8)',
+            'rgba(75, 192, 192, 0.8)',
+            'rgba(54, 162, 235, 0.8)',
+            'rgba(153, 102, 255, 0.8)'
+        ];
+
+        const borderColors = [
+            'rgba(233, 69, 96, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(255, 205, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(153, 102, 255, 1)'
+        ];
+
         mapChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -166,18 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 datasets: [{
                     label: '玩家占比 (%)',
                     data: topMaps.map(map => map.percentage),
-                    backgroundColor: [
-                        'rgba(233, 69, 96, 0.8)',
-                        'rgba(255, 99, 132, 0.8)',
-                        'rgba(255, 159, 64, 0.8)',
-                        'rgba(255, 205, 86, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgba(233, 69, 96, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 205, 86, 1)'
-                    ],
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
                     borderWidth: 2
                 }]
             },
@@ -227,8 +237,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!gameData) return;
         
         const mapCards = document.querySelectorAll('.map-card');
-        const difficulties = ['中等', '困难', '极难', '困难', '中等'];
-        const lootQualities = ['7', '8', '9', '8', '7'];
+        const difficulties = ['中等', '困难', '极难', '困难', '中等', '困难', '极难'];
+        const lootQualities = ['7', '8', '9', '8', '7', '9', '10'];
         
         gameData.map_preferences.forEach((map, index) => {
             if (mapCards[index]) {
