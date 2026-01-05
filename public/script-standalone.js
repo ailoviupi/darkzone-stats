@@ -291,6 +291,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('search-input');
         const searchBtn = document.getElementById('search-btn');
 
+        if (!searchInput || !searchBtn) {
+            console.log('搜索功能未启用：缺少搜索输入框或按钮');
+            return;
+        }
+
         const performSearch = () => {
             const query = searchInput.value.trim().toLowerCase();
             if (query.length < 2) {
@@ -780,120 +785,166 @@ document.addEventListener('DOMContentLoaded', function() {
         const exportRestockCsv = document.getElementById('export-restock-csv');
         const exportRestockJson = document.getElementById('export-restock-json');
 
-        exportWeaponsCsv.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToCSV(gameData.weapons, 'weapons.csv');
-            showToast('武器数据已导出为CSV', 'success');
-        });
+        if (exportWeaponsCsv) {
+            exportWeaponsCsv.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToCSV(gameData.weapons, 'weapons.csv');
+                showToast('武器数据已导出为CSV', 'success');
+            });
+        }
 
-        exportWeaponsJson.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToJSON(gameData.weapons, 'weapons.json');
-            showToast('武器数据已导出为JSON', 'success');
-        });
+        if (exportWeaponsJson) {
+            exportWeaponsJson.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToJSON(gameData.weapons, 'weapons.json');
+                showToast('武器数据已导出为JSON', 'success');
+            });
+        }
 
-        exportLeaderboardCsv.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToCSV(gameData.leaderboard.kills, 'leaderboard.csv');
-            showToast('排行榜数据已导出为CSV', 'success');
-        });
+        if (exportLeaderboardCsv) {
+            exportLeaderboardCsv.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToCSV(gameData.leaderboard.kills, 'leaderboard.csv');
+                showToast('排行榜数据已导出为CSV', 'success');
+            });
+        }
 
-        exportLeaderboardJson.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToJSON(gameData.leaderboard.kills, 'leaderboard.json');
-            showToast('排行榜数据已导出为JSON', 'success');
-        });
+        if (exportLeaderboardJson) {
+            exportLeaderboardJson.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToJSON(gameData.leaderboard.kills, 'leaderboard.json');
+                showToast('排行榜数据已导出为JSON', 'success');
+            });
+        }
 
-        exportEconomyCsv.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToCSV(gameData.economy, 'economy.csv');
-            showToast('经济数据已导出为CSV', 'success');
-        });
+        if (exportEconomyCsv) {
+            exportEconomyCsv.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToCSV(gameData.economy, 'economy.csv');
+                showToast('经济数据已导出为CSV', 'success');
+            });
+        }
 
-        exportEconomyJson.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToJSON(gameData.economy, 'economy.json');
-            showToast('经济数据已导出为JSON', 'success');
-        });
+        if (exportEconomyJson) {
+            exportEconomyJson.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToJSON(gameData.economy, 'economy.json');
+                showToast('经济数据已导出为JSON', 'success');
+            });
+        }
 
-        exportBulletCsv.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToCSV(gameData.bullet_price_diff, 'bullet-price-diff.csv');
-            showToast('子弹差价榜已导出为CSV', 'success');
-        });
+        if (exportBulletCsv) {
+            exportBulletCsv.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToCSV(gameData.bullet_price_diff, 'bullet-price-diff.csv');
+                showToast('子弹差价榜已导出为CSV', 'success');
+            });
+        }
 
-        exportBulletJson.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToJSON(gameData.bullet_price_diff, 'bullet-price-diff.json');
-            showToast('子弹差价榜已导出为JSON', 'success');
-        });
+        if (exportBulletJson) {
+            exportBulletJson.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToJSON(gameData.bullet_price_diff, 'bullet-price-diff.json');
+                showToast('子弹差价榜已导出为JSON', 'success');
+            });
+        }
 
-        exportWorkbenchCsv.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToCSV(gameData.workbench_profit, 'workbench-profit.csv');
-            showToast('工作台利润排行已导出为CSV', 'success');
-        });
+        if (exportWorkbenchCsv) {
+            exportWorkbenchCsv.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToCSV(gameData.workbench_profit, 'workbench-profit.csv');
+                showToast('工作台利润排行已导出为CSV', 'success');
+            });
+        }
 
-        exportWorkbenchJson.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToJSON(gameData.workbench_profit, 'workbench-profit.json');
-            showToast('工作台利润排行已导出为JSON', 'success');
-        });
+        if (exportWorkbenchJson) {
+            exportWorkbenchJson.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToJSON(gameData.workbench_profit, 'workbench-profit.json');
+                showToast('工作台利润排行已导出为JSON', 'success');
+            });
+        }
 
-        exportMissionCsv.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToCSV(gameData.mission_flow, 'mission-flow.csv');
-            showToast('任务流程已导出为CSV', 'success');
-        });
+        if (exportMissionCsv) {
+            exportMissionCsv.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToCSV(gameData.mission_flow, 'mission-flow.csv');
+                showToast('任务流程已导出为CSV', 'success');
+            });
+        }
 
-        exportMissionJson.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToJSON(gameData.mission_flow, 'mission-flow.json');
-            showToast('任务流程已导出为JSON', 'success');
-        });
+        if (exportMissionJson) {
+            exportMissionJson.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToJSON(gameData.mission_flow, 'mission-flow.json');
+                showToast('任务流程已导出为JSON', 'success');
+            });
+        }
 
-        exportRestockCsv.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToCSV(gameData.restock_prediction, 'restock-prediction.csv');
-            showToast('补货预测已导出为CSV', 'success');
-        });
+        if (exportRestockCsv) {
+            exportRestockCsv.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToCSV(gameData.restock_prediction, 'restock-prediction.csv');
+                showToast('补货预测已导出为CSV', 'success');
+            });
+        }
 
-        exportRestockJson.addEventListener('click', () => {
-            if (!gameData) return;
-            exportToJSON(gameData.restock_prediction, 'restock-prediction.json');
-            showToast('补货预测已导出为JSON', 'success');
-        });
+        if (exportRestockJson) {
+            exportRestockJson.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToJSON(gameData.restock_prediction, 'restock-prediction.json');
+                showToast('补货预测已导出为JSON', 'success');
+            });
+        }
     }
 
     function loadBulletPriceDiff() {
         if (!gameData) return;
         
         showLoading();
-        const sortSelect = document.getElementById('bullet-sort');
-        let bullets = [...gameData.bullet_price_diff];
+        const bullets = gameData.bullet_price_diff || [];
         
-        if (sortSelect.value === 'profit_rate') {
-            bullets.sort((a, b) => b.profit_rate - a.profit_rate);
-        } else if (sortSelect.value === 'profit') {
-            bullets.sort((a, b) => b.profit - a.profit);
-        } else if (sortSelect.value === 'demand') {
-            const demandOrder = { '高': 3, '中': 2, '低': 1 };
-            bullets.sort((a, b) => demandOrder[b.demand] - demandOrder[a.demand]);
+        if (bullets.length === 0) {
+            document.getElementById('high-profit-list').innerHTML = '<p class="no-data">暂无数据</p>';
+            document.getElementById('high-demand-list').innerHTML = '<p class="no-data">暂无数据</p>';
+            document.getElementById('all-bullets-list').innerHTML = '<p class="no-data">暂无数据</p>';
+            hideLoading();
+            return;
         }
         
-        const tbody = document.getElementById('bullet-price-diff-body');
-        tbody.innerHTML = bullets.map(bullet => `
-            <tr>
-                <td>${bullet.bullet_name}</td>
-                <td>${bullet.buy_price.toLocaleString()}</td>
-                <td>${bullet.sell_price.toLocaleString()}</td>
-                <td class="profit-positive">${bullet.profit.toLocaleString()}</td>
-                <td>${bullet.profit_rate.toFixed(1)}%</td>
-                <td class="demand-${bullet.demand}">${bullet.demand}</td>
-            </tr>
+        const highProfitBullets = [...bullets].sort((a, b) => b.profit - a.profit).slice(0, 5);
+        const highDemandBullets = bullets.filter(b => b.demand === '高').slice(0, 5);
+        
+        const highProfitList = document.getElementById('high-profit-list');
+        highProfitList.innerHTML = highProfitBullets.map(bullet => `
+            <div class="bullet-item">
+                <span class="name">${bullet.bullet_name}</span>
+                <span class="price">${bullet.sell_price.toLocaleString()}</span>
+                <span class="profit">+${bullet.profit.toLocaleString()}</span>
+                <span class="profit-rate">${bullet.profit_rate.toFixed(1)}%</span>
+            </div>
         `).join('');
         
-        sortSelect.onchange = loadBulletPriceDiff;
+        const highDemandList = document.getElementById('high-demand-list');
+        highDemandList.innerHTML = highDemandBullets.map(bullet => `
+            <div class="bullet-item">
+                <span class="name">${bullet.bullet_name}</span>
+                <span class="price">${bullet.sell_price.toLocaleString()}</span>
+                <span class="profit">+${bullet.profit.toLocaleString()}</span>
+                <span class="profit-rate">${bullet.profit_rate.toFixed(1)}%</span>
+            </div>
+        `).join('');
+        
+        const allBulletsList = document.getElementById('all-bullets-list');
+        allBulletsList.innerHTML = bullets.map(bullet => `
+            <div class="bullet-item">
+                <span class="name">${bullet.bullet_name}</span>
+                <span class="price">${bullet.sell_price.toLocaleString()}</span>
+                <span class="profit">+${bullet.profit.toLocaleString()}</span>
+                <span class="profit-rate">${bullet.profit_rate.toFixed(1)}%</span>
+            </div>
+        `).join('');
+        
         showToast('子弹差价榜加载成功', 'success');
         hideLoading();
     }
@@ -980,31 +1031,53 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!gameData) return;
         
         showLoading();
-        const sortSelect = document.getElementById('restock-sort');
-        let items = [...gameData.restock_prediction];
+        const items = gameData.restock_prediction || [];
         
-        if (sortSelect.value === 'urgency') {
-            const urgencyOrder = { '极高': 4, '高': 3, '中': 2, '低': 1 };
-            items.sort((a, b) => urgencyOrder[b.urgency] - urgencyOrder[a.urgency]);
-        } else if (sortSelect.value === 'probability') {
-            items.sort((a, b) => b.probability - a.probability);
-        } else if (sortSelect.value === 'restock_time') {
-            items.sort((a, b) => new Date(a.restock_time) - new Date(b.restock_time));
+        if (items.length === 0) {
+            document.getElementById('urgent-restock-list').innerHTML = '<p class="no-data">暂无数据</p>';
+            document.getElementById('high-probability-list').innerHTML = '<p class="no-data">暂无数据</p>';
+            document.getElementById('all-restock-list').innerHTML = '<p class="no-data">暂无数据</p>';
+            hideLoading();
+            return;
         }
         
-        const tbody = document.getElementById('restock-prediction-body');
-        tbody.innerHTML = items.map(item => `
-            <tr>
-                <td>${item.item_name}</td>
-                <td>${item.current_stock}</td>
-                <td>${item.restock_time}</td>
-                <td>${item.restock_quantity}</td>
-                <td>${item.probability}%</td>
-                <td class="urgency-${item.urgency}">${item.urgency}</td>
-            </tr>
+        const urgencyOrder = { '极高': 4, '高': 3, '中': 2, '低': 1 };
+        const urgentItems = [...items].sort((a, b) => urgencyOrder[b.urgency] - urgencyOrder[a.urgency]).filter(item => item.urgency === '极高' || item.urgency === '高').slice(0, 5);
+        const highProbabilityItems = [...items].sort((a, b) => b.probability - a.probability).filter(item => item.probability >= 70).slice(0, 5);
+        
+        const urgentList = document.getElementById('urgent-restock-list');
+        urgentList.innerHTML = urgentItems.map(item => `
+            <div class="restock-item">
+                <span class="name">${item.item_name}</span>
+                <span class="stock">${item.current_stock}</span>
+                <span class="time">${item.restock_time}</span>
+                <span class="probability">${item.probability}%</span>
+                <span class="urgency urgency-${item.urgency}">${item.urgency}</span>
+            </div>
         `).join('');
         
-        sortSelect.onchange = loadRestockPrediction;
+        const highProbabilityList = document.getElementById('high-probability-list');
+        highProbabilityList.innerHTML = highProbabilityItems.map(item => `
+            <div class="restock-item">
+                <span class="name">${item.item_name}</span>
+                <span class="stock">${item.current_stock}</span>
+                <span class="time">${item.restock_time}</span>
+                <span class="probability">${item.probability}%</span>
+                <span class="urgency urgency-${item.urgency}">${item.urgency}</span>
+            </div>
+        `).join('');
+        
+        const allRestockList = document.getElementById('all-restock-list');
+        allRestockList.innerHTML = items.map(item => `
+            <div class="restock-item">
+                <span class="name">${item.item_name}</span>
+                <span class="stock">${item.current_stock}</span>
+                <span class="time">${item.restock_time}</span>
+                <span class="probability">${item.probability}%</span>
+                <span class="urgency urgency-${item.urgency}">${item.urgency}</span>
+            </div>
+        `).join('');
+        
         showToast('补货预测加载成功', 'success');
         hideLoading();
     }
@@ -1477,17 +1550,43 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!gameData) return;
         
         showLoading();
-        const newsContainer = document.getElementById('market-news-list');
+        const news = gameData.market_news || [];
         
-        newsContainer.innerHTML = gameData.market_news.map(news => `
+        if (news.length === 0) {
+            document.getElementById('important-news-list').innerHTML = '<p class="no-data">暂无数据</p>';
+            document.getElementById('latest-news-list').innerHTML = '<p class="no-data">暂无数据</p>';
+            document.getElementById('all-news-list').innerHTML = '<p class="no-data">暂无数据</p>';
+            hideLoading();
+            return;
+        }
+        
+        const importantNews = news.filter(n => n.tag === '重要' || n.tag === '公告').slice(0, 5);
+        const latestNews = [...news].sort((a, b) => new Date(b.time) - new Date(a.time)).slice(0, 5);
+        
+        const importantList = document.getElementById('important-news-list');
+        importantList.innerHTML = importantNews.map(item => `
             <div class="news-item">
-                <div class="news-header">
-                    <span class="news-time">${news.time}</span>
-                    <span class="news-tag">${news.tag}</span>
-                </div>
-                <div class="news-content">
-                    <p>${news.content}</p>
-                </div>
+                <span class="news-time">${item.time}</span>
+                <span class="news-tag tag-${item.tag}">${item.tag}</span>
+                <p class="news-text">${item.content}</p>
+            </div>
+        `).join('');
+        
+        const latestList = document.getElementById('latest-news-list');
+        latestList.innerHTML = latestNews.map(item => `
+            <div class="news-item">
+                <span class="news-time">${item.time}</span>
+                <span class="news-tag tag-${item.tag}">${item.tag}</span>
+                <p class="news-text">${item.content}</p>
+            </div>
+        `).join('');
+        
+        const allNewsList = document.getElementById('all-news-list');
+        allNewsList.innerHTML = news.map(item => `
+            <div class="news-item">
+                <span class="news-time">${item.time}</span>
+                <span class="news-tag tag-${item.tag}">${item.tag}</span>
+                <p class="news-text">${item.content}</p>
             </div>
         `).join('');
         
