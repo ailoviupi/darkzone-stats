@@ -79,6 +79,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadEconomyStats();
             } else if (sectionId === 'leaderboard') {
                 loadLeaderboard();
+            } else if (sectionId === 'bullet-price-diff') {
+                loadBulletPriceDiff();
+            } else if (sectionId === 'workbench-profit') {
+                loadWorkbenchProfit();
+            } else if (sectionId === 'mission-flow') {
+                loadMissionFlow();
+            } else if (sectionId === 'restock-prediction') {
+                loadRestockPrediction();
             }
         });
     });
@@ -741,6 +749,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const exportWeaponsJson = document.getElementById('export-weapons-json');
         const exportLeaderboardCsv = document.getElementById('export-leaderboard-csv');
         const exportLeaderboardJson = document.getElementById('export-leaderboard-json');
+        const exportEconomyCsv = document.getElementById('export-economy-csv');
+        const exportEconomyJson = document.getElementById('export-economy-json');
+        const exportBulletCsv = document.getElementById('export-bullet-csv');
+        const exportBulletJson = document.getElementById('export-bullet-json');
+        const exportWorkbenchCsv = document.getElementById('export-workbench-csv');
+        const exportWorkbenchJson = document.getElementById('export-workbench-json');
+        const exportMissionCsv = document.getElementById('export-mission-csv');
+        const exportMissionJson = document.getElementById('export-mission-json');
+        const exportRestockCsv = document.getElementById('export-restock-csv');
+        const exportRestockJson = document.getElementById('export-restock-json');
 
         exportWeaponsCsv.addEventListener('click', () => {
             if (!gameData) return;
@@ -765,6 +783,210 @@ document.addEventListener('DOMContentLoaded', function() {
             exportToJSON(gameData.leaderboard.kills, 'leaderboard.json');
             showToast('排行榜数据已导出为JSON', 'success');
         });
+
+        exportEconomyCsv.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToCSV(gameData.economy, 'economy.csv');
+            showToast('经济数据已导出为CSV', 'success');
+        });
+
+        exportEconomyJson.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToJSON(gameData.economy, 'economy.json');
+            showToast('经济数据已导出为JSON', 'success');
+        });
+
+        exportBulletCsv.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToCSV(gameData.bullet_price_diff, 'bullet-price-diff.csv');
+            showToast('子弹差价榜已导出为CSV', 'success');
+        });
+
+        exportBulletJson.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToJSON(gameData.bullet_price_diff, 'bullet-price-diff.json');
+            showToast('子弹差价榜已导出为JSON', 'success');
+        });
+
+        exportWorkbenchCsv.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToCSV(gameData.workbench_profit, 'workbench-profit.csv');
+            showToast('工作台利润排行已导出为CSV', 'success');
+        });
+
+        exportWorkbenchJson.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToJSON(gameData.workbench_profit, 'workbench-profit.json');
+            showToast('工作台利润排行已导出为JSON', 'success');
+        });
+
+        exportMissionCsv.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToCSV(gameData.mission_flow, 'mission-flow.csv');
+            showToast('任务流程已导出为CSV', 'success');
+        });
+
+        exportMissionJson.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToJSON(gameData.mission_flow, 'mission-flow.json');
+            showToast('任务流程已导出为JSON', 'success');
+        });
+
+        exportRestockCsv.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToCSV(gameData.restock_prediction, 'restock-prediction.csv');
+            showToast('补货预测已导出为CSV', 'success');
+        });
+
+        exportRestockJson.addEventListener('click', () => {
+            if (!gameData) return;
+            exportToJSON(gameData.restock_prediction, 'restock-prediction.json');
+            showToast('补货预测已导出为JSON', 'success');
+        });
+    }
+
+    function loadBulletPriceDiff() {
+        if (!gameData) return;
+        
+        showLoading();
+        const sortSelect = document.getElementById('bullet-sort');
+        let bullets = [...gameData.bullet_price_diff];
+        
+        if (sortSelect.value === 'profit_rate') {
+            bullets.sort((a, b) => b.profit_rate - a.profit_rate);
+        } else if (sortSelect.value === 'profit') {
+            bullets.sort((a, b) => b.profit - a.profit);
+        } else if (sortSelect.value === 'demand') {
+            const demandOrder = { '高': 3, '中': 2, '低': 1 };
+            bullets.sort((a, b) => demandOrder[b.demand] - demandOrder[a.demand]);
+        }
+        
+        const tbody = document.getElementById('bullet-price-diff-body');
+        tbody.innerHTML = bullets.map(bullet => `
+            <tr>
+                <td>${bullet.bullet_name}</td>
+                <td>${bullet.buy_price.toLocaleString()}</td>
+                <td>${bullet.sell_price.toLocaleString()}</td>
+                <td class="profit-positive">${bullet.profit.toLocaleString()}</td>
+                <td>${bullet.profit_rate.toFixed(1)}%</td>
+                <td class="demand-${bullet.demand}">${bullet.demand}</td>
+            </tr>
+        `).join('');
+        
+        sortSelect.onchange = loadBulletPriceDiff;
+        showToast('子弹差价榜加载成功', 'success');
+        hideLoading();
+    }
+
+    function loadWorkbenchProfit() {
+        if (!gameData) return;
+        
+        showLoading();
+        const sortSelect = document.getElementById('workbench-sort');
+        let items = [...gameData.workbench_profit];
+        
+        if (sortSelect.value === 'profit_rate') {
+            items.sort((a, b) => b.profit_rate - a.profit_rate);
+        } else if (sortSelect.value === 'profit') {
+            items.sort((a, b) => b.profit - a.profit);
+        } else if (sortSelect.value === 'difficulty') {
+            const difficultyOrder = { '困难': 3, '中等': 2, '简单': 1 };
+            items.sort((a, b) => difficultyOrder[b.difficulty] - difficultyOrder[a.difficulty]);
+        }
+        
+        const tbody = document.getElementById('workbench-profit-body');
+        tbody.innerHTML = items.map(item => `
+            <tr>
+                <td>${item.item_name}</td>
+                <td>${item.craft_time}</td>
+                <td>${item.materials_cost.toLocaleString()}</td>
+                <td>${item.sell_price.toLocaleString()}</td>
+                <td class="profit-positive">${item.profit.toLocaleString()}</td>
+                <td>${item.profit_rate.toFixed(1)}%</td>
+                <td class="difficulty-${item.difficulty}">${item.difficulty}</td>
+            </tr>
+        `).join('');
+        
+        sortSelect.onchange = loadWorkbenchProfit;
+        showToast('工作台利润排行加载成功', 'success');
+        hideLoading();
+    }
+
+    function loadMissionFlow() {
+        if (!gameData) return;
+        
+        showLoading();
+        const filterSelect = document.getElementById('mission-filter');
+        let missions = [...gameData.mission_flow];
+        
+        if (filterSelect.value === 'completed') {
+            missions = missions.filter(m => m.stage === '完成');
+        } else if (filterSelect.value === 'in_progress') {
+            missions = missions.filter(m => m.stage === '进行中');
+        } else if (filterSelect.value === 'not_started') {
+            missions = missions.filter(m => m.stage === '未开始');
+        }
+        
+        const content = document.getElementById('mission-flow-content');
+        content.innerHTML = missions.map(mission => `
+            <div class="mission-card">
+                <div class="mission-header">
+                    <h3>${mission.mission_name}</h3>
+                    <span class="mission-status status-${mission.stage}">${mission.stage}</span>
+                </div>
+                <div class="mission-stages">
+                    ${mission.stages.map(stage => `
+                        <div class="mission-stage stage-${stage.status}">
+                            <div class="stage-info">
+                                <h4>${stage.stage_name}</h4>
+                                <p>${stage.description}</p>
+                            </div>
+                            <div class="stage-reward">
+                                <span class="reward-amount">${stage.reward.toLocaleString()}</span>
+                                <span class="reward-label">科恩币</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+        
+        filterSelect.onchange = loadMissionFlow;
+        showToast('任务流程加载成功', 'success');
+        hideLoading();
+    }
+
+    function loadRestockPrediction() {
+        if (!gameData) return;
+        
+        showLoading();
+        const sortSelect = document.getElementById('restock-sort');
+        let items = [...gameData.restock_prediction];
+        
+        if (sortSelect.value === 'urgency') {
+            const urgencyOrder = { '极高': 4, '高': 3, '中': 2, '低': 1 };
+            items.sort((a, b) => urgencyOrder[b.urgency] - urgencyOrder[a.urgency]);
+        } else if (sortSelect.value === 'probability') {
+            items.sort((a, b) => b.probability - a.probability);
+        } else if (sortSelect.value === 'restock_time') {
+            items.sort((a, b) => new Date(a.restock_time) - new Date(b.restock_time));
+        }
+        
+        const tbody = document.getElementById('restock-prediction-body');
+        tbody.innerHTML = items.map(item => `
+            <tr>
+                <td>${item.item_name}</td>
+                <td>${item.current_stock}</td>
+                <td>${item.restock_time}</td>
+                <td>${item.restock_quantity}</td>
+                <td>${item.probability}%</td>
+                <td class="urgency-${item.urgency}">${item.urgency}</td>
+            </tr>
+        `).join('');
+        
+        sortSelect.onchange = loadRestockPrediction;
+        showToast('补货预测加载成功', 'success');
+        hideLoading();
     }
 
     function exportToCSV(data, filename) {
