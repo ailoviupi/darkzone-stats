@@ -18,9 +18,6 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install gh-pages
-        run: npm install -g gh-pages
-
       - name: Deploy to GitHub Pages
         run: |
           git config --global user.name "github-actions[bot]"
