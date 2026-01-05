@@ -28,6 +28,10 @@
                 <button class="nav-btn" data-section="weapons">武器装备</button>
                 <button class="nav-btn" data-section="economy">经济统计</button>
                 <button class="nav-btn" data-section="leaderboard">排行榜</button>
+                <button class="nav-btn" data-section="bullet-price-diff">子弹差价榜</button>
+                <button class="nav-btn" data-section="workbench-profit">工作台利润</button>
+                <button class="nav-btn" data-section="mission-flow">任务流程</button>
+                <button class="nav-btn" data-section="restock-prediction">补货预测</button>
             </div>
         </div>
     </nav>
@@ -407,6 +411,126 @@
                             </tr>
                         </thead>
                         <tbody id="leaderboard-body">
+                            <tr>
+                                <td colspan="6">加载中...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="bullet-price-diff" class="section">
+            <div class="container">
+                <h2>子弹差价榜</h2>
+                <div class="table-controls">
+                    <select id="bullet-sort">
+                        <option value="profit_rate">按利润率排序</option>
+                        <option value="profit">按利润排序</option>
+                        <option value="demand">按需求排序</option>
+                    </select>
+                    <button id="export-bullet-json" class="export-btn">导出JSON</button>
+                    <button id="export-bullet-csv" class="export-btn">导出CSV</button>
+                </div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>子弹名称</th>
+                                <th>买入价格</th>
+                                <th>卖出价格</th>
+                                <th>利润</th>
+                                <th>利润率</th>
+                                <th>需求</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bullet-price-diff-body">
+                            <tr>
+                                <td colspan="6">加载中...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="workbench-profit" class="section">
+            <div class="container">
+                <h2>工作台利润排行</h2>
+                <div class="table-controls">
+                    <select id="workbench-sort">
+                        <option value="profit_rate">按利润率排序</option>
+                        <option value="profit">按利润排序</option>
+                        <option value="difficulty">按难度排序</option>
+                    </select>
+                    <button id="export-workbench-json" class="export-btn">导出JSON</button>
+                    <button id="export-workbench-csv" class="export-btn">导出CSV</button>
+                </div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>物品名称</th>
+                                <th>制作时间(分钟)</th>
+                                <th>材料成本</th>
+                                <th>卖出价格</th>
+                                <th>利润</th>
+                                <th>利润率</th>
+                                <th>难度</th>
+                            </tr>
+                        </thead>
+                        <tbody id="workbench-profit-body">
+                            <tr>
+                                <td colspan="7">加载中...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="mission-flow" class="section">
+            <div class="container">
+                <h2>任务流程图</h2>
+                <div class="mission-controls">
+                    <select id="mission-filter">
+                        <option value="all">全部任务</option>
+                        <option value="completed">已完成</option>
+                        <option value="in_progress">进行中</option>
+                        <option value="not_started">未开始</option>
+                    </select>
+                    <button id="export-mission-json" class="export-btn">导出JSON</button>
+                    <button id="export-mission-csv" class="export-btn">导出CSV</button>
+                </div>
+                <div id="mission-flow-content"></div>
+            </div>
+        </section>
+
+        <section id="restock-prediction" class="section">
+            <div class="container">
+                <h2>系统补货预测</h2>
+                <div class="restock-controls">
+                    <select id="restock-sort">
+                        <option value="urgency">按紧急程度排序</option>
+                        <option value="probability">按概率排序</option>
+                        <option value="restock_time">按补货时间排序</option>
+                    </select>
+                    <button id="export-restock-json" class="export-btn">导出JSON</button>
+                    <button id="export-restock-csv" class="export-btn">导出CSV</button>
+                </div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>物品名称</th>
+                                <th>当前库存</th>
+                                <th>补货时间</th>
+                                <th>补货数量</th>
+                                <th>概率</th>
+                                <th>紧急程度</th>
+                            </tr>
+                        </thead>
+                        <tbody id="restock-prediction-body">
                             <tr>
                                 <td colspan="6">加载中...</td>
                             </tr>

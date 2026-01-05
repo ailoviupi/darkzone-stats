@@ -508,5 +508,360 @@
         "total_extractions": 1734
       }
     ]
-  }
+  },
+  "bullet_price_diff": [
+    {
+      "bullet_name": "5.56mm PS",
+      "buy_price": 120,
+      "sell_price": 145,
+      "profit": 25,
+      "profit_rate": 20.8,
+      "demand": "高"
+    },
+    {
+      "bullet_name": "7.62mm PS",
+      "buy_price": 180,
+      "sell_price": 210,
+      "profit": 30,
+      "profit_rate": 16.7,
+      "demand": "高"
+    },
+    {
+      "bullet_name": "9mm AP",
+      "buy_price": 85,
+      "sell_price": 98,
+      "profit": 13,
+      "profit_rate": 15.3,
+      "demand": "中"
+    },
+    {
+      "bullet_name": "5.45mm BS",
+      "buy_price": 320,
+      "sell_price": 380,
+      "profit": 60,
+      "profit_rate": 18.8,
+      "demand": "高"
+    },
+    {
+      "bullet_name": "7.62x51mm M80",
+      "buy_price": 250,
+      "sell_price": 285,
+      "profit": 35,
+      "profit_rate": 14.0,
+      "demand": "中"
+    },
+    {
+      "bullet_name": "12.7mm AP",
+      "buy_price": 450,
+      "sell_price": 520,
+      "profit": 70,
+      "profit_rate": 15.6,
+      "demand": "高"
+    },
+    {
+      "bullet_name": ".45 ACP FMJ",
+      "buy_price": 95,
+      "sell_price": 108,
+      "profit": 13,
+      "profit_rate": 13.7,
+      "demand": "低"
+    },
+    {
+      "bullet_name": "5.8mm DAP92",
+      "buy_price": 150,
+      "sell_price": 175,
+      "profit": 25,
+      "profit_rate": 16.7,
+      "demand": "中"
+    }
+  ],
+  "workbench_profit": [
+    {
+      "item_name": "高级护甲板",
+      "craft_time": 120,
+      "materials_cost": 45000,
+      "sell_price": 68000,
+      "profit": 23000,
+      "profit_rate": 51.1,
+      "difficulty": "困难"
+    },
+    {
+      "item_name": "战术护目镜",
+      "craft_time": 60,
+      "materials_cost": 12000,
+      "sell_price": 18500,
+      "profit": 6500,
+      "profit_rate": 54.2,
+      "difficulty": "简单"
+    },
+    {
+      "item_name": "高级医疗包",
+      "craft_time": 90,
+      "materials_cost": 28000,
+      "sell_price": 42000,
+      "profit": 14000,
+      "profit_rate": 50.0,
+      "difficulty": "中等"
+    },
+    {
+      "item_name": "战术背包",
+      "craft_time": 150,
+      "materials_cost": 65000,
+      "sell_price": 95000,
+      "profit": 30000,
+      "profit_rate": 46.2,
+      "difficulty": "困难"
+    },
+    {
+      "item_name": "高级瞄准镜",
+      "craft_time": 180,
+      "materials_cost": 78000,
+      "sell_price": 115000,
+      "profit": 37000,
+      "profit_rate": 47.4,
+      "difficulty": "困难"
+    },
+    {
+      "item_name": "战术手电筒",
+      "craft_time": 45,
+      "materials_cost": 8500,
+      "sell_price": 12500,
+      "profit": 4000,
+      "profit_rate": 47.1,
+      "difficulty": "简单"
+    },
+    {
+      "item_name": "高级消音器",
+      "craft_time": 200,
+      "materials_cost": 95000,
+      "sell_price": 145000,
+      "profit": 50000,
+      "profit_rate": 52.6,
+      "difficulty": "困难"
+    },
+    {
+      "item_name": "战术手套",
+      "craft_time": 75,
+      "materials_cost": 15000,
+      "sell_price": 22500,
+      "profit": 7500,
+      "profit_rate": 50.0,
+      "difficulty": "中等"
+    }
+  ],
+  "mission_flow": [
+    {
+      "mission_id": 1,
+      "mission_name": "新手训练",
+      "stage": "完成",
+      "stages": [
+        {
+          "stage_name": "基础射击训练",
+          "description": "在训练场完成50次射击",
+          "status": "完成",
+          "reward": 5000
+        },
+        {
+          "stage_name": "装备熟悉",
+          "description": "装备并使用3种不同武器",
+          "status": "完成",
+          "reward": 8000
+        },
+        {
+          "stage_name": "首次撤离",
+          "description": "成功完成1次撤离",
+          "status": "完成",
+          "reward": 10000
+        }
+      ]
+    },
+    {
+      "mission_id": 2,
+      "mission_name": "物资收集者",
+      "stage": "进行中",
+      "stages": [
+        {
+          "stage_name": "收集医疗用品",
+          "description": "收集10个医疗包",
+          "status": "完成",
+          "reward": 15000
+        },
+        {
+          "stage_name": "收集武器配件",
+          "description": "收集20个武器配件",
+          "status": "进行中",
+          "reward": 20000
+        },
+        {
+          "stage_name": "收集高价值物品",
+          "description": "收集5个高价值物品（价值>50000）",
+          "status": "未开始",
+          "reward": 30000
+        }
+      ]
+    },
+    {
+      "mission_id": 3,
+      "mission_name": "战术大师",
+      "stage": "未开始",
+      "stages": [
+        {
+          "stage_name": "精准射击",
+          "description": "单局击杀10个敌人",
+          "status": "未开始",
+          "reward": 25000
+        },
+        {
+          "stage_name": "无声撤离",
+          "description": "在不被发现的条件下完成撤离",
+          "status": "未开始",
+          "reward": 35000
+        },
+        {
+          "stage_name": "团队协作",
+          "description": "与队友合作完成3次撤离",
+          "status": "未开始",
+          "reward": 40000
+        }
+      ]
+    },
+    {
+      "mission_id": 4,
+      "mission_name": "地图探索者",
+      "stage": "进行中",
+      "stages": [
+        {
+          "stage_name": "山谷探索",
+          "description": "在山谷地图完成5次撤离",
+          "status": "完成",
+          "reward": 20000
+        },
+        {
+          "stage_name": "农场探索",
+          "description": "在农场地图完成5次撤离",
+          "status": "完成",
+          "reward": 20000
+        },
+        {
+          "stage_name": "电视台探索",
+          "description": "在电视台地图完成3次撤离",
+          "status": "进行中",
+          "reward": 25000
+        },
+        {
+          "stage_name": "机场探索",
+          "description": "在机场地图完成3次撤离",
+          "status": "未开始",
+          "reward": 25000
+        }
+      ]
+    },
+    {
+      "mission_id": 5,
+      "mission_name": "经济专家",
+      "stage": "未开始",
+      "stages": [
+        {
+          "stage_name": "交易大师",
+          "description": "完成50次交易",
+          "status": "未开始",
+          "reward": 30000
+        },
+        {
+          "stage_name": "利润最大化",
+          "description": "单次交易利润超过50000",
+          "status": "未开始",
+          "reward": 50000
+        },
+        {
+          "stage_name": "市场分析",
+          "description": "分析并预测10次价格波动",
+          "status": "未开始",
+          "reward": 40000
+        }
+      ]
+    }
+  ],
+  "restock_prediction": [
+    {
+      "item_name": "高级护甲板",
+      "current_stock": 15,
+      "restock_time": "2026-01-05 14:00",
+      "restock_quantity": 50,
+      "probability": 85,
+      "urgency": "高"
+    },
+    {
+      "item_name": "战术护目镜",
+      "current_stock": 8,
+      "restock_time": "2026-01-05 15:30",
+      "restock_quantity": 30,
+      "probability": 90,
+      "urgency": "中"
+    },
+    {
+      "item_name": "5.56mm PS子弹",
+      "current_stock": 120,
+      "restock_time": "2026-01-05 13:00",
+      "restock_quantity": 500,
+      "probability": 95,
+      "urgency": "低"
+    },
+    {
+      "item_name": "高级医疗包",
+      "current_stock": 22,
+      "restock_time": "2026-01-05 16:00",
+      "restock_quantity": 40,
+      "probability": 80,
+      "urgency": "高"
+    },
+    {
+      "item_name": "7.62mm PS子弹",
+      "current_stock": 85,
+      "restock_time": "2026-01-05 14:30",
+      "restock_quantity": 400,
+      "probability": 92,
+      "urgency": "中"
+    },
+    {
+      "item_name": "战术背包",
+      "current_stock": 5,
+      "restock_time": "2026-01-05 17:00",
+      "restock_quantity": 25,
+      "probability": 75,
+      "urgency": "极高"
+    },
+    {
+      "item_name": "高级瞄准镜",
+      "current_stock": 12,
+      "restock_time": "2026-01-05 15:00",
+      "restock_quantity": 20,
+      "probability": 88,
+      "urgency": "高"
+    },
+    {
+      "item_name": "5.45mm BS子弹",
+      "current_stock": 45,
+      "restock_time": "2026-01-05 13:30",
+      "restock_quantity": 200,
+      "probability": 93,
+      "urgency": "中"
+    },
+    {
+      "item_name": "高级消音器",
+      "current_stock": 3,
+      "restock_time": "2026-01-05 18:00",
+      "restock_quantity": 15,
+      "probability": 70,
+      "urgency": "极高"
+    },
+    {
+      "item_name": "战术手套",
+      "current_stock": 18,
+      "restock_time": "2026-01-05 16:30",
+      "restock_quantity": 35,
+      "probability": 82,
+      "urgency": "中"
+    }
+  ]
 }

@@ -632,6 +632,158 @@ footer p {
     color: #e94560;
 }
 
+.profit-positive {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.demand-高 {
+    color: #ff5252;
+    font-weight: bold;
+}
+
+.demand-中 {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+.demand-低 {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.difficulty-困难 {
+    color: #ff5252;
+    font-weight: bold;
+}
+
+.difficulty-中等 {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+.difficulty-简单 {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.mission-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(233, 69, 96, 0.3);
+}
+
+.mission-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(233, 69, 96, 0.3);
+}
+
+.mission-header h3 {
+    color: #e94560;
+    font-size: 1.5em;
+}
+
+.mission-status {
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.status-完成 {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+}
+
+.status-进行中 {
+    background: rgba(255, 152, 0, 0.2);
+    color: #ff9800;
+}
+
+.status-未开始 {
+    background: rgba(255, 255, 255, 0.1);
+    color: #a0a0a0;
+}
+
+.mission-stages {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mission-stage {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 4px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stage-完成 {
+    border-left-color: #4caf50;
+}
+
+.stage-进行中 {
+    border-left-color: #ff9800;
+}
+
+.stage-未开始 {
+    border-left-color: #a0a0a0;
+}
+
+.stage-info h4 {
+    color: #e0e0e0;
+    margin-bottom: 5px;
+}
+
+.stage-info p {
+    color: #a0a0a0;
+    font-size: 0.9em;
+}
+
+.stage-reward {
+    text-align: right;
+}
+
+.reward-amount {
+    display: block;
+    font-size: 1.2em;
+    color: #ffd700;
+    font-weight: bold;
+}
+
+.reward-label {
+    font-size: 0.8em;
+    color: #a0a0a0;
+}
+
+.urgency-极高 {
+    color: #ff1744;
+    font-weight: bold;
+}
+
+.urgency-高 {
+    color: #ff5252;
+    font-weight: bold;
+}
+
+.urgency-中 {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+.urgency-低 {
+    color: #4caf50;
+    font-weight: bold;
+}
+
 .search-result-item span {
     color: #a0a0a0;
     margin-left: 10px;
