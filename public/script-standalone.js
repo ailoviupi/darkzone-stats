@@ -1290,7 +1290,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const topItems = data.slice(0, 6);
             const labels = topItems.map(item => item.item_name);
-            const tradeCounts = topItems.map(item => item.trade_count);
+            const tradeCounts = topItems.map(item => item.hotness);
             
             const colors = [
                 'rgba(233, 69, 96, 0.8)',
@@ -1374,14 +1374,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             callbacks: {
                                 label: function(context) {
                                     const item = topItems[context.dataIndex];
-                                    const total = tradeCounts.reduce((a, b) => a + b, 0);
-                                    const percentage = ((item.trade_count / total) * 100).toFixed(1);
                                     return [
                                         `${item.item_name}`,
-                                        `热度: ${item.trade_count.toLocaleString()}`,
-                                        `占比: ${percentage}%`,
-                                        `当前价格: ${item.current_price.toLocaleString()} 柯恩币`,
-                                        `波动: ${item.trend}`
+                                        `热度: ${item.hotness}`,
+                                        `当前价格: ${item.price.toLocaleString()} 柯恩币`,
+                                        `波动: ${item.fluctuation}%`
                                     ];
                                 }
                             }
@@ -1422,9 +1419,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <tr>
                     <td class="rank rank-${item.rank}">${item.rank}</td>
                     <td class="item-name">${item.item_name}</td>
-                    <td>${item.current_price.toLocaleString()}</td>
-                    <td>${item.trade_count.toLocaleString()}</td>
-                    <td>${item.trend}</td>
+                    <td>${item.price.toLocaleString()}</td>
+                    <td>${item.hotness}</td>
+                    <td>${item.fluctuation}%</td>
                 </tr>
             `).join('');
             
@@ -1470,18 +1467,16 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!gameData) return;
         
         showLoading();
-        const newsContainer = document.getElementById('market-news-content');
+        const newsContainer = document.getElementById('market-news-list');
         
         newsContainer.innerHTML = gameData.market_news.map(news => `
             <div class="news-item">
                 <div class="news-header">
                     <span class="news-time">${news.time}</span>
-                    <span class="news-type type-${news.type}">${news.type}</span>
+                    <span class="news-tag">${news.tag}</span>
                 </div>
-                <h3 class="news-title">${news.title}</h3>
-                <p class="news-content">${news.content}</p>
-                <div class="news-impact">
-                    <span>影响: ${news.impact}</span>
+                <div class="news-content">
+                    <p>${news.content}</p>
                 </div>
             </div>
         `).join('');
