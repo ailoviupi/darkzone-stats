@@ -87,6 +87,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadMissionFlow();
             } else if (sectionId === 'restock-prediction') {
                 loadRestockPrediction();
+            } else if (sectionId === 'market-trends') {
+                loadMarketTrends();
+            } else if (sectionId === 'market-hot') {
+                loadMarketHot();
+            } else if (sectionId === 'market-news') {
+                loadMarketNews();
+            } else if (sectionId === 'weapon-codes') {
+                loadWeaponCodes();
+            } else if (sectionId === 'map-points') {
+                loadMapPoints();
             }
         });
     });
@@ -1024,5 +1034,218 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+    }
+
+    function loadMarketTrends() {
+        if (!gameData) return;
+        
+        showLoading();
+        const timeFilter = document.getElementById('market-time-filter');
+        const tabs = document.querySelectorAll('.market-tab');
+        let currentTab = 'rise';
+        
+        const updateTrends = () => {
+            let data = currentTab === 'rise' ? gameData.market_trends.rise : gameData.market_trends.fall;
+            const tbody = document.getElementById('market-trends-body');
+            
+            tbody.innerHTML = data.map(item => `
+                <tr>
+                    <td class="rank rank-${item.rank}">${item.rank}</td>
+                    <td class="item-name">${item.item_name}</td>
+                    <td>${item.current_price.toLocaleString()}</td>
+                    <td class="change-${item.change_rate >= 0 ? 'positive' : 'negative'}">${item.change_rate >= 0 ? '+' : ''}${item.change_rate}%</td>
+                    <td class="change-${item.change_amount >= 0 ? 'positive' : 'negative'}">${item.change_amount >= 0 ? '+' : ''}${item.change_amount.toLocaleString()}</td>
+                </tr>
+            `).join('');
+        };
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentTab = tab.dataset.tab;
+                updateTrends();
+            });
+        });
+        
+        timeFilter.addEventListener('change', () => {
+            showToast(`已切换至${timeFilter.options[timeFilter.selectedIndex].text}`, 'info');
+            updateTrends();
+        });
+        
+        updateTrends();
+        showToast('市场涨跌幅排行加载成功', 'success');
+        hideLoading();
+    }
+
+    function loadMarketHot() {
+        if (!gameData) return;
+        
+        showLoading();
+        const hotTabs = document.querySelectorAll('.hot-tab');
+        let currentTab = 'items';
+        
+        const updateHotData = () => {
+            let data;
+            let title;
+            
+            switch(currentTab) {
+                case 'items':
+                    data = gameData.market_hot.items;
+                    title = '热门物品';
+                    break;
+                case 'keys':
+                    data = gameData.market_hot.keys;
+                    title = '热门钥匙';
+                    break;
+                case 'price':
+                    data = gameData.market_hot.price;
+                    title = '价格排行榜';
+                    break;
+            }
+            
+            const tbody = document.getElementById('market-hot-body');
+            tbody.innerHTML = data.map(item => `
+                <tr>
+                    <td class="rank rank-${item.rank}">${item.rank}</td>
+                    <td class="item-name">${item.item_name}</td>
+                    <td>${item.current_price.toLocaleString()}</td>
+                    <td>${item.trade_count.toLocaleString()}</td>
+                    <td>${item.trend}</td>
+                </tr>
+            `).join('');
+            
+            document.querySelector('#market-hot h2').textContent = title;
+        };
+        
+        hotTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                hotTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentTab = tab.dataset.tab;
+                updateHotData();
+            });
+        });
+        
+        updateHotData();
+        showToast('市场热度排行加载成功', 'success');
+        hideLoading();
+    }
+
+    function loadMarketNews() {
+        if (!gameData) return;
+        
+        showLoading();
+        const newsContainer = document.getElementById('market-news-content');
+        
+        newsContainer.innerHTML = gameData.market_news.map(news => `
+            <div class="news-item">
+                <div class="news-header">
+                    <span class="news-time">${news.time}</span>
+                    <span class="news-type type-${news.type}">${news.type}</span>
+                </div>
+                <h3 class="news-title">${news.title}</h3>
+                <p class="news-content">${news.content}</p>
+                <div class="news-impact">
+                    <span>影响: ${news.impact}</span>
+                </div>
+            </div>
+        `).join('');
+        
+        showToast('市场快讯加载成功', 'success');
+        hideLoading();
+    }
+
+    function loadWeaponCodes() {
+        if (!gameData) return;
+        
+        showLoading();
+        const weaponTypeFilter = document.getElementById('weapon-code-type-filter');
+        let codes = [...gameData.weapon_codes];
+        
+        if (weaponTypeFilter.value) {
+            codes = codes.filter(c => c.weapon_type === weaponTypeFilter.value);
+        }
+        
+        const container = document.getElementById('weapon-codes-content');
+        container.innerHTML = codes.map(code => `
+            <div class="weapon-code-card">
+                <div class="code-header">
+                    <h3>${code.weapon_name}</h3>
+                    <span class="weapon-type">${code.weapon_type}</span>
+                </div>
+                <div class="code-content">
+                    <div class="code-block">
+                        <span class="copy-btn" onclick="copyCode('${code.code}')">复制</span>
+                        <pre>${code.code}</pre>
+                    </div>
+                </div>
+                <div class="code-stats">
+                    <span>使用次数: ${code.usage_count.toLocaleString()}</span>
+                    <span>收藏: ${code.favorites.toLocaleString()}</span>
+                </div>
+            </div>
+        `).join('');
+        
+        weaponTypeFilter.onchange = loadWeaponCodes;
+        showToast('改枪码加载成功', 'success');
+        hideLoading();
+    }
+
+    function copyCode(code) {
+        navigator.clipboard.writeText(code).then(() => {
+            showToast('改枪码已复制到剪贴板', 'success');
+        }).catch(() => {
+            showToast('复制失败', 'error');
+        });
+    }
+
+    function loadMapPoints() {
+        if (!gameData) return;
+        
+        showLoading();
+        const mapTypeFilter = document.getElementById('map-points-type-filter');
+        let mapType = mapTypeFilter.value;
+        
+        if (!mapType) {
+            const mapTypes = Object.keys(gameData.map_points);
+            mapType = mapTypes[0];
+        }
+        
+        const mapData = gameData.map_points[mapType];
+        
+        if (!mapData) {
+            document.getElementById('map-points-content').innerHTML = '<div class="no-results">暂无该地图数据</div>';
+            hideLoading();
+            return;
+        }
+        
+        const container = document.getElementById('map-points-content');
+        container.innerHTML = `
+            <div class="map-info">
+                <h3>${mapData.map_name}</h3>
+                <p>${mapData.description}</p>
+            </div>
+            <div class="points-list">
+                ${mapData.points.map(point => `
+                    <div class="point-card">
+                        <div class="point-header">
+                            <h4>${point.name}</h4>
+                            <span class="point-type type-${point.type}">${point.type}</span>
+                        </div>
+                        <div class="point-details">
+                            <p><strong>位置:</strong> ${point.location}</p>
+                            <p><strong>描述:</strong> ${point.description}</p>
+                            <p><strong>风险等级:</strong> ${point.risk_level}</p>
+                            <p><strong>推荐装备:</strong> ${point.recommended_gear}</p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        
+        mapTypeFilter.onchange = loadMapPoints;
+        showToast('地图点位加载成功', 'success');
+        hideLoading();
     }
 });

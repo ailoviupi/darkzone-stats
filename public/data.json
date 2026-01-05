@@ -863,5 +863,673 @@
       "probability": 82,
       "urgency": "中"
     }
-  ]
+  ],
+  "market_trends": {
+    "rise": [
+      {
+        "rank": 1,
+        "item_name": "高级护甲板",
+        "current_price": 68000,
+        "change_rate": 15.8,
+        "change_amount": 9300
+      },
+      {
+        "rank": 2,
+        "item_name": "5.45mm BS子弹",
+        "current_price": 380,
+        "change_rate": 12.5,
+        "change_amount": 42
+      },
+      {
+        "rank": 3,
+        "item_name": "高级消音器",
+        "current_price": 145000,
+        "change_rate": 10.2,
+        "change_amount": 13400
+      },
+      {
+        "rank": 4,
+        "item_name": "战术背包",
+        "current_price": 95000,
+        "change_rate": 8.7,
+        "change_amount": 7600
+      },
+      {
+        "rank": 5,
+        "item_name": "高级瞄准镜",
+        "current_price": 115000,
+        "change_rate": 7.5,
+        "change_amount": 8000
+      }
+    ],
+    "fall": [
+      {
+        "rank": 1,
+        "item_name": "9mm AP子弹",
+        "current_price": 98,
+        "change_rate": -18.5,
+        "change_amount": -22
+      },
+      {
+        "rank": 2,
+        "item_name": "战术手电筒",
+        "current_price": 12500,
+        "change_rate": -15.2,
+        "change_amount": -2240
+      },
+      {
+        "rank": 3,
+        "item_name": ".45 ACP FMJ子弹",
+        "current_price": 108,
+        "change_rate": -12.3,
+        "change_amount": -15
+      },
+      {
+        "rank": 4,
+        "item_name": "战术手套",
+        "current_price": 22500,
+        "change_rate": -9.8,
+        "change_amount": -2450
+      },
+      {
+        "rank": 5,
+        "item_name": "5.8mm DAP92子弹",
+        "current_price": 175,
+        "change_rate": -8.5,
+        "change_amount": -16
+      }
+    ]
+  },
+  "market_hot": {
+    "items": [
+      {
+        "rank": 1,
+        "item_name": "高级护甲板",
+        "price": 68000,
+        "hotness": 95,
+        "fluctuation": 15.8
+      },
+      {
+        "rank": 2,
+        "item_name": "高级消音器",
+        "price": 145000,
+        "hotness": 92,
+        "fluctuation": 10.2
+      },
+      {
+        "rank": 3,
+        "item_name": "战术背包",
+        "price": 95000,
+        "hotness": 88,
+        "fluctuation": 8.7
+      },
+      {
+        "rank": 4,
+        "item_name": "高级瞄准镜",
+        "price": 115000,
+        "hotness": 85,
+        "fluctuation": 7.5
+      },
+      {
+        "rank": 5,
+        "item_name": "5.45mm BS子弹",
+        "price": 380,
+        "hotness": 82,
+        "fluctuation": 12.5
+      }
+    ],
+    "keys": [
+      {
+        "rank": 1,
+        "item_name": "军火库钥匙",
+        "price": 45000,
+        "hotness": 90,
+        "fluctuation": 5.2
+      },
+      {
+        "rank": 2,
+        "item_name": "别墅钥匙",
+        "price": 38000,
+        "hotness": 87,
+        "fluctuation": 3.8
+      },
+      {
+        "rank": 3,
+        "item_name": "酒店顶层钥匙",
+        "price": 52000,
+        "hotness": 85,
+        "fluctuation": 4.5
+      },
+      {
+        "rank": 4,
+        "item_name": "防空洞钥匙",
+        "price": 28000,
+        "hotness": 82,
+        "fluctuation": 2.9
+      },
+      {
+        "rank": 5,
+        "item_name": "军械库密室钥匙",
+        "price": 68000,
+        "hotness": 78,
+        "fluctuation": 6.1
+      }
+    ],
+    "price": [
+      {
+        "rank": 1,
+        "item_name": "高级消音器",
+        "price": 145000,
+        "hotness": 92,
+        "fluctuation": 10.2
+      },
+      {
+        "rank": 2,
+        "item_name": "高级瞄准镜",
+        "price": 115000,
+        "hotness": 85,
+        "fluctuation": 7.5
+      },
+      {
+        "rank": 3,
+        "item_name": "战术背包",
+        "price": 95000,
+        "hotness": 88,
+        "fluctuation": 8.7
+      },
+      {
+        "rank": 4,
+        "item_name": "军械库密室钥匙",
+        "price": 68000,
+        "hotness": 78,
+        "fluctuation": 6.1
+      },
+      {
+        "rank": 5,
+        "item_name": "高级护甲板",
+        "price": 68000,
+        "hotness": 95,
+        "fluctuation": 15.8
+      }
+    ]
+  },
+  "market_news": [
+    {
+      "time": "2026-01-05 12:30",
+      "tag": "涨跌提醒",
+      "content": "高级护甲板价格大幅上涨15.8%，建议关注市场动态"
+    },
+    {
+      "time": "2026-01-05 11:45",
+      "tag": "补货通知",
+      "content": "5.56mm PS子弹即将补货，预计补货量500发"
+    },
+    {
+      "time": "2026-01-05 10:20",
+      "tag": "市场分析",
+      "content": "本周市场整体趋势平稳，护甲类物品需求旺盛"
+    },
+    {
+      "time": "2026-01-05 09:15",
+      "tag": "活动公告",
+      "content": "S4赛季新地图即将开放，请关注官方公告"
+    },
+    {
+      "time": "2026-01-05 08:00",
+      "tag": "价格预警",
+      "content": "9mm AP子弹价格下跌18.5%，建议谨慎购买"
+    }
+  ],
+  "weapon_codes": [
+    {
+      "id": 1,
+      "weapon_name": "AK-74N",
+      "weapon_type": "ar",
+      "code": "AK74N-001",
+      "popularity": 95,
+      "price": 125000,
+      "damage": 45,
+      "description": "高精度稳定型配置，适合中远距离作战",
+      "attachments": [
+        "消音器",
+        "战术握把",
+        "4倍瞄准镜",
+        "扩容弹匣"
+      ]
+    },
+    {
+      "id": 2,
+      "weapon_name": "M4A1",
+      "weapon_type": "ar",
+      "code": "M4A1-002",
+      "popularity": 98,
+      "price": 145000,
+      "damage": 42,
+      "description": "全能型配置，平衡性能与稳定性",
+      "attachments": [
+        "消音器",
+        "垂直握把",
+        "红点瞄准镜",
+        "扩容弹匣"
+      ]
+    },
+    {
+      "id": 3,
+      "weapon_name": "MP5",
+      "weapon_type": "smg",
+      "code": "MP5-003",
+      "popularity": 88,
+      "price": 85000,
+      "damage": 28,
+      "description": "近战利器，高射速低后坐力",
+      "attachments": [
+        "消音器",
+        "激光指示器",
+        "全息瞄准镜",
+        "扩容弹匣"
+      ]
+    },
+    {
+      "id": 4,
+      "weapon_name": "AWM",
+      "weapon_type": "sniper",
+      "code": "AWM-004",
+      "popularity": 75,
+      "price": 280000,
+      "damage": 120,
+      "description": "远程狙击王者，一击必杀",
+      "attachments": [
+        "消音器",
+        "8倍瞄准镜",
+        "两脚架",
+        "高倍镜"
+      ]
+    },
+    {
+      "id": 5,
+      "weapon_name": "M870",
+      "weapon_type": "shotgun",
+      "code": "M870-005",
+      "popularity": 82,
+      "price": 65000,
+      "damage": 95,
+      "description": "近战爆发型，适合室内作战",
+      "attachments": [
+        "加长枪管",
+        "红点瞄准镜",
+        "战术握把"
+      ]
+    },
+    {
+      "id": 6,
+      "weapon_name": "Vector",
+      "weapon_type": "smg",
+      "code": "VEC-006",
+      "popularity": 90,
+      "price": 110000,
+      "damage": 22,
+      "description": "超高射速冲锋枪，近战压制力强",
+      "attachments": [
+        "消音器",
+        "激光指示器",
+        "全息瞄准镜",
+        "扩容弹匣"
+      ]
+    },
+    {
+      "id": 7,
+      "weapon_name": "SCAR-H",
+      "weapon_type": "ar",
+      "code": "SCAR-007",
+      "popularity": 85,
+      "price": 165000,
+      "damage": 55,
+      "description": "高伤害突击步枪，适合中距离作战",
+      "attachments": [
+        "消音器",
+        "战术握把",
+        "4倍瞄准镜",
+        "扩容弹匣"
+      ]
+    },
+    {
+      "id": 8,
+      "weapon_name": "MP7",
+      "weapon_type": "smg",
+      "code": "MP7-008",
+      "popularity": 87,
+      "price": 95000,
+      "damage": 25,
+      "description": "紧凑型冲锋枪，适合快速反应",
+      "attachments": [
+        "消音器",
+        "激光指示器",
+        "红点瞄准镜",
+        "扩容弹匣"
+      ]
+    },
+    {
+      "id": 9,
+      "weapon_name": "GROZA",
+      "weapon_type": "ar",
+      "code": "GROZA-009",
+      "popularity": 86,
+      "price": 135000,
+      "damage": 48,
+      "description": "俄制突击步枪，火力凶猛",
+      "attachments": [
+        "消音器",
+        "战术握把",
+        "4倍瞄准镜",
+        "扩容弹匣"
+      ]
+    },
+    {
+      "id": 10,
+      "weapon_name": "SKS",
+      "weapon_type": "sniper",
+      "code": "SKS-010",
+      "popularity": 80,
+      "price": 75000,
+      "damage": 55,
+      "description": "半自动狙击枪，性价比高",
+      "attachments": [
+        "消音器",
+        "4倍瞄准镜",
+        "战术握把",
+        "扩容弹匣"
+      ]
+    }
+  ],
+  "map_points": {
+    "farm": {
+      "map_name": "农场",
+      "gold": [
+        {
+          "id": 1,
+          "location": "主楼二楼",
+          "description": "主楼二楼保险箱",
+          "avg_value": 85000,
+          "spawn_rate": 25
+        },
+        {
+          "id": 2,
+          "location": "谷仓",
+          "description": "谷仓阁楼",
+          "avg_value": 65000,
+          "spawn_rate": 20
+        },
+        {
+          "id": 3,
+          "location": "加油站",
+          "description": "加油站后房",
+          "avg_value": 55000,
+          "spawn_rate": 18
+        }
+      ],
+      "keys": [
+        {
+          "id": 1,
+          "location": "主楼",
+          "description": "主楼钥匙",
+          "price": 25000
+        },
+        {
+          "id": 2,
+          "location": "谷仓",
+          "description": "谷仓钥匙",
+          "price": 18000
+        }
+      ],
+      "boss": [
+        {
+          "id": 1,
+          "location": "主楼周围",
+          "description": "农场Boss",
+          "spawn_rate": 30
+        }
+      ],
+      "safe": [
+        {
+          "id": 1,
+          "location": "主楼二楼",
+          "description": "主楼保险箱",
+          "spawn_rate": 80
+        },
+        {
+          "id": 2,
+          "location": "谷仓",
+          "description": "谷仓保险箱",
+          "spawn_rate": 60
+        }
+      ]
+    },
+    "valley": {
+      "map_name": "山谷",
+      "gold": [
+        {
+          "id": 1,
+          "location": "别墅二楼",
+          "description": "别墅二楼保险箱",
+          "avg_value": 120000,
+          "spawn_rate": 30
+        },
+        {
+          "id": 2,
+          "location": "军火库",
+          "description": "军火库密室",
+          "avg_value": 150000,
+          "spawn_rate": 25
+        },
+        {
+          "id": 3,
+          "location": "防空洞",
+          "description": "防空洞深处",
+          "avg_value": 95000,
+          "spawn_rate": 22
+        }
+      ],
+      "keys": [
+        {
+          "id": 1,
+          "location": "别墅",
+          "description": "别墅钥匙",
+          "price": 38000
+        },
+        {
+          "id": 2,
+          "location": "军火库",
+          "description": "军火库钥匙",
+          "price": 45000
+        },
+        {
+          "id": 3,
+          "location": "防空洞",
+          "description": "防空洞钥匙",
+          "price": 28000
+        }
+      ],
+      "boss": [
+        {
+          "id": 1,
+          "location": "别墅周围",
+          "description": "山谷Boss",
+          "spawn_rate": 35
+        }
+      ],
+      "safe": [
+        {
+          "id": 1,
+          "location": "别墅二楼",
+          "description": "别墅保险箱",
+          "spawn_rate": 85
+        },
+        {
+          "id": 2,
+          "location": "军火库",
+          "description": "军火库保险箱",
+          "spawn_rate": 75
+        }
+      ]
+    },
+    "hotel": {
+      "map_name": "酒店",
+      "gold": [
+        {
+          "id": 1,
+          "location": "酒店顶层",
+          "description": "顶层总统套房",
+          "avg_value": 180000,
+          "spawn_rate": 35
+        },
+        {
+          "id": 2,
+          "location": "酒店中庭",
+          "description": "中庭贵宾室",
+          "avg_value": 110000,
+          "spawn_rate": 28
+        }
+      ],
+      "keys": [
+        {
+          "id": 1,
+          "location": "酒店顶层",
+          "description": "顶层钥匙",
+          "price": 52000
+        },
+        {
+          "id": 2,
+          "location": "酒店中庭",
+          "description": "中庭钥匙",
+          "price": 35000
+        }
+      ],
+      "boss": [
+        {
+          "id": 1,
+          "location": "酒店顶层",
+          "description": "酒店Boss",
+          "spawn_rate": 40
+        }
+      ],
+      "safe": [
+        {
+          "id": 1,
+          "location": "酒店顶层",
+          "description": "顶层保险箱",
+          "spawn_rate": 90
+        }
+      ]
+    },
+    "armory": {
+      "map_name": "军械库",
+      "gold": [
+        {
+          "id": 1,
+          "location": "军械库密室",
+          "description": "密室保险箱",
+          "avg_value": 160000,
+          "spawn_rate": 32
+        },
+        {
+          "id": 2,
+          "location": "军械库二楼",
+          "description": "二楼储藏室",
+          "avg_value": 95000,
+          "spawn_rate": 25
+        }
+      ],
+      "keys": [
+        {
+          "id": 1,
+          "location": "军械库密室",
+          "description": "密室钥匙",
+          "price": 68000
+        },
+        {
+          "id": 2,
+          "location": "军械库二楼",
+          "description": "二楼钥匙",
+          "price": 32000
+        }
+      ],
+      "boss": [
+        {
+          "id": 1,
+          "location": "军械库内部",
+          "description": "军械库Boss",
+          "spawn_rate": 38
+        }
+      ],
+      "safe": [
+        {
+          "id": 1,
+          "location": "军械库密室",
+          "description": "密室保险箱",
+          "spawn_rate": 88
+        },
+        {
+          "id": 2,
+          "location": "军械库二楼",
+          "description": "二楼保险箱",
+          "spawn_rate": 70
+        }
+      ]
+    },
+    "frontier": {
+      "map_name": "前线要塞",
+      "gold": [
+        {
+          "id": 1,
+          "location": "指挥中心",
+          "description": "指挥官办公室",
+          "avg_value": 145000,
+          "spawn_rate": 28
+        },
+        {
+          "id": 2,
+          "location": "兵营",
+          "description": "兵营储藏室",
+          "avg_value": 85000,
+          "spawn_rate": 22
+        }
+      ],
+      "keys": [
+        {
+          "id": 1,
+          "location": "指挥中心",
+          "description": "指挥中心钥匙",
+          "price": 48000
+        },
+        {
+          "id": 2,
+          "location": "兵营",
+          "description": "兵营钥匙",
+          "price": 26000
+        }
+      ],
+      "boss": [
+        {
+          "id": 1,
+          "location": "指挥中心",
+          "description": "前线Boss",
+          "spawn_rate": 42
+        }
+      ],
+      "safe": [
+        {
+          "id": 1,
+          "location": "指挥中心",
+          "description": "指挥中心保险箱",
+          "spawn_rate": 82
+        },
+        {
+          "id": 2,
+          "location": "兵营",
+          "description": "兵营保险箱",
+          "spawn_rate": 65
+        }
+      ]
+    }
+  }
 }
