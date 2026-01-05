@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const navBtns = document.querySelectorAll('.nav-btn');
+    const navCategoryBtns = document.querySelectorAll('.nav-category-btn');
     const sections = document.querySelectorAll('.section');
     let mapChart = null;
     let economyChart = null;
@@ -51,12 +52,73 @@ document.addEventListener('DOMContentLoaded', function() {
     initLeaderboardControls();
     initExportButtons();
 
+    const navOverlay = document.querySelector('.nav-overlay');
+    const isMobile = window.innerWidth <= 768;
+
+    function closeAllDropdowns() {
+        document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+        if (navOverlay) {
+            navOverlay.classList.remove('active');
+        }
+    }
+
+    if (navOverlay) {
+        navOverlay.addEventListener('click', closeAllDropdowns);
+    }
+
+    navCategoryBtns.forEach(categoryBtn => {
+        categoryBtn.addEventListener('click', function(e) {
+            const category = this.getAttribute('data-category');
+            const dropdown = this.nextElementSibling;
+            
+            if (isMobile && dropdown && dropdown.classList.contains('nav-dropdown')) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const isActive = dropdown.classList.contains('active');
+                closeAllDropdowns();
+                
+                if (!isActive) {
+                    dropdown.classList.add('active');
+                    if (navOverlay) {
+                        navOverlay.classList.add('active');
+                    }
+                }
+            } else {
+                navCategoryBtns.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                if (dropdown && dropdown.classList.contains('nav-dropdown')) {
+                    const firstBtn = dropdown.querySelector('.nav-btn');
+                    if (firstBtn) {
+                        firstBtn.click();
+                    }
+                }
+            }
+        });
+    });
+
     navBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             const sectionId = this.getAttribute('data-section');
             
             navBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
+            
+            const parentCategory = this.closest('.nav-category');
+            if (parentCategory) {
+                const categoryBtn = parentCategory.querySelector('.nav-category-btn');
+                if (categoryBtn) {
+                    navCategoryBtns.forEach(btn => btn.classList.remove('active'));
+                    categoryBtn.classList.add('active');
+                }
+            }
+            
+            if (isMobile) {
+                closeAllDropdowns();
+            }
             
             sections.forEach(section => {
                 section.classList.remove('active');
@@ -203,7 +265,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         titleColor: '#e94560',
                         bodyColor: '#e0e0e0',
                         borderColor: '#e94560',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        padding: window.innerWidth <= 768 ? 10 : 15,
+                        titleFont: {
+                            size: window.innerWidth <= 768 ? 12 : 14
+                        },
+                        bodyFont: {
+                            size: window.innerWidth <= 768 ? 11 : 13
+                        }
                     }
                 },
                 scales: {
@@ -212,6 +281,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         max: 40,
                         ticks: {
                             color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
                             callback: function(value) {
                                 return value + '%';
                             }
@@ -222,7 +294,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     x: {
                         ticks: {
-                            color: '#e0e0e0'
+                            color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
+                            maxRotation: window.innerWidth <= 768 ? 45 : 0,
+                            minRotation: window.innerWidth <= 768 ? 45 : 0
                         },
                         grid: {
                             color: 'rgba(255, 255, 255, 0.1)'
@@ -481,8 +558,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         labels: {
                             color: '#e0e0e0',
                             font: {
-                                size: 12
-                            }
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
+                            padding: window.innerWidth <= 768 ? 8 : 15
                         }
                     },
                     tooltip: {
@@ -490,7 +568,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         titleColor: '#e94560',
                         bodyColor: '#e0e0e0',
                         borderColor: '#e94560',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        padding: window.innerWidth <= 768 ? 10 : 15,
+                        titleFont: {
+                            size: window.innerWidth <= 768 ? 12 : 14
+                        },
+                        bodyFont: {
+                            size: window.innerWidth <= 768 ? 11 : 13
+                        }
                     }
                 },
                 scales: {
@@ -504,13 +589,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         pointLabels: {
                             color: '#e0e0e0',
                             font: {
-                                size: 13
+                                size: window.innerWidth <= 768 ? 11 : 13
                             }
                         },
                         ticks: {
                             color: '#e0e0e0',
                             backdropColor: 'transparent',
-                            stepSize: 20
+                            stepSize: 20,
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            }
                         },
                         suggestedMin: 0,
                         suggestedMax: 100
@@ -596,7 +684,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 plugins: {
                     legend: {
                         labels: {
-                            color: '#e0e0e0'
+                            color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 11 : 13
+                            },
+                            padding: window.innerWidth <= 768 ? 10 : 15
                         }
                     },
                     tooltip: {
@@ -604,7 +696,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         titleColor: '#e94560',
                         bodyColor: '#e0e0e0',
                         borderColor: '#e94560',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        padding: window.innerWidth <= 768 ? 10 : 15,
+                        titleFont: {
+                            size: window.innerWidth <= 768 ? 12 : 14
+                        },
+                        bodyFont: {
+                            size: window.innerWidth <= 768 ? 11 : 13
+                        }
                     }
                 },
                 scales: {
@@ -612,6 +711,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         beginAtZero: true,
                         ticks: {
                             color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
                             callback: function(value) {
                                 return (value / 1000000).toFixed(1) + 'M';
                             }
@@ -622,7 +724,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     x: {
                         ticks: {
-                            color: '#e0e0e0'
+                            color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
+                            maxRotation: window.innerWidth <= 768 ? 45 : 0,
+                            minRotation: window.innerWidth <= 768 ? 45 : 0
                         },
                         grid: {
                             color: 'rgba(255, 255, 255, 0.1)'
@@ -666,7 +773,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 plugins: {
                     legend: {
                         labels: {
-                            color: '#e0e0e0'
+                            color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 11 : 13
+                            },
+                            padding: window.innerWidth <= 768 ? 10 : 15
                         }
                     },
                     tooltip: {
@@ -675,6 +786,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         bodyColor: '#e0e0e0',
                         borderColor: '#e94560',
                         borderWidth: 1,
+                        padding: window.innerWidth <= 768 ? 10 : 15,
+                        titleFont: {
+                            size: window.innerWidth <= 768 ? 12 : 14
+                        },
+                        bodyFont: {
+                            size: window.innerWidth <= 768 ? 11 : 13
+                        },
                         callbacks: {
                             label: function(context) {
                                 return '净收入: ' + context.raw.toLocaleString();
@@ -686,6 +804,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     y: {
                         ticks: {
                             color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
                             callback: function(value) {
                                 return (value / 1000000).toFixed(1) + 'M';
                             }
@@ -696,7 +817,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     x: {
                         ticks: {
-                            color: '#e0e0e0'
+                            color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
+                            maxRotation: window.innerWidth <= 768 ? 45 : 0,
+                            minRotation: window.innerWidth <= 768 ? 45 : 0
                         },
                         grid: {
                             color: 'rgba(255, 255, 255, 0.1)'
@@ -954,6 +1080,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         showLoading();
         const sortSelect = document.getElementById('workbench-sort');
+        
+        if (!sortSelect) {
+            console.log('工作台利润排行：缺少排序选择器');
+            hideLoading();
+            return;
+        }
+        
         let items = [...gameData.workbench_profit];
         
         if (sortSelect.value === 'profit_rate') {
@@ -966,17 +1099,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         const tbody = document.getElementById('workbench-profit-body');
-        tbody.innerHTML = items.map(item => `
-            <tr>
-                <td>${item.item_name}</td>
-                <td>${item.craft_time}</td>
-                <td>${item.materials_cost.toLocaleString()}</td>
-                <td>${item.sell_price.toLocaleString()}</td>
-                <td class="profit-positive">${item.profit.toLocaleString()}</td>
-                <td>${item.profit_rate.toFixed(1)}%</td>
-                <td class="difficulty-${item.difficulty}">${item.difficulty}</td>
-            </tr>
-        `).join('');
+        if (tbody) {
+            tbody.innerHTML = items.map(item => `
+                <tr>
+                    <td>${item.item_name}</td>
+                    <td>${item.craft_time}</td>
+                    <td>${item.materials_cost.toLocaleString()}</td>
+                    <td>${item.sell_price.toLocaleString()}</td>
+                    <td class="profit-positive">${item.profit.toLocaleString()}</td>
+                    <td>${item.profit_rate.toFixed(1)}%</td>
+                    <td class="difficulty-${item.difficulty}">${item.difficulty}</td>
+                </tr>
+            `).join('');
+        }
         
         sortSelect.onchange = loadWorkbenchProfit;
         showToast('工作台利润排行加载成功', 'success');
@@ -1192,14 +1327,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     plugins: {
                         legend: {
                             display: true,
-                            position: 'top',
+                            position: window.innerWidth <= 768 ? 'bottom' : 'top',
                             labels: {
                                 color: '#e0e0e0',
                                 font: {
-                                    size: 14,
+                                    size: window.innerWidth <= 768 ? 11 : 14,
                                     family: 'Microsoft YaHei, sans-serif'
                                 },
-                                padding: 20,
+                                padding: window.innerWidth <= 768 ? 10 : 20,
                                 usePointStyle: true
                             }
                         },
@@ -1209,8 +1344,14 @@ document.addEventListener('DOMContentLoaded', function() {
                             bodyColor: '#e0e0e0',
                             borderColor: 'rgba(233, 69, 96, 0.3)',
                             borderWidth: 1,
-                            padding: 15,
+                            padding: window.innerWidth <= 768 ? 10 : 15,
                             displayColors: true,
+                            titleFont: {
+                                size: window.innerWidth <= 768 ? 12 : 14
+                            },
+                            bodyFont: {
+                                size: window.innerWidth <= 768 ? 11 : 13
+                            },
                             callbacks: {
                                 label: function(context) {
                                     const item = topItems[context.dataIndex];
@@ -1233,9 +1374,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             ticks: {
                                 color: '#e0e0e0',
                                 font: {
-                                    size: 12,
+                                    size: window.innerWidth <= 768 ? 10 : 12,
                                     family: 'Microsoft YaHei, sans-serif'
-                                }
+                                },
+                                maxRotation: window.innerWidth <= 768 ? 45 : 0,
+                                minRotation: window.innerWidth <= 768 ? 45 : 0
                             }
                         },
                         y: {
@@ -1246,7 +1389,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             ticks: {
                                 color: '#e0e0e0',
                                 font: {
-                                    size: 12,
+                                    size: window.innerWidth <= 768 ? 10 : 12,
                                     family: 'Microsoft YaHei, sans-serif'
                                 },
                                 callback: function(value) {
@@ -1416,14 +1559,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     plugins: {
                         legend: {
                             display: true,
-                            position: 'right',
+                            position: window.innerWidth <= 768 ? 'bottom' : 'right',
                             labels: {
                                 color: '#e0e0e0',
                                 font: {
-                                    size: 13,
+                                    size: window.innerWidth <= 768 ? 11 : 13,
                                     family: 'Microsoft YaHei, sans-serif'
                                 },
-                                padding: 15,
+                                padding: window.innerWidth <= 768 ? 10 : 15,
                                 usePointStyle: true,
                                 generateLabels: function(chart) {
                                     const data = chart.data;
@@ -1433,7 +1576,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                             const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
                                             const percentage = ((value / total) * 100).toFixed(1);
                                             return {
-                                                text: `${label} (${percentage}%)`,
+                                                text: window.innerWidth <= 768 ? `${label}` : `${label} (${percentage}%)`,
                                                 fillStyle: data.datasets[0].backgroundColor[i],
                                                 strokeStyle: data.datasets[0].borderColor[i],
                                                 lineWidth: data.datasets[0].borderWidth,
@@ -1452,8 +1595,14 @@ document.addEventListener('DOMContentLoaded', function() {
                             bodyColor: '#e0e0e0',
                             borderColor: 'rgba(233, 69, 96, 0.3)',
                             borderWidth: 1,
-                            padding: 15,
+                            padding: window.innerWidth <= 768 ? 10 : 15,
                             displayColors: true,
+                            titleFont: {
+                                size: window.innerWidth <= 768 ? 12 : 14
+                            },
+                            bodyFont: {
+                                size: window.innerWidth <= 768 ? 11 : 13
+                            },
                             callbacks: {
                                 label: function(context) {
                                     const item = topItems[context.dataIndex];
@@ -1598,14 +1747,29 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!gameData) return;
         
         showLoading();
-        const weaponTypeFilter = document.getElementById('weapon-code-type-filter');
+        const weaponTypeFilter = document.getElementById('weapon-type-filter');
+        const weaponSort = document.getElementById('weapon-sort');
         let codes = [...gameData.weapon_codes];
         
-        if (weaponTypeFilter.value) {
+        if (weaponTypeFilter && weaponTypeFilter.value && weaponTypeFilter.value !== 'all') {
             codes = codes.filter(c => c.weapon_type === weaponTypeFilter.value);
         }
         
-        const container = document.getElementById('weapon-codes-content');
+        if (weaponSort) {
+            switch(weaponSort.value) {
+                case 'popularity':
+                    codes.sort((a, b) => b.usage_count - a.usage_count);
+                    break;
+                case 'price':
+                    codes.sort((a, b) => b.price - a.price);
+                    break;
+                case 'damage':
+                    codes.sort((a, b) => b.damage - a.damage);
+                    break;
+            }
+        }
+        
+        const container = document.getElementById('weapon-codes-grid');
         container.innerHTML = codes.map(code => `
             <div class="weapon-code-card">
                 <div class="code-header">
@@ -1625,7 +1789,12 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `).join('');
         
-        weaponTypeFilter.onchange = loadWeaponCodes;
+        if (weaponTypeFilter) {
+            weaponTypeFilter.onchange = loadWeaponCodes;
+        }
+        if (weaponSort) {
+            weaponSort.onchange = loadWeaponCodes;
+        }
         showToast('改枪码加载成功', 'success');
         hideLoading();
     }
@@ -1642,8 +1811,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!gameData) return;
         
         showLoading();
-        const mapTypeFilter = document.getElementById('map-points-type-filter');
-        let mapType = mapTypeFilter.value;
+        const mapSelect = document.getElementById('map-select');
+        const pointFilters = document.querySelectorAll('.point-filter');
+        let mapType = mapSelect ? mapSelect.value : 'farm';
+        let pointType = 'gold';
         
         if (!mapType) {
             const mapTypes = Object.keys(gameData.map_points);
@@ -1653,36 +1824,45 @@ document.addEventListener('DOMContentLoaded', function() {
         const mapData = gameData.map_points[mapType];
         
         if (!mapData) {
-            document.getElementById('map-points-content').innerHTML = '<div class="no-results">暂无该地图数据</div>';
+            document.getElementById('map-points-grid').innerHTML = '<div class="no-results">暂无该地图数据</div>';
             hideLoading();
             return;
         }
         
-        const container = document.getElementById('map-points-content');
-        container.innerHTML = `
-            <div class="map-info">
-                <h3>${mapData.map_name}</h3>
-                <p>${mapData.description}</p>
-            </div>
-            <div class="points-list">
-                ${mapData.points.map(point => `
-                    <div class="point-card">
-                        <div class="point-header">
-                            <h4>${point.name}</h4>
-                            <span class="point-type type-${point.type}">${point.type}</span>
-                        </div>
-                        <div class="point-details">
-                            <p><strong>位置:</strong> ${point.location}</p>
-                            <p><strong>描述:</strong> ${point.description}</p>
-                            <p><strong>风险等级:</strong> ${point.risk_level}</p>
-                            <p><strong>推荐装备:</strong> ${point.recommended_gear}</p>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-        `;
+        let points = mapData.points;
+        if (pointType) {
+            points = points.filter(p => p.type === pointType);
+        }
         
-        mapTypeFilter.onchange = loadMapPoints;
+        const container = document.getElementById('map-points-grid');
+        container.innerHTML = points.map(point => `
+            <div class="map-point-card">
+                <div class="point-header">
+                    <h4>${point.name}</h4>
+                    <span class="point-type type-${point.type}">${point.type}</span>
+                </div>
+                <div class="point-details">
+                    <p><strong>位置:</strong> ${point.location}</p>
+                    <p><strong>描述:</strong> ${point.description}</p>
+                    <p><strong>风险等级:</strong> ${point.risk_level}</p>
+                    <p><strong>推荐装备:</strong> ${point.recommended_gear}</p>
+                </div>
+            </div>
+        `).join('');
+        
+        if (mapSelect) {
+            mapSelect.onchange = loadMapPoints;
+        }
+        
+        pointFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                pointFilters.forEach(f => f.classList.remove('active'));
+                filter.classList.add('active');
+                pointType = filter.dataset.type;
+                loadMapPoints();
+            });
+        });
+        
         showToast('地图点位加载成功', 'success');
         hideLoading();
     }

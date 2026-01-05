@@ -511,6 +511,14 @@
   },
   "bullet_price_diff": [
     {
+      "bullet_name": "5.45mm BS",
+      "buy_price": 320,
+      "sell_price": 380,
+      "profit": 60,
+      "profit_rate": 18.8,
+      "demand": "高"
+    },
+    {
       "bullet_name": "5.56mm PS",
       "buy_price": 120,
       "sell_price": 145,
@@ -527,19 +535,11 @@
       "demand": "高"
     },
     {
-      "bullet_name": "9mm AP",
-      "buy_price": 85,
-      "sell_price": 98,
-      "profit": 13,
-      "profit_rate": 15.3,
-      "demand": "中"
-    },
-    {
-      "bullet_name": "5.45mm BS",
-      "buy_price": 320,
-      "sell_price": 380,
-      "profit": 60,
-      "profit_rate": 18.8,
+      "bullet_name": "12.7mm AP",
+      "buy_price": 450,
+      "sell_price": 520,
+      "profit": 70,
+      "profit_rate": 15.6,
       "demand": "高"
     },
     {
@@ -551,12 +551,20 @@
       "demand": "中"
     },
     {
-      "bullet_name": "12.7mm AP",
-      "buy_price": 450,
-      "sell_price": 520,
-      "profit": 70,
-      "profit_rate": 15.6,
-      "demand": "高"
+      "bullet_name": "5.8mm DAP92",
+      "buy_price": 150,
+      "sell_price": 175,
+      "profit": 25,
+      "profit_rate": 16.7,
+      "demand": "中"
+    },
+    {
+      "bullet_name": "9mm AP",
+      "buy_price": 85,
+      "sell_price": 98,
+      "profit": 13,
+      "profit_rate": 15.3,
+      "demand": "中"
     },
     {
       "bullet_name": ".45 ACP FMJ",
@@ -567,12 +575,20 @@
       "demand": "低"
     },
     {
-      "bullet_name": "5.8mm DAP92",
-      "buy_price": 150,
-      "sell_price": 175,
-      "profit": 25,
-      "profit_rate": 16.7,
+      "bullet_name": "5.56mm M855",
+      "buy_price": 135,
+      "sell_price": 158,
+      "profit": 23,
+      "profit_rate": 17.0,
       "demand": "中"
+    },
+    {
+      "bullet_name": "7.62x39mm BP",
+      "buy_price": 220,
+      "sell_price": 255,
+      "profit": 35,
+      "profit_rate": 15.9,
+      "demand": "高"
     }
   ],
   "workbench_profit": [
@@ -586,30 +602,12 @@
       "difficulty": "困难"
     },
     {
-      "item_name": "战术护目镜",
-      "craft_time": 60,
-      "materials_cost": 12000,
-      "sell_price": 18500,
-      "profit": 6500,
-      "profit_rate": 54.2,
-      "difficulty": "简单"
-    },
-    {
-      "item_name": "高级医疗包",
-      "craft_time": 90,
-      "materials_cost": 28000,
-      "sell_price": 42000,
-      "profit": 14000,
-      "profit_rate": 50.0,
-      "difficulty": "中等"
-    },
-    {
-      "item_name": "战术背包",
-      "craft_time": 150,
-      "materials_cost": 65000,
-      "sell_price": 95000,
-      "profit": 30000,
-      "profit_rate": 46.2,
+      "item_name": "高级消音器",
+      "craft_time": 200,
+      "materials_cost": 95000,
+      "sell_price": 145000,
+      "profit": 50000,
+      "profit_rate": 52.6,
       "difficulty": "困难"
     },
     {
@@ -622,6 +620,42 @@
       "difficulty": "困难"
     },
     {
+      "item_name": "战术背包",
+      "craft_time": 150,
+      "materials_cost": 65000,
+      "sell_price": 95000,
+      "profit": 30000,
+      "profit_rate": 46.2,
+      "difficulty": "困难"
+    },
+    {
+      "item_name": "高级医疗包",
+      "craft_time": 90,
+      "materials_cost": 28000,
+      "sell_price": 42000,
+      "profit": 14000,
+      "profit_rate": 50.0,
+      "difficulty": "中等"
+    },
+    {
+      "item_name": "战术手套",
+      "craft_time": 75,
+      "materials_cost": 15000,
+      "sell_price": 22500,
+      "profit": 7500,
+      "profit_rate": 50.0,
+      "difficulty": "中等"
+    },
+    {
+      "item_name": "战术护目镜",
+      "craft_time": 60,
+      "materials_cost": 12000,
+      "sell_price": 18500,
+      "profit": 6500,
+      "profit_rate": 54.2,
+      "difficulty": "简单"
+    },
+    {
       "item_name": "战术手电筒",
       "craft_time": 45,
       "materials_cost": 8500,
@@ -631,21 +665,21 @@
       "difficulty": "简单"
     },
     {
-      "item_name": "高级消音器",
-      "craft_time": 200,
-      "materials_cost": 95000,
-      "sell_price": 145000,
-      "profit": 50000,
-      "profit_rate": 52.6,
-      "difficulty": "困难"
+      "item_name": "红阳功能饮料",
+      "craft_time": 30,
+      "materials_cost": 5500,
+      "sell_price": 8500,
+      "profit": 3000,
+      "profit_rate": 54.5,
+      "difficulty": "简单"
     },
     {
-      "item_name": "战术手套",
-      "craft_time": 75,
-      "materials_cost": 15000,
-      "sell_price": 22500,
-      "profit": 7500,
-      "profit_rate": 50.0,
+      "item_name": "肌肉注射剂",
+      "craft_time": 40,
+      "materials_cost": 7800,
+      "sell_price": 12000,
+      "profit": 4200,
+      "profit_rate": 53.8,
       "difficulty": "中等"
     }
   ],
@@ -784,25 +818,33 @@
   ],
   "restock_prediction": [
     {
+      "item_name": "红阳功能饮料",
+      "current_stock": 5,
+      "restock_time": "2026-01-05 14:00",
+      "restock_quantity": 100,
+      "probability": 95,
+      "urgency": "极高"
+    },
+    {
       "item_name": "高级护甲板",
       "current_stock": 15,
-      "restock_time": "2026-01-05 14:00",
+      "restock_time": "2026-01-05 14:30",
       "restock_quantity": 50,
       "probability": 85,
       "urgency": "高"
     },
     {
-      "item_name": "战术护目镜",
+      "item_name": "肌肉注射剂",
       "current_stock": 8,
-      "restock_time": "2026-01-05 15:30",
-      "restock_quantity": 30,
+      "restock_time": "2026-01-05 15:00",
+      "restock_quantity": 60,
       "probability": 90,
-      "urgency": "中"
+      "urgency": "极高"
     },
     {
       "item_name": "5.56mm PS子弹",
       "current_stock": 120,
-      "restock_time": "2026-01-05 13:00",
+      "restock_time": "2026-01-05 13:30",
       "restock_quantity": 500,
       "probability": 95,
       "urgency": "低"
@@ -818,7 +860,7 @@
     {
       "item_name": "7.62mm PS子弹",
       "current_stock": 85,
-      "restock_time": "2026-01-05 14:30",
+      "restock_time": "2026-01-05 14:00",
       "restock_quantity": 400,
       "probability": 92,
       "urgency": "中"
@@ -834,7 +876,7 @@
     {
       "item_name": "高级瞄准镜",
       "current_stock": 12,
-      "restock_time": "2026-01-05 15:00",
+      "restock_time": "2026-01-05 15:30",
       "restock_quantity": 20,
       "probability": 88,
       "urgency": "高"
@@ -842,7 +884,7 @@
     {
       "item_name": "5.45mm BS子弹",
       "current_stock": 45,
-      "restock_time": "2026-01-05 13:30",
+      "restock_time": "2026-01-05 13:45",
       "restock_quantity": 200,
       "probability": 93,
       "urgency": "中"
@@ -862,81 +904,125 @@
       "restock_quantity": 35,
       "probability": 82,
       "urgency": "中"
+    },
+    {
+      "item_name": "建筑材料",
+      "current_stock": 30,
+      "restock_time": "2026-01-05 14:15",
+      "restock_quantity": 80,
+      "probability": 88,
+      "urgency": "低"
+    },
+    {
+      "item_name": "半导体芯片",
+      "current_stock": 10,
+      "restock_time": "2026-01-05 15:45",
+      "restock_quantity": 25,
+      "probability": 85,
+      "urgency": "高"
     }
   ],
   "market_trends": {
     "rise": [
       {
         "rank": 1,
-        "item_name": "高级护甲板",
-        "current_price": 68000,
-        "change_rate": 15.8,
-        "change_amount": 9300
+        "item_name": "红阳功能饮料",
+        "current_price": 8500,
+        "change_rate": 25.8,
+        "change_amount": 1740
       },
       {
         "rank": 2,
-        "item_name": "5.45mm BS子弹",
-        "current_price": 380,
-        "change_rate": 12.5,
-        "change_amount": 42
+        "item_name": "肌肉注射剂",
+        "current_price": 12000,
+        "change_rate": 22.5,
+        "change_amount": 2200
       },
       {
         "rank": 3,
-        "item_name": "高级消音器",
-        "current_price": 145000,
-        "change_rate": 10.2,
-        "change_amount": 13400
+        "item_name": "建筑材料",
+        "current_price": 4500,
+        "change_rate": 18.2,
+        "change_amount": 695
       },
       {
         "rank": 4,
-        "item_name": "战术背包",
-        "current_price": 95000,
-        "change_rate": 8.7,
-        "change_amount": 7600
+        "item_name": "半导体芯片",
+        "current_price": 28000,
+        "change_rate": 15.5,
+        "change_amount": 3750
       },
       {
         "rank": 5,
-        "item_name": "高级瞄准镜",
-        "current_price": 115000,
-        "change_rate": 7.5,
-        "change_amount": 8000
+        "item_name": "P90微型冲锋枪",
+        "current_price": 95000,
+        "change_rate": 12.3,
+        "change_amount": 10400
+      },
+      {
+        "rank": 6,
+        "item_name": "高级护甲板",
+        "current_price": 68000,
+        "change_rate": 10.8,
+        "change_amount": 6650
+      },
+      {
+        "rank": 7,
+        "item_name": "5.45mm BS子弹",
+        "current_price": 380,
+        "change_rate": 9.5,
+        "change_amount": 33
       }
     ],
     "fall": [
       {
         "rank": 1,
+        "item_name": "电脑配件",
+        "current_price": 15000,
+        "change_rate": -28.5,
+        "change_amount": -5980
+      },
+      {
+        "rank": 2,
         "item_name": "9mm AP子弹",
         "current_price": 98,
         "change_rate": -18.5,
         "change_amount": -22
       },
       {
-        "rank": 2,
+        "rank": 3,
         "item_name": "战术手电筒",
         "current_price": 12500,
         "change_rate": -15.2,
         "change_amount": -2240
       },
       {
-        "rank": 3,
+        "rank": 4,
         "item_name": ".45 ACP FMJ子弹",
         "current_price": 108,
         "change_rate": -12.3,
         "change_amount": -15
       },
       {
-        "rank": 4,
+        "rank": 5,
         "item_name": "战术手套",
         "current_price": 22500,
         "change_rate": -9.8,
         "change_amount": -2450
       },
       {
-        "rank": 5,
+        "rank": 6,
         "item_name": "5.8mm DAP92子弹",
         "current_price": 175,
         "change_rate": -8.5,
         "change_amount": -16
+      },
+      {
+        "rank": 7,
+        "item_name": "基础医疗包",
+        "current_price": 3500,
+        "change_rate": -7.2,
+        "change_amount": -272
       }
     ]
   },
@@ -944,38 +1030,52 @@
     "items": [
       {
         "rank": 1,
-        "item_name": "高级护甲板",
-        "price": 68000,
-        "hotness": 95,
-        "fluctuation": 15.8
+        "item_name": "红阳功能饮料",
+        "price": 8500,
+        "hotness": 98,
+        "fluctuation": 25.8
       },
       {
         "rank": 2,
-        "item_name": "高级消音器",
-        "price": 145000,
-        "hotness": 92,
-        "fluctuation": 10.2
+        "item_name": "肌肉注射剂",
+        "price": 12000,
+        "hotness": 95,
+        "fluctuation": 22.5
       },
       {
         "rank": 3,
-        "item_name": "战术背包",
-        "price": 95000,
-        "hotness": 88,
-        "fluctuation": 8.7
+        "item_name": "高级护甲板",
+        "price": 68000,
+        "hotness": 92,
+        "fluctuation": 10.8
       },
       {
         "rank": 4,
-        "item_name": "高级瞄准镜",
-        "price": 115000,
-        "hotness": 85,
-        "fluctuation": 7.5
+        "item_name": "P90微型冲锋枪",
+        "price": 95000,
+        "hotness": 88,
+        "fluctuation": 12.3
       },
       {
         "rank": 5,
+        "item_name": "建筑材料",
+        "price": 4500,
+        "hotness": 85,
+        "fluctuation": 18.2
+      },
+      {
+        "rank": 6,
+        "item_name": "半导体芯片",
+        "price": 28000,
+        "hotness": 82,
+        "fluctuation": 15.5
+      },
+      {
+        "rank": 7,
         "item_name": "5.45mm BS子弹",
         "price": 380,
-        "hotness": 82,
-        "fluctuation": 12.5
+        "hotness": 78,
+        "fluctuation": 9.5
       }
     ],
     "keys": [
@@ -1032,52 +1132,116 @@
       },
       {
         "rank": 3,
+        "item_name": "P90微型冲锋枪",
+        "price": 95000,
+        "hotness": 88,
+        "fluctuation": 12.3
+      },
+      {
+        "rank": 4,
         "item_name": "战术背包",
         "price": 95000,
         "hotness": 88,
         "fluctuation": 8.7
       },
       {
-        "rank": 4,
+        "rank": 5,
         "item_name": "军械库密室钥匙",
         "price": 68000,
         "hotness": 78,
         "fluctuation": 6.1
       },
       {
-        "rank": 5,
+        "rank": 6,
         "item_name": "高级护甲板",
         "price": 68000,
-        "hotness": 95,
-        "fluctuation": 15.8
+        "hotness": 92,
+        "fluctuation": 10.8
+      },
+      {
+        "rank": 7,
+        "item_name": "半导体芯片",
+        "price": 28000,
+        "hotness": 82,
+        "fluctuation": 15.5
       }
     ]
   },
   "market_news": [
     {
-      "time": "2026-01-05 12:30",
-      "tag": "涨跌提醒",
-      "content": "高级护甲板价格大幅上涨15.8%，建议关注市场动态"
+      "time": "2026-01-05 13:45",
+      "tag": "重要",
+      "content": "红阳功能饮料价格暴涨25.8%，创历史新高，建议谨慎购买"
     },
     {
-      "time": "2026-01-05 11:45",
+      "time": "2026-01-05 13:30",
+      "tag": "公告",
+      "content": "S4赛季新地图「前线要塞」将于本周六正式开放"
+    },
+    {
+      "time": "2026-01-05 13:15",
+      "tag": "涨跌提醒",
+      "content": "肌肉注射剂价格上涨22.5%，市场热度持续攀升"
+    },
+    {
+      "time": "2026-01-05 13:00",
       "tag": "补货通知",
       "content": "5.56mm PS子弹即将补货，预计补货量500发"
     },
     {
-      "time": "2026-01-05 10:20",
+      "time": "2026-01-05 12:45",
       "tag": "市场分析",
-      "content": "本周市场整体趋势平稳，护甲类物品需求旺盛"
+      "content": "本周市场整体趋势：医疗用品需求旺盛，建筑材料价格稳定"
     },
     {
-      "time": "2026-01-05 09:15",
+      "time": "2026-01-05 12:30",
+      "tag": "价格预警",
+      "content": "电脑配件价格大幅下跌28.5%，建议观望后再购买"
+    },
+    {
+      "time": "2026-01-05 12:15",
+      "tag": "涨跌提醒",
+      "content": "P90微型冲锋枪价格上涨12.3%，受新地图影响需求增加"
+    },
+    {
+      "time": "2026-01-05 12:00",
+      "tag": "补货通知",
+      "content": "高级护甲板补货中，当前库存15件"
+    },
+    {
+      "time": "2026-01-05 11:45",
+      "tag": "市场分析",
+      "content": "半导体芯片价格上涨15.5%，受电子元件需求增加影响"
+    },
+    {
+      "time": "2026-01-05 11:30",
       "tag": "活动公告",
-      "content": "S4赛季新地图即将开放，请关注官方公告"
+      "content": "限时活动：本周购买任何武器配件享受9折优惠"
     },
     {
-      "time": "2026-01-05 08:00",
+      "time": "2026-01-05 11:15",
+      "tag": "涨跌提醒",
+      "content": "建筑材料价格上涨18.2%，建筑类物品需求增加"
+    },
+    {
+      "time": "2026-01-05 11:00",
       "tag": "价格预警",
       "content": "9mm AP子弹价格下跌18.5%，建议谨慎购买"
+    },
+    {
+      "time": "2026-01-05 10:45",
+      "tag": "补货通知",
+      "content": "7.62mm PS子弹即将补货，预计补货量400发"
+    },
+    {
+      "time": "2026-01-05 10:30",
+      "tag": "市场分析",
+      "content": "本周市场总结：医疗用品和建筑材料价格上涨，电子配件价格下跌"
+    },
+    {
+      "time": "2026-01-05 10:15",
+      "tag": "公告",
+      "content": "系统维护通知：今晚23:00-24:00进行系统维护"
     }
   ],
   "weapon_codes": [
