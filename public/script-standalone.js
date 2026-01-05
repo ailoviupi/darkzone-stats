@@ -1245,7 +1245,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!gameData) return;
         
         showLoading();
-        const hotTabs = document.querySelectorAll('.hot-tab');
+        const hotTabs = document.querySelectorAll('#market-hot .market-tab');
         let currentTab = 'items';
         let hotChart = null;
         let currentSort = { column: 'rank', direction: 'asc' };
