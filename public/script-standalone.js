@@ -52,18 +52,49 @@ document.addEventListener('DOMContentLoaded', function() {
     initLeaderboardControls();
     initExportButtons();
 
+    const navOverlay = document.querySelector('.nav-overlay');
+    const isMobile = window.innerWidth <= 768;
+
+    function closeAllDropdowns() {
+        document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+        if (navOverlay) {
+            navOverlay.classList.remove('active');
+        }
+    }
+
+    if (navOverlay) {
+        navOverlay.addEventListener('click', closeAllDropdowns);
+    }
+
     navCategoryBtns.forEach(categoryBtn => {
-        categoryBtn.addEventListener('click', function() {
+        categoryBtn.addEventListener('click', function(e) {
             const category = this.getAttribute('data-category');
-            
-            navCategoryBtns.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
             const dropdown = this.nextElementSibling;
-            if (dropdown && dropdown.classList.contains('nav-dropdown')) {
-                const firstBtn = dropdown.querySelector('.nav-btn');
-                if (firstBtn) {
-                    firstBtn.click();
+            
+            if (isMobile && dropdown && dropdown.classList.contains('nav-dropdown')) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const isActive = dropdown.classList.contains('active');
+                closeAllDropdowns();
+                
+                if (!isActive) {
+                    dropdown.classList.add('active');
+                    if (navOverlay) {
+                        navOverlay.classList.add('active');
+                    }
+                }
+            } else {
+                navCategoryBtns.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                if (dropdown && dropdown.classList.contains('nav-dropdown')) {
+                    const firstBtn = dropdown.querySelector('.nav-btn');
+                    if (firstBtn) {
+                        firstBtn.click();
+                    }
                 }
             }
         });
@@ -83,6 +114,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     navCategoryBtns.forEach(btn => btn.classList.remove('active'));
                     categoryBtn.classList.add('active');
                 }
+            }
+            
+            if (isMobile) {
+                closeAllDropdowns();
             }
             
             sections.forEach(section => {
@@ -230,7 +265,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         titleColor: '#e94560',
                         bodyColor: '#e0e0e0',
                         borderColor: '#e94560',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        padding: window.innerWidth <= 768 ? 10 : 15,
+                        titleFont: {
+                            size: window.innerWidth <= 768 ? 12 : 14
+                        },
+                        bodyFont: {
+                            size: window.innerWidth <= 768 ? 11 : 13
+                        }
                     }
                 },
                 scales: {
@@ -239,6 +281,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         max: 40,
                         ticks: {
                             color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
                             callback: function(value) {
                                 return value + '%';
                             }
@@ -249,7 +294,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     x: {
                         ticks: {
-                            color: '#e0e0e0'
+                            color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
+                            maxRotation: window.innerWidth <= 768 ? 45 : 0,
+                            minRotation: window.innerWidth <= 768 ? 45 : 0
                         },
                         grid: {
                             color: 'rgba(255, 255, 255, 0.1)'
@@ -508,8 +558,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         labels: {
                             color: '#e0e0e0',
                             font: {
-                                size: 12
-                            }
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
+                            padding: window.innerWidth <= 768 ? 8 : 15
                         }
                     },
                     tooltip: {
@@ -517,7 +568,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         titleColor: '#e94560',
                         bodyColor: '#e0e0e0',
                         borderColor: '#e94560',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        padding: window.innerWidth <= 768 ? 10 : 15,
+                        titleFont: {
+                            size: window.innerWidth <= 768 ? 12 : 14
+                        },
+                        bodyFont: {
+                            size: window.innerWidth <= 768 ? 11 : 13
+                        }
                     }
                 },
                 scales: {
@@ -531,13 +589,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         pointLabels: {
                             color: '#e0e0e0',
                             font: {
-                                size: 13
+                                size: window.innerWidth <= 768 ? 11 : 13
                             }
                         },
                         ticks: {
                             color: '#e0e0e0',
                             backdropColor: 'transparent',
-                            stepSize: 20
+                            stepSize: 20,
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            }
                         },
                         suggestedMin: 0,
                         suggestedMax: 100
@@ -623,7 +684,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 plugins: {
                     legend: {
                         labels: {
-                            color: '#e0e0e0'
+                            color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 11 : 13
+                            },
+                            padding: window.innerWidth <= 768 ? 10 : 15
                         }
                     },
                     tooltip: {
@@ -631,7 +696,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         titleColor: '#e94560',
                         bodyColor: '#e0e0e0',
                         borderColor: '#e94560',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        padding: window.innerWidth <= 768 ? 10 : 15,
+                        titleFont: {
+                            size: window.innerWidth <= 768 ? 12 : 14
+                        },
+                        bodyFont: {
+                            size: window.innerWidth <= 768 ? 11 : 13
+                        }
                     }
                 },
                 scales: {
@@ -639,6 +711,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         beginAtZero: true,
                         ticks: {
                             color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
                             callback: function(value) {
                                 return (value / 1000000).toFixed(1) + 'M';
                             }
@@ -649,7 +724,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     x: {
                         ticks: {
-                            color: '#e0e0e0'
+                            color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
+                            maxRotation: window.innerWidth <= 768 ? 45 : 0,
+                            minRotation: window.innerWidth <= 768 ? 45 : 0
                         },
                         grid: {
                             color: 'rgba(255, 255, 255, 0.1)'
@@ -693,7 +773,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 plugins: {
                     legend: {
                         labels: {
-                            color: '#e0e0e0'
+                            color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 11 : 13
+                            },
+                            padding: window.innerWidth <= 768 ? 10 : 15
                         }
                     },
                     tooltip: {
@@ -702,6 +786,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         bodyColor: '#e0e0e0',
                         borderColor: '#e94560',
                         borderWidth: 1,
+                        padding: window.innerWidth <= 768 ? 10 : 15,
+                        titleFont: {
+                            size: window.innerWidth <= 768 ? 12 : 14
+                        },
+                        bodyFont: {
+                            size: window.innerWidth <= 768 ? 11 : 13
+                        },
                         callbacks: {
                             label: function(context) {
                                 return '净收入: ' + context.raw.toLocaleString();
@@ -713,6 +804,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     y: {
                         ticks: {
                             color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
                             callback: function(value) {
                                 return (value / 1000000).toFixed(1) + 'M';
                             }
@@ -723,7 +817,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     x: {
                         ticks: {
-                            color: '#e0e0e0'
+                            color: '#e0e0e0',
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            },
+                            maxRotation: window.innerWidth <= 768 ? 45 : 0,
+                            minRotation: window.innerWidth <= 768 ? 45 : 0
                         },
                         grid: {
                             color: 'rgba(255, 255, 255, 0.1)'
@@ -1228,14 +1327,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     plugins: {
                         legend: {
                             display: true,
-                            position: 'top',
+                            position: window.innerWidth <= 768 ? 'bottom' : 'top',
                             labels: {
                                 color: '#e0e0e0',
                                 font: {
-                                    size: 14,
+                                    size: window.innerWidth <= 768 ? 11 : 14,
                                     family: 'Microsoft YaHei, sans-serif'
                                 },
-                                padding: 20,
+                                padding: window.innerWidth <= 768 ? 10 : 20,
                                 usePointStyle: true
                             }
                         },
@@ -1245,8 +1344,14 @@ document.addEventListener('DOMContentLoaded', function() {
                             bodyColor: '#e0e0e0',
                             borderColor: 'rgba(233, 69, 96, 0.3)',
                             borderWidth: 1,
-                            padding: 15,
+                            padding: window.innerWidth <= 768 ? 10 : 15,
                             displayColors: true,
+                            titleFont: {
+                                size: window.innerWidth <= 768 ? 12 : 14
+                            },
+                            bodyFont: {
+                                size: window.innerWidth <= 768 ? 11 : 13
+                            },
                             callbacks: {
                                 label: function(context) {
                                     const item = topItems[context.dataIndex];
@@ -1269,9 +1374,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             ticks: {
                                 color: '#e0e0e0',
                                 font: {
-                                    size: 12,
+                                    size: window.innerWidth <= 768 ? 10 : 12,
                                     family: 'Microsoft YaHei, sans-serif'
-                                }
+                                },
+                                maxRotation: window.innerWidth <= 768 ? 45 : 0,
+                                minRotation: window.innerWidth <= 768 ? 45 : 0
                             }
                         },
                         y: {
@@ -1282,7 +1389,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             ticks: {
                                 color: '#e0e0e0',
                                 font: {
-                                    size: 12,
+                                    size: window.innerWidth <= 768 ? 10 : 12,
                                     family: 'Microsoft YaHei, sans-serif'
                                 },
                                 callback: function(value) {
@@ -1452,14 +1559,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     plugins: {
                         legend: {
                             display: true,
-                            position: 'right',
+                            position: window.innerWidth <= 768 ? 'bottom' : 'right',
                             labels: {
                                 color: '#e0e0e0',
                                 font: {
-                                    size: 13,
+                                    size: window.innerWidth <= 768 ? 11 : 13,
                                     family: 'Microsoft YaHei, sans-serif'
                                 },
-                                padding: 15,
+                                padding: window.innerWidth <= 768 ? 10 : 15,
                                 usePointStyle: true,
                                 generateLabels: function(chart) {
                                     const data = chart.data;
@@ -1469,7 +1576,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                             const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
                                             const percentage = ((value / total) * 100).toFixed(1);
                                             return {
-                                                text: `${label} (${percentage}%)`,
+                                                text: window.innerWidth <= 768 ? `${label}` : `${label} (${percentage}%)`,
                                                 fillStyle: data.datasets[0].backgroundColor[i],
                                                 strokeStyle: data.datasets[0].borderColor[i],
                                                 lineWidth: data.datasets[0].borderWidth,
@@ -1488,8 +1595,14 @@ document.addEventListener('DOMContentLoaded', function() {
                             bodyColor: '#e0e0e0',
                             borderColor: 'rgba(233, 69, 96, 0.3)',
                             borderWidth: 1,
-                            padding: 15,
+                            padding: window.innerWidth <= 768 ? 10 : 15,
                             displayColors: true,
+                            titleFont: {
+                                size: window.innerWidth <= 768 ? 12 : 14
+                            },
+                            bodyFont: {
+                                size: window.innerWidth <= 768 ? 11 : 13
+                            },
                             callbacks: {
                                 label: function(context) {
                                     const item = topItems[context.dataIndex];
