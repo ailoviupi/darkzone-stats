@@ -1758,13 +1758,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (weaponSort) {
             switch(weaponSort.value) {
                 case 'popularity':
-                    codes.sort((a, b) => b.usage_count - a.usage_count);
+                    codes.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
                     break;
                 case 'price':
-                    codes.sort((a, b) => b.price - a.price);
+                    codes.sort((a, b) => (b.price || 0) - (a.price || 0));
                     break;
                 case 'damage':
-                    codes.sort((a, b) => b.damage - a.damage);
+                    codes.sort((a, b) => (b.damage || 0) - (a.damage || 0));
                     break;
             }
         }
@@ -1783,8 +1783,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 <div class="code-stats">
-                    <span>使用次数: ${code.usage_count.toLocaleString()}</span>
-                    <span>收藏: ${code.favorites.toLocaleString()}</span>
+                    <span>热度: ${code.popularity || 0}</span>
+                    <span>价格: ${(code.price || 0).toLocaleString()} 柯恩币</span>
                 </div>
             </div>
         `).join('');
@@ -1829,26 +1829,29 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        let points = mapData.points;
-        if (pointType) {
-            points = points.filter(p => p.type === pointType);
-        }
+        let points = mapData[pointType] || [];
         
         const container = document.getElementById('map-points-grid');
-        container.innerHTML = points.map(point => `
-            <div class="map-point-card">
-                <div class="point-header">
-                    <h4>${point.name}</h4>
-                    <span class="point-type type-${point.type}">${point.type}</span>
+        
+        if (points.length === 0) {
+            container.innerHTML = '<div class="no-results">暂无该类型点位数据</div>';
+        } else {
+            container.innerHTML = points.map((point, index) => `
+                <div class="map-point-card">
+                    <div class="point-header">
+                        <h4>${mapData.map_name} - ${pointType === 'gold' ? '大金' : pointType === 'keys' ? '钥匙' : pointType === 'boss' ? 'Boss' : '保险箱'} #${index + 1}</h4>
+                        <span class="point-type type-${pointType}">${pointType === 'gold' ? '大金' : pointType === 'keys' ? '钥匙' : pointType === 'boss' ? 'Boss' : '保险箱'}</span>
+                    </div>
+                    <div class="point-details">
+                        <p><strong>位置:</strong> ${point.location || point.description || '未知'}</p>
+                        <p><strong>描述:</strong> ${point.description || '暂无描述'}</p>
+                        ${point.avg_value ? `<p><strong>平均价值:</strong> ${point.avg_value.toLocaleString()} 柯恩币</p>` : ''}
+                        ${point.price ? `<p><strong>价格:</strong> ${point.price.toLocaleString()} 柯恩币</p>` : ''}
+                        ${point.spawn_rate ? `<p><strong>刷新率:</strong> ${point.spawn_rate}%</p>` : ''}
+                    </div>
                 </div>
-                <div class="point-details">
-                    <p><strong>位置:</strong> ${point.location}</p>
-                    <p><strong>描述:</strong> ${point.description}</p>
-                    <p><strong>风险等级:</strong> ${point.risk_level}</p>
-                    <p><strong>推荐装备:</strong> ${point.recommended_gear}</p>
-                </div>
-            </div>
-        `).join('');
+            `).join('');
+        }
         
         if (mapSelect) {
             mapSelect.onchange = loadMapPoints;
