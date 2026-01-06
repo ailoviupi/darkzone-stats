@@ -1080,36 +1080,36 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        const highProfitBullets = [...bullets].sort((a, b) => b.profit - a.profit).slice(0, 5);
+        const highProfitBullets = [...bullets].sort((a, b) => b.price_diff - a.price_diff).slice(0, 5);
         const highDemandBullets = bullets.filter(b => b.demand === '高').slice(0, 5);
         
         const highProfitList = document.getElementById('high-profit-list');
         highProfitList.innerHTML = highProfitBullets.map(bullet => `
             <div class="bullet-item">
-                <span class="name">${bullet.bullet_name}</span>
+                <span class="name">${bullet.bullet_type}</span>
                 <span class="price">${bullet.sell_price.toLocaleString()}</span>
-                <span class="profit">+${bullet.profit.toLocaleString()}</span>
-                <span class="profit-rate">${bullet.profit_rate.toFixed(1)}%</span>
+                <span class="profit">${bullet.price_diff >= 0 ? '+' : ''}${bullet.price_diff.toLocaleString()}</span>
+                <span class="profit-rate">${bullet.profit_margin.toFixed(1)}%</span>
             </div>
         `).join('');
         
         const highDemandList = document.getElementById('high-demand-list');
         highDemandList.innerHTML = highDemandBullets.map(bullet => `
             <div class="bullet-item">
-                <span class="name">${bullet.bullet_name}</span>
+                <span class="name">${bullet.bullet_type}</span>
                 <span class="price">${bullet.sell_price.toLocaleString()}</span>
-                <span class="profit">+${bullet.profit.toLocaleString()}</span>
-                <span class="profit-rate">${bullet.profit_rate.toFixed(1)}%</span>
+                <span class="profit">${bullet.price_diff >= 0 ? '+' : ''}${bullet.price_diff.toLocaleString()}</span>
+                <span class="profit-rate">${bullet.profit_margin.toFixed(1)}%</span>
             </div>
         `).join('');
         
         const allBulletsList = document.getElementById('all-bullets-list');
         allBulletsList.innerHTML = bullets.map(bullet => `
             <div class="bullet-item">
-                <span class="name">${bullet.bullet_name}</span>
+                <span class="name">${bullet.bullet_type}</span>
                 <span class="price">${bullet.sell_price.toLocaleString()}</span>
-                <span class="profit">+${bullet.profit.toLocaleString()}</span>
-                <span class="profit-rate">${bullet.profit_rate.toFixed(1)}%</span>
+                <span class="profit">${bullet.price_diff >= 0 ? '+' : ''}${bullet.price_diff.toLocaleString()}</span>
+                <span class="profit-rate">${bullet.profit_margin.toFixed(1)}%</span>
             </div>
         `).join('');
         
@@ -1132,25 +1132,24 @@ document.addEventListener('DOMContentLoaded', function() {
         let items = [...gameData.workbench_profit];
         
         if (sortSelect.value === 'profit_rate') {
-            items.sort((a, b) => b.profit_rate - a.profit_rate);
+            items.sort((a, b) => b.profit_margin - a.profit_margin);
         } else if (sortSelect.value === 'profit') {
             items.sort((a, b) => b.profit - a.profit);
         } else if (sortSelect.value === 'difficulty') {
-            const difficultyOrder = { '困难': 3, '中等': 2, '简单': 1 };
-            items.sort((a, b) => difficultyOrder[b.difficulty] - difficultyOrder[a.difficulty]);
+            items.sort((a, b) => b.profit - a.profit);
         }
         
         const tbody = document.getElementById('workbench-profit-body');
         if (tbody) {
             tbody.innerHTML = items.map(item => `
                 <tr>
-                    <td>${item.item_name}</td>
-                    <td>${item.craft_time}</td>
-                    <td>${item.materials_cost.toLocaleString()}</td>
+                    <td>${item.recipe_name}</td>
+                    <td>${item.craft_time}秒</td>
+                    <td>${item.cost.toLocaleString()}</td>
                     <td>${item.sell_price.toLocaleString()}</td>
                     <td class="profit-positive">${item.profit.toLocaleString()}</td>
-                    <td>${item.profit_rate.toFixed(1)}%</td>
-                    <td class="difficulty-${item.difficulty}">${item.difficulty}</td>
+                    <td>${item.profit_margin.toFixed(1)}%</td>
+                    <td>-</td>
                 </tr>
             `).join('');
         }
@@ -1212,11 +1211,11 @@ document.addEventListener('DOMContentLoaded', function() {
         let missions = [...gameData.s4_missions];
         
         if (filterSelect.value === 'completed') {
-            missions = missions.filter(m => m.stage === '完成');
+            missions = missions.filter(m => m.status === '已完成');
         } else if (filterSelect.value === 'in_progress') {
-            missions = missions.filter(m => m.stage === '进行中');
+            missions = missions.filter(m => m.status === '进行中');
         } else if (filterSelect.value === 'not_started') {
-            missions = missions.filter(m => m.stage === '未开始');
+            missions = missions.filter(m => m.status === '未开始');
         } else if (filterSelect.value === 'easy') {
             missions = missions.filter(m => m.difficulty === '简单');
         } else if (filterSelect.value === 'medium') {
@@ -1232,22 +1231,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h3>${mission.mission_name}</h3>
                     <div class="mission-badges">
                         <span class="mission-difficulty difficulty-${mission.difficulty}">${mission.difficulty}</span>
-                        <span class="mission-status status-${mission.stage}">${mission.stage}</span>
+                        <span class="mission-status status-${mission.status}">${mission.status}</span>
                     </div>
                 </div>
-                <div class="mission-stages">
-                    ${mission.stages.map(stage => `
-                        <div class="mission-stage stage-${stage.status}">
-                            <div class="stage-info">
-                                <h4>${stage.stage_name}</h4>
-                                <p>${stage.description}</p>
-                            </div>
-                            <div class="stage-reward">
-                                <span class="reward-amount">${stage.reward.toLocaleString()}</span>
-                                <span class="reward-label">科恩币</span>
-                            </div>
-                        </div>
-                    `).join('')}
+                <div class="mission-description">
+                    <p>${mission.description}</p>
+                </div>
+                <div class="mission-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${mission.progress}%"></div>
+                    </div>
+                    <span class="progress-text">${mission.progress}%</span>
+                </div>
+                <div class="mission-reward">
+                    <span class="reward-amount">${mission.reward.toLocaleString()}</span>
+                    <span class="reward-label">科恩币</span>
                 </div>
             </div>
         `).join('');
