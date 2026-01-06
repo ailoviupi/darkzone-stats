@@ -2247,5 +2247,239 @@
       "category": "公告"
     }
   ],
+  "equipment_recommendations": [
+    {
+      "level_range": "1-20",
+      "budget": "低",
+      "recommendations": [
+        {
+          "weapon": "AK-74N",
+          "armor": "轻型防弹衣",
+          "helmet": "战术头盔",
+          "backpack": "小型背包",
+          "total_cost": 15000,
+          "description": "适合新手入门的性价比装备"
+        },
+        {
+          "weapon": "MP5",
+          "armor": "轻型防弹衣",
+          "helmet": "战术头盔",
+          "backpack": "小型背包",
+          "total_cost": 12000,
+          "description": "近战优势明显的新手装备"
+        }
+      ]
+    },
+    {
+      "level_range": "21-40",
+      "budget": "中",
+      "recommendations": [
+        {
+          "weapon": "M4A1",
+          "armor": "中型防弹衣",
+          "helmet": "高级战术头盔",
+          "backpack": "中型背包",
+          "total_cost": 45000,
+          "description": "平衡性能与成本的中端装备"
+        },
+        {
+          "weapon": "AK-74N",
+          "armor": "中型防弹衣",
+          "helmet": "高级战术头盔",
+          "backpack": "中型背包",
+          "total_cost": 38000,
+          "description": "高性价比的中端装备"
+        }
+      ]
+    },
+    {
+      "level_range": "41-60",
+      "budget": "高",
+      "recommendations": [
+        {
+          "weapon": "M4A1",
+          "armor": "重型防弹衣",
+          "helmet": "特种头盔",
+          "backpack": "大型背包",
+          "total_cost": 120000,
+          "description": "高端玩家首选的强力装备"
+        },
+        {
+          "weapon": "AWM",
+          "armor": "重型防弹衣",
+          "helmet": "特种头盔",
+          "backpack": "大型背包",
+          "total_cost": 150000,
+          "description": "远程狙击的高端装备"
+        }
+      ]
+    }
+  ],
+  "weapon_comparison": {
+    "assault_rifles": [
+      {
+        "name": "AK-74N",
+        "damage": 45,
+        "fire_rate": 650,
+        "accuracy": 0.85,
+        "recoil": 0.35,
+        "magazine": 30,
+        "effective_range": 400,
+        "reload_time": 2.5,
+        "pros": ["高伤害", "可靠性强", "配件丰富"],
+        "cons": ["后坐力较大", "射速较慢"]
+      },
+      {
+        "name": "M4A1",
+        "damage": 42,
+        "fire_rate": 750,
+        "accuracy": 0.88,
+        "recoil": 0.32,
+        "magazine": 30,
+        "effective_range": 350,
+        "reload_time": 2.3,
+        "pros": ["高射速", "精度高", "后坐力小"],
+        "cons": ["伤害较低", "配件昂贵"]
+      }
+    ],
+    "smgs": [
+      {
+        "name": "MP5",
+        "damage": 28,
+        "fire_rate": 900,
+        "accuracy": 0.82,
+        "recoil": 0.28,
+        "magazine": 30,
+        "effective_range": 150,
+        "reload_time": 2.0,
+        "pros": ["极高射速", "近战优势", "后坐力小"],
+        "cons": ["伤害低", "射程短"]
+      }
+    ],
+    "snipers": [
+      {
+        "name": "AWM",
+        "damage": 120,
+        "fire_rate": 60,
+        "accuracy": 0.95,
+        "recoil": 0.65,
+        "magazine": 5,
+        "effective_range": 800,
+        "reload_time": 4.0,
+        "pros": ["极高伤害", "远射程", "精度极高"],
+        "cons": ["射速慢", "弹夹小", "后坐力大"]
+      }
+    ]
+  },
+  "map_guides": [
+    {
+      "map_name": "山谷",
+      "difficulty": "中等",
+      "recommended_level": "20+",
+      "key_locations": [
+        {
+          "name": "主城区",
+          "description": "物资丰富但危险度高",
+          "loot_quality": "高",
+          "danger_level": "高"
+        },
+        {
+          "name": "别墅区",
+          "description": "高级装备刷新点",
+          "loot_quality": "极高",
+          "danger_level": "极高"
+        },
+        {
+          "name": "农场",
+          "description": "新手友好区域",
+          "loot_quality": "中",
+          "danger_level": "低"
+        }
+      ],
+      "extraction_points": [
+        {
+          "name": "北门撤离点",
+          "description": "需要5000柯恩币",
+          "time_limit": "无",
+          "requirements": "付费"
+        },
+        {
+          "name": "南门撤离点",
+          "description": "免费撤离点",
+          "time_limit": "无",
+          "requirements": "无"
+        }
+      ],
+      "tips": [
+        "优先控制别墅区获取高级装备",
+        "注意主城区的狙击手",
+        "北门撤离点需要准备足够资金"
+      ]
+    },
+    {
+      "map_name": "农场",
+      "difficulty": "简单",
+      "recommended_level": "1+",
+      "key_locations": [
+        {
+          "name": "谷仓",
+          "description": "基础物资刷新点",
+          "loot_quality": "中",
+          "danger_level": "低"
+        },
+        {
+          "name": "农舍",
+          "description": "中等物资刷新点",
+          "loot_quality": "中",
+          "danger_level": "中"
+        }
+      ],
+      "extraction_points": [
+        {
+          "name": "主路撤离点",
+          "description": "主要撤离通道",
+          "time_limit": "无",
+          "requirements": "无"
+        }
+      ],
+      "tips": [
+        "适合新手练习",
+        "物资分布均匀",
+        "撤离点相对安全"
+      ]
+    },
+    {
+      "map_name": "军械库",
+      "difficulty": "困难",
+      "recommended_level": "40+",
+      "key_locations": [
+        {
+          "name": "主仓库",
+          "description": "最高级装备刷新点",
+          "loot_quality": "极高",
+          "danger_level": "极高"
+        },
+        {
+          "name": "办公区",
+          "description": "高级物资刷新点",
+          "loot_quality": "高",
+          "danger_level": "高"
+        }
+      ],
+      "extraction_points": [
+        {
+          "name": "直升机撤离点",
+          "description": "需要信号弹",
+          "time_limit": "限时",
+          "requirements": "信号弹"
+        }
+      ],
+      "tips": [
+        "需要团队配合",
+        "装备要求较高",
+        "撤离点需要特殊道具"
+      ]
+    }
+  ],
   "last_updated": "2026-01-06 13:27:28"
 }

@@ -52,6 +52,9 @@
                         <button class="nav-btn" data-section="weapon-codes">改枪码</button>
                         <button class="nav-btn" data-section="map-points">地图点位</button>
                         <button class="nav-btn" data-section="boss-spawns">Boss刷新</button>
+                        <button class="nav-btn" data-section="equipment-recommend">装备推荐</button>
+                        <button class="nav-btn" data-section="weapon-compare">武器对比</button>
+                        <button class="nav-btn" data-section="map-guides">地图攻略</button>
                     </div>
                 </div>
                 <div class="nav-category">
@@ -841,6 +844,65 @@
                     <button id="export-boss-csv" class="export-btn">导出CSV</button>
                 </div>
                 <div id="boss-spawns-content"></div>
+            </div>
+        </section>
+
+        <section id="equipment-recommend" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>装备推荐系统</h2>
+                    <span class="update-badge">推荐</span>
+                </div>
+                <div class="equipment-recommend-controls">
+                    <select id="level-range-filter">
+                        <option value="1-20">等级 1-20</option>
+                        <option value="21-40">等级 21-40</option>
+                        <option value="41-60">等级 41-60</option>
+                    </select>
+                    <select id="budget-filter">
+                        <option value="all">全部预算</option>
+                        <option value="低">低预算</option>
+                        <option value="中">中预算</option>
+                        <option value="高">高预算</option>
+                    </select>
+                </div>
+                <div id="equipment-recommend-content"></div>
+            </div>
+        </section>
+
+        <section id="weapon-compare" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>武器对比工具</h2>
+                    <span class="update-badge">对比</span>
+                </div>
+                <div class="weapon-compare-controls">
+                    <select id="weapon-type-compare">
+                        <option value="all">全部武器</option>
+                        <option value="突击步枪">突击步枪</option>
+                        <option value="冲锋枪">冲锋枪</option>
+                        <option value="狙击步枪">狙击步枪</option>
+                    </select>
+                </div>
+                <div id="weapon-compare-content"></div>
+            </div>
+        </section>
+
+        <section id="map-guides" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>地图攻略</h2>
+                    <span class="update-badge">攻略</span>
+                </div>
+                <div class="map-guides-controls">
+                    <select id="map-guide-filter">
+                        <option value="all">全部地图</option>
+                        <option value="山谷">山谷</option>
+                        <option value="农场">农场</option>
+                        <option value="军械库">军械库</option>
+                    </select>
+                </div>
+                <div id="map-guides-content"></div>
             </div>
         </section>
 

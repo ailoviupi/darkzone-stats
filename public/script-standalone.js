@@ -165,6 +165,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadMapPoints();
             } else if (sectionId === 'boss-spawns') {
                 loadBossSpawns();
+            } else if (sectionId === 'equipment-recommend') {
+                loadEquipmentRecommend();
+            } else if (sectionId === 'weapon-compare') {
+                loadWeaponCompare();
+            } else if (sectionId === 'map-guides') {
+                loadMapGuides();
             }
         });
     });
@@ -2033,6 +2039,234 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         showToast('地图点位加载成功', 'success');
+        hideLoading();
+    }
+
+    function loadEquipmentRecommend() {
+        if (!gameData || !gameData.equipment_recommendations) return;
+        
+        showLoading();
+        const levelRangeFilter = document.getElementById('level-range-filter');
+        const budgetFilter = document.getElementById('budget-filter');
+        
+        let levelRange = levelRangeFilter ? levelRangeFilter.value : '1-20';
+        let budget = budgetFilter ? budgetFilter.value : 'all';
+        
+        let levelData = gameData.equipment_recommendations.find(item => item.level_range === levelRange);
+        
+        if (!levelData) {
+            document.getElementById('equipment-recommend-content').innerHTML = '<div class="no-results">暂无该等级段数据</div>';
+            hideLoading();
+            return;
+        }
+        
+        let recommendations = levelData.recommendations;
+        
+        if (budget !== 'all' && levelData.budget !== budget) {
+            document.getElementById('equipment-recommend-content').innerHTML = '<div class="no-results">暂无该预算的装备推荐</div>';
+            hideLoading();
+            return;
+        }
+        
+        const container = document.getElementById('equipment-recommend-content');
+        
+        if (recommendations.length === 0) {
+            container.innerHTML = '<div class="no-results">暂无符合条件的装备推荐</div>';
+        } else {
+            container.innerHTML = recommendations.map(rec => `
+                <div class="equipment-recommend-card">
+                    <div class="recommend-header">
+                        <h3>${rec.weapon}</h3>
+                        <span class="budget-tag budget-${levelData.budget}">${levelData.budget}预算</span>
+                    </div>
+                    <div class="recommend-details">
+                        <div class="detail-item">
+                            <span class="label">武器:</span>
+                            <span class="value">${rec.weapon}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">防弹衣:</span>
+                            <span class="value">${rec.armor}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">头盔:</span>
+                            <span class="value">${rec.helmet}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">背包:</span>
+                            <span class="value">${rec.backpack}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">总成本:</span>
+                            <span class="value cost">${rec.total_cost.toLocaleString()} 柯恩币</span>
+                        </div>
+                        <div class="detail-item description">
+                            <span class="label">描述:</span>
+                            <span class="value">${rec.description}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        if (levelRangeFilter) {
+            levelRangeFilter.onchange = loadEquipmentRecommend;
+        }
+        if (budgetFilter) {
+            budgetFilter.onchange = loadEquipmentRecommend;
+        }
+        
+        showToast('装备推荐加载成功', 'success');
+        hideLoading();
+    }
+
+    function loadWeaponCompare() {
+        if (!gameData || !gameData.weapon_comparison) return;
+        
+        showLoading();
+        const weaponTypeFilter = document.getElementById('weapon-type-compare');
+        let weaponType = weaponTypeFilter ? weaponTypeFilter.value : 'all';
+        
+        let weapons = [];
+        
+        if (weaponType === 'all' || weaponType === '突击步枪') {
+            weapons = weapons.concat(gameData.weapon_comparison.assault_rifles.map(w => ({...w, weapon_type: '突击步枪'})));
+        }
+        if (weaponType === 'all' || weaponType === '冲锋枪') {
+            weapons = weapons.concat(gameData.weapon_comparison.smgs.map(w => ({...w, weapon_type: '冲锋枪'})));
+        }
+        if (weaponType === 'all' || weaponType === '狙击步枪') {
+            weapons = weapons.concat(gameData.weapon_comparison.snipers.map(w => ({...w, weapon_type: '狙击步枪'})));
+        }
+        
+        const container = document.getElementById('weapon-compare-content');
+        
+        if (weapons.length === 0) {
+            container.innerHTML = '<div class="no-results">暂无该类型武器数据</div>';
+        } else {
+            container.innerHTML = `
+                <div class="weapon-compare-table-wrapper">
+                    <table class="weapon-compare-table">
+                        <thead>
+                            <tr>
+                                <th>武器名称</th>
+                                <th>类型</th>
+                                <th>伤害</th>
+                                <th>射速</th>
+                                <th>精度</th>
+                                <th>后坐力</th>
+                                <th>弹匣容量</th>
+                                <th>有效射程</th>
+                                <th>换弹时间</th>
+                                <th>优缺点</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${weapons.map(weapon => `
+                                <tr>
+                                    <td><strong>${weapon.name}</strong></td>
+                                    <td>${weapon.weapon_type}</td>
+                                    <td>${weapon.damage}</td>
+                                    <td>${weapon.fire_rate}</td>
+                                    <td>${weapon.accuracy}</td>
+                                    <td>${weapon.recoil}</td>
+                                    <td>${weapon.magazine}</td>
+                                    <td>${weapon.effective_range}m</td>
+                                    <td>${weapon.reload_time}s</td>
+                                    <td>
+                                        <div class="pros-cons">
+                                            <div class="pros">✓ ${weapon.pros.join(', ')}</div>
+                                            <div class="cons">✗ ${weapon.cons.join(', ')}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+        
+        if (weaponTypeFilter) {
+            weaponTypeFilter.onchange = loadWeaponCompare;
+        }
+        
+        showToast('武器对比加载成功', 'success');
+        hideLoading();
+    }
+
+    function loadMapGuides() {
+        if (!gameData || !gameData.map_guides) return;
+        
+        showLoading();
+        const mapGuideFilter = document.getElementById('map-guide-filter');
+        let mapFilter = mapGuideFilter ? mapGuideFilter.value : 'all';
+        
+        let maps = gameData.map_guides;
+        
+        if (mapFilter !== 'all') {
+            maps = maps.filter(m => m.map_name === mapFilter);
+        }
+        
+        const container = document.getElementById('map-guides-content');
+        
+        if (maps.length === 0) {
+            container.innerHTML = '<div class="no-results">暂无该地图攻略数据</div>';
+        } else {
+            container.innerHTML = maps.map(map => `
+                <div class="map-guide-card">
+                    <div class="map-guide-header">
+                        <h3>${map.map_name}</h3>
+                        <div class="map-badges">
+                            <span class="difficulty-badge difficulty-${map.difficulty}">${map.difficulty}</span>
+                            <span class="level-badge">等级 ${map.recommended_level}</span>
+                        </div>
+                    </div>
+                    <div class="map-guide-content">
+                        <div class="map-section">
+                            <h4>关键点位</h4>
+                            <div class="key-locations">
+                                ${map.key_locations.map(loc => `
+                                    <div class="location-item">
+                                        <span class="location-name">${loc.name}</span>
+                                        <span class="location-loot loot-${loc.loot_quality}">${loc.loot_quality}</span>
+                                        <span class="location-danger danger-${loc.danger_level}">${loc.danger_level}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="map-section">
+                            <h4>撤离点</h4>
+                            <div class="extraction-points">
+                                ${map.extraction_points.map(point => `
+                                    <div class="extraction-item">
+                                        <span class="extraction-name">${point.name}</span>
+                                        <span class="extraction-requirement">${point.requirements}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="map-section">
+                            <h4>游戏提示</h4>
+                            <div class="game-tips">
+                                ${map.tips.map((tip, index) => `
+                                    <div class="tip-item">
+                                        <span class="tip-number">${index + 1}</span>
+                                        <span class="tip-text">${tip}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        if (mapGuideFilter) {
+            mapGuideFilter.onchange = loadMapGuides;
+        }
+        
+        showToast('地图攻略加载成功', 'success');
         hideLoading();
     }
 });
