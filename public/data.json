@@ -105,7 +105,7 @@
       "map_name": "机场",
       "play_count": 98765,
       "percentage": 8.1,
-      "avg_extractions": 0.70
+      "avg_extractions": 0.7
     }
   ],
   "weapons": [
@@ -159,7 +159,7 @@
       "type": "霰弹枪",
       "damage": 95,
       "fire_rate": 40,
-      "accuracy": 0.70,
+      "accuracy": 0.7,
       "recoil": 0.55,
       "magazine_size": 6,
       "usage_count": 27856
@@ -182,7 +182,7 @@
       "damage": 55,
       "fire_rate": 625,
       "accuracy": 0.86,
-      "recoil": 0.40,
+      "recoil": 0.4,
       "magazine_size": 20,
       "usage_count": 23456
     },
@@ -193,7 +193,7 @@
       "damage": 25,
       "fire_rate": 950,
       "accuracy": 0.84,
-      "recoil": 0.30,
+      "recoil": 0.3,
       "magazine_size": 40,
       "usage_count": 41234
     },
@@ -214,7 +214,7 @@
       "type": "狙击枪",
       "damage": 55,
       "fire_rate": 30,
-      "accuracy": 0.90,
+      "accuracy": 0.9,
       "recoil": 0.45,
       "magazine_size": 10,
       "usage_count": 29876
@@ -225,7 +225,7 @@
       "type": "冲锋枪",
       "damage": 23,
       "fire_rate": 1000,
-      "accuracy": 0.80,
+      "accuracy": 0.8,
       "recoil": 0.32,
       "magazine_size": 50,
       "usage_count": 35678
@@ -248,7 +248,7 @@
       "damage": 105,
       "fire_rate": 50,
       "accuracy": 0.93,
-      "recoil": 0.60,
+      "recoil": 0.6,
       "magazine_size": 5,
       "usage_count": 15678
     },
@@ -314,7 +314,7 @@
       "damage": 85,
       "fire_rate": 300,
       "accuracy": 0.68,
-      "recoil": 0.50,
+      "recoil": 0.5,
       "magazine_size": 8,
       "usage_count": 24567
     },
@@ -324,7 +324,7 @@
       "type": "机枪",
       "damage": 42,
       "fire_rate": 650,
-      "accuracy": 0.70,
+      "accuracy": 0.7,
       "recoil": 0.45,
       "magazine_size": 100,
       "usage_count": 16789
@@ -511,176 +511,96 @@
   },
   "bullet_price_diff": [
     {
-      "bullet_name": "5.45mm BS",
-      "buy_price": 320,
-      "sell_price": 380,
-      "profit": 60,
-      "profit_rate": 18.8,
-      "demand": "高"
-    },
-    {
-      "bullet_name": "5.56mm PS",
-      "buy_price": 120,
-      "sell_price": 145,
-      "profit": 25,
-      "profit_rate": 20.8,
-      "demand": "高"
-    },
-    {
-      "bullet_name": "7.62mm PS",
-      "buy_price": 180,
-      "sell_price": 210,
-      "profit": 30,
-      "profit_rate": 16.7,
-      "demand": "高"
-    },
-    {
-      "bullet_name": "12.7mm AP",
-      "buy_price": 450,
-      "sell_price": 520,
-      "profit": 70,
-      "profit_rate": 15.6,
-      "demand": "高"
-    },
-    {
-      "bullet_name": "7.62x51mm M80",
-      "buy_price": 250,
-      "sell_price": 285,
-      "profit": 35,
-      "profit_rate": 14.0,
+      "id": 1,
+      "bullet_type": "5.56mm",
+      "buy_price": 316,
+      "sell_price": 276,
+      "price_diff": 40,
+      "profit_margin": 12.66,
       "demand": "中"
     },
     {
-      "bullet_name": "5.8mm DAP92",
-      "buy_price": 150,
-      "sell_price": 175,
-      "profit": 25,
-      "profit_rate": 16.7,
-      "demand": "中"
-    },
-    {
-      "bullet_name": "9mm AP",
-      "buy_price": 85,
-      "sell_price": 98,
-      "profit": 13,
-      "profit_rate": 15.3,
-      "demand": "中"
-    },
-    {
-      "bullet_name": ".45 ACP FMJ",
-      "buy_price": 95,
-      "sell_price": 108,
-      "profit": 13,
-      "profit_rate": 13.7,
+      "id": 2,
+      "bullet_type": "7.62mm",
+      "buy_price": 135,
+      "sell_price": 215,
+      "price_diff": -80,
+      "profit_margin": -59.26,
       "demand": "低"
     },
     {
-      "bullet_name": "5.56mm M855",
-      "buy_price": 135,
-      "sell_price": 158,
-      "profit": 23,
-      "profit_rate": 17.0,
+      "id": 3,
+      "bullet_type": "9mm",
+      "buy_price": 465,
+      "sell_price": 112,
+      "price_diff": 353,
+      "profit_margin": 75.91,
       "demand": "中"
     },
     {
-      "bullet_name": "7.62x39mm BP",
-      "buy_price": 220,
-      "sell_price": 255,
-      "profit": 35,
-      "profit_rate": 15.9,
+      "id": 4,
+      "bullet_type": ".45 ACP",
+      "buy_price": 354,
+      "sell_price": 299,
+      "price_diff": 55,
+      "profit_margin": 15.54,
+      "demand": "高"
+    },
+    {
+      "id": 5,
+      "bullet_type": "12.7mm",
+      "buy_price": 294,
+      "sell_price": 75,
+      "price_diff": 219,
+      "profit_margin": 74.49,
       "demand": "高"
     }
   ],
   "workbench_profit": [
     {
-      "item_name": "高级护甲板",
-      "craft_time": 120,
-      "materials_cost": 45000,
+      "id": 1,
+      "recipe_name": "高级护甲",
+      "cost": 50000,
+      "sell_price": 75000,
+      "profit": 25000,
+      "profit_margin": 50.0,
+      "craft_time": 106
+    },
+    {
+      "id": 2,
+      "recipe_name": "医疗包",
+      "cost": 10000,
+      "sell_price": 18000,
+      "profit": 8000,
+      "profit_margin": 80.0,
+      "craft_time": 106
+    },
+    {
+      "id": 3,
+      "recipe_name": "子弹箱",
+      "cost": 20000,
+      "sell_price": 35000,
+      "profit": 15000,
+      "profit_margin": 75.0,
+      "craft_time": 53
+    },
+    {
+      "id": 4,
+      "recipe_name": "战术头盔",
+      "cost": 30000,
+      "sell_price": 52000,
+      "profit": 22000,
+      "profit_margin": 73.33,
+      "craft_time": 113
+    },
+    {
+      "id": 5,
+      "recipe_name": "瞄准镜",
+      "cost": 40000,
       "sell_price": 68000,
-      "profit": 23000,
-      "profit_rate": 51.1,
-      "difficulty": "困难"
-    },
-    {
-      "item_name": "高级消音器",
-      "craft_time": 200,
-      "materials_cost": 95000,
-      "sell_price": 145000,
-      "profit": 50000,
-      "profit_rate": 52.6,
-      "difficulty": "困难"
-    },
-    {
-      "item_name": "高级瞄准镜",
-      "craft_time": 180,
-      "materials_cost": 78000,
-      "sell_price": 115000,
-      "profit": 37000,
-      "profit_rate": 47.4,
-      "difficulty": "困难"
-    },
-    {
-      "item_name": "战术背包",
-      "craft_time": 150,
-      "materials_cost": 65000,
-      "sell_price": 95000,
-      "profit": 30000,
-      "profit_rate": 46.2,
-      "difficulty": "困难"
-    },
-    {
-      "item_name": "高级医疗包",
-      "craft_time": 90,
-      "materials_cost": 28000,
-      "sell_price": 42000,
-      "profit": 14000,
-      "profit_rate": 50.0,
-      "difficulty": "中等"
-    },
-    {
-      "item_name": "战术手套",
-      "craft_time": 75,
-      "materials_cost": 15000,
-      "sell_price": 22500,
-      "profit": 7500,
-      "profit_rate": 50.0,
-      "difficulty": "中等"
-    },
-    {
-      "item_name": "战术护目镜",
-      "craft_time": 60,
-      "materials_cost": 12000,
-      "sell_price": 18500,
-      "profit": 6500,
-      "profit_rate": 54.2,
-      "difficulty": "简单"
-    },
-    {
-      "item_name": "战术手电筒",
-      "craft_time": 45,
-      "materials_cost": 8500,
-      "sell_price": 12500,
-      "profit": 4000,
-      "profit_rate": 47.1,
-      "difficulty": "简单"
-    },
-    {
-      "item_name": "红阳功能饮料",
-      "craft_time": 30,
-      "materials_cost": 5500,
-      "sell_price": 8500,
-      "profit": 3000,
-      "profit_rate": 54.5,
-      "difficulty": "简单"
-    },
-    {
-      "item_name": "肌肉注射剂",
-      "craft_time": 40,
-      "materials_cost": 7800,
-      "sell_price": 12000,
-      "profit": 4200,
-      "profit_rate": 53.8,
-      "difficulty": "中等"
+      "profit": 28000,
+      "profit_margin": 70.0,
+      "craft_time": 77
     }
   ],
   "mission_flow": [
@@ -818,211 +738,231 @@
   ],
   "restock_prediction": [
     {
-      "item_name": "红阳功能饮料",
-      "current_stock": 5,
-      "restock_time": "2026-01-05 14:00",
-      "restock_quantity": 100,
-      "probability": 95,
-      "urgency": "极高"
+      "id": 1,
+      "item_name": "M4A1",
+      "current_stock": 25,
+      "restock_time": 19,
+      "restock_probability": 69,
+      "next_restock": "19小时后",
+      "demand_level": "低"
     },
     {
-      "item_name": "高级护甲板",
-      "current_stock": 15,
-      "restock_time": "2026-01-05 14:30",
-      "restock_quantity": 50,
-      "probability": 85,
-      "urgency": "高"
+      "id": 2,
+      "item_name": "AK-74N",
+      "current_stock": 73,
+      "restock_time": 8,
+      "restock_probability": 85,
+      "next_restock": "15小时后",
+      "demand_level": "中"
     },
     {
-      "item_name": "肌肉注射剂",
-      "current_stock": 8,
-      "restock_time": "2026-01-05 15:00",
-      "restock_quantity": 60,
-      "probability": 90,
-      "urgency": "极高"
+      "id": 3,
+      "item_name": "HK416",
+      "current_stock": 19,
+      "restock_time": 5,
+      "restock_probability": 76,
+      "next_restock": "22小时后",
+      "demand_level": "中"
     },
     {
-      "item_name": "5.56mm PS子弹",
-      "current_stock": 120,
-      "restock_time": "2026-01-05 13:30",
-      "restock_quantity": 500,
-      "probability": 95,
-      "urgency": "低"
+      "id": 4,
+      "item_name": "医疗包",
+      "current_stock": 2,
+      "restock_time": 4,
+      "restock_probability": 85,
+      "next_restock": "8小时后",
+      "demand_level": "中"
     },
     {
-      "item_name": "高级医疗包",
-      "current_stock": 22,
-      "restock_time": "2026-01-05 16:00",
-      "restock_quantity": 40,
-      "probability": 80,
-      "urgency": "高"
+      "id": 5,
+      "item_name": "子弹箱",
+      "current_stock": 92,
+      "restock_time": 2,
+      "restock_probability": 73,
+      "next_restock": "14小时后",
+      "demand_level": "中"
     },
     {
-      "item_name": "7.62mm PS子弹",
-      "current_stock": 85,
-      "restock_time": "2026-01-05 14:00",
-      "restock_quantity": 400,
-      "probability": 92,
-      "urgency": "中"
-    },
-    {
-      "item_name": "战术背包",
-      "current_stock": 5,
-      "restock_time": "2026-01-05 17:00",
-      "restock_quantity": 25,
-      "probability": 75,
-      "urgency": "极高"
-    },
-    {
-      "item_name": "高级瞄准镜",
-      "current_stock": 12,
-      "restock_time": "2026-01-05 15:30",
-      "restock_quantity": 20,
-      "probability": 88,
-      "urgency": "高"
-    },
-    {
-      "item_name": "5.45mm BS子弹",
-      "current_stock": 45,
-      "restock_time": "2026-01-05 13:45",
-      "restock_quantity": 200,
-      "probability": 93,
-      "urgency": "中"
-    },
-    {
-      "item_name": "高级消音器",
-      "current_stock": 3,
-      "restock_time": "2026-01-05 18:00",
-      "restock_quantity": 15,
-      "probability": 70,
-      "urgency": "极高"
-    },
-    {
-      "item_name": "战术手套",
-      "current_stock": 18,
-      "restock_time": "2026-01-05 16:30",
-      "restock_quantity": 35,
-      "probability": 82,
-      "urgency": "中"
-    },
-    {
-      "item_name": "建筑材料",
-      "current_stock": 30,
-      "restock_time": "2026-01-05 14:15",
-      "restock_quantity": 80,
-      "probability": 88,
-      "urgency": "低"
-    },
-    {
-      "item_name": "半导体芯片",
-      "current_stock": 10,
-      "restock_time": "2026-01-05 15:45",
-      "restock_quantity": 25,
-      "probability": 85,
-      "urgency": "高"
+      "id": 6,
+      "item_name": "护甲板",
+      "current_stock": 79,
+      "restock_time": 2,
+      "restock_probability": 63,
+      "next_restock": "7小时后",
+      "demand_level": "低"
     }
   ],
   "market_trends": {
-    "rise": [
+    "trends": [
       {
-        "rank": 1,
-        "item_name": "红阳功能饮料",
-        "current_price": 8500,
-        "change_rate": 25.8,
-        "change_amount": 1740
+        "item_name": "M4A1突击步枪",
+        "price": 61071,
+        "change": -5.717722388477121,
+        "volume": 5230,
+        "history": [
+          58665.920727233424,
+          59038.016856389004,
+          66949.76113067757,
+          66566.30285516851,
+          62633.90913792937,
+          56319.57247735698,
+          62185.34141339426
+        ]
       },
       {
-        "rank": 2,
-        "item_name": "肌肉注射剂",
-        "current_price": 12000,
-        "change_rate": 22.5,
-        "change_amount": 2200
+        "item_name": "AK-74N突击步枪",
+        "price": 69432,
+        "change": -2.987807362112891,
+        "volume": 6515,
+        "history": [
+          67792.04686412554,
+          64278.43494860558,
+          72004.38320323058,
+          64085.093814759275,
+          72379.8075288393,
+          73363.49438360556,
+          66669.17678380662
+        ]
       },
       {
-        "rank": 3,
-        "item_name": "建筑材料",
-        "current_price": 4500,
-        "change_rate": 18.2,
-        "change_amount": 695
+        "item_name": "HK416突击步枪",
+        "price": 171533,
+        "change": -3.3432159766068317,
+        "volume": 6363,
+        "history": [
+          161719.06963354882,
+          187704.29261708644,
+          181572.9869685324,
+          168979.71664059322,
+          159408.57645245473,
+          159570.49357166406,
+          187244.0758125939
+        ]
       },
       {
-        "rank": 4,
-        "item_name": "半导体芯片",
-        "current_price": 28000,
-        "change_rate": 15.5,
-        "change_amount": 3750
+        "item_name": "医疗包",
+        "price": 149104,
+        "change": 0.2265008659254928,
+        "volume": 5554,
+        "history": [
+          161150.61085715165,
+          153310.4637974541,
+          164010.98718591084,
+          152912.38742655652,
+          151994.01434065955,
+          153039.8098224875,
+          150963.88064141822
+        ]
       },
       {
-        "rank": 5,
-        "item_name": "P90微型冲锋枪",
-        "current_price": 95000,
-        "change_rate": 12.3,
-        "change_amount": 10400
+        "item_name": "子弹箱",
+        "price": 76225,
+        "change": 10.210823628770626,
+        "volume": 2298,
+        "history": [
+          77984.89738720523,
+          83298.34717485677,
+          69415.96638282688,
+          81424.80257732884,
+          79869.32645249594,
+          76302.60490818575,
+          76844.44724798098
+        ]
       },
       {
-        "rank": 6,
-        "item_name": "高级护甲板",
-        "current_price": 68000,
-        "change_rate": 10.8,
-        "change_amount": 6650
+        "item_name": "护甲板",
+        "price": 66234,
+        "change": 4.505650596286767,
+        "volume": 1254,
+        "history": [
+          72704.7842201084,
+          61496.680307155104,
+          71392.71152020052,
+          62724.98318294603,
+          64662.55726227762,
+          66193.21688447623,
+          67075.3111810902
+        ]
       },
       {
-        "rank": 7,
-        "item_name": "5.45mm BS子弹",
-        "current_price": 380,
-        "change_rate": 9.5,
-        "change_amount": 33
+        "item_name": "战术头盔",
+        "price": 55983,
+        "change": -1.315091783615868,
+        "volume": 1720,
+        "history": [
+          59150.98018043457,
+          57989.06428111543,
+          56731.918769050404,
+          54305.34836957833,
+          50540.59178492356,
+          52538.87453876675,
+          61164.12793104366
+        ]
+      },
+      {
+        "item_name": "瞄准镜",
+        "price": 195120,
+        "change": -12.752510805070365,
+        "volume": 4385,
+        "history": [
+          195155.8070337986,
+          196408.2224885807,
+          188375.01634442236,
+          206176.57458544913,
+          191899.76506594344,
+          187453.40869640693,
+          206452.506406567
+        ]
       }
     ],
-    "fall": [
+    "hot_items": [
       {
-        "rank": 1,
-        "item_name": "电脑配件",
-        "current_price": 15000,
-        "change_rate": -28.5,
-        "change_amount": -5980
+        "item_name": "M4A1突击步枪",
+        "price": 61071,
+        "trade_count": 4297,
+        "hotness": 64
       },
       {
-        "rank": 2,
-        "item_name": "9mm AP子弹",
-        "current_price": 98,
-        "change_rate": -18.5,
-        "change_amount": -22
+        "item_name": "AK-74N突击步枪",
+        "price": 69432,
+        "trade_count": 2867,
+        "hotness": 73
       },
       {
-        "rank": 3,
-        "item_name": "战术手电筒",
-        "current_price": 12500,
-        "change_rate": -15.2,
-        "change_amount": -2240
+        "item_name": "HK416突击步枪",
+        "price": 171533,
+        "trade_count": 1161,
+        "hotness": 79
       },
       {
-        "rank": 4,
-        "item_name": ".45 ACP FMJ子弹",
-        "current_price": 108,
-        "change_rate": -12.3,
-        "change_amount": -15
+        "item_name": "医疗包",
+        "price": 149104,
+        "trade_count": 3162,
+        "hotness": 70
       },
       {
-        "rank": 5,
-        "item_name": "战术手套",
-        "current_price": 22500,
-        "change_rate": -9.8,
-        "change_amount": -2450
+        "item_name": "子弹箱",
+        "price": 76225,
+        "trade_count": 4775,
+        "hotness": 92
       },
       {
-        "rank": 6,
-        "item_name": "5.8mm DAP92子弹",
-        "current_price": 175,
-        "change_rate": -8.5,
-        "change_amount": -16
+        "item_name": "护甲板",
+        "price": 66234,
+        "trade_count": 1194,
+        "hotness": 98
       },
       {
-        "rank": 7,
-        "item_name": "基础医疗包",
-        "current_price": 3500,
-        "change_rate": -7.2,
-        "change_amount": -272
+        "item_name": "战术头盔",
+        "price": 55983,
+        "trade_count": 3403,
+        "hotness": 86
+      },
+      {
+        "item_name": "瞄准镜",
+        "price": 195120,
+        "trade_count": 1148,
+        "hotness": 90
       }
     ]
   },
@@ -1247,453 +1187,1065 @@
   "weapon_codes": [
     {
       "id": 1,
-      "weapon_name": "AK-74N",
-      "weapon_type": "ar",
-      "code": "AK74N-001",
-      "popularity": 95,
-      "price": 125000,
-      "damage": 45,
-      "description": "高精度稳定型配置，适合中远距离作战",
-      "attachments": [
-        "消音器",
-        "战术握把",
-        "4倍瞄准镜",
-        "扩容弹匣"
-      ]
+      "weapon_name": "M4A1",
+      "weapon_type": "狙击枪",
+      "code": "M4A1-MOD-195",
+      "description": "M4A1最佳改装方案",
+      "components": [
+        {
+          "name": "枪口",
+          "item": "消音器"
+        },
+        {
+          "name": "握把",
+          "item": "垂直握把"
+        },
+        {
+          "name": "瞄准镜",
+          "item": "红点瞄准镜"
+        }
+      ],
+      "effectiveness": 97
     },
     {
       "id": 2,
-      "weapon_name": "M4A1",
-      "weapon_type": "ar",
-      "code": "M4A1-002",
-      "popularity": 98,
-      "price": 145000,
-      "damage": 42,
-      "description": "全能型配置，平衡性能与稳定性",
-      "attachments": [
-        "消音器",
-        "垂直握把",
-        "红点瞄准镜",
-        "扩容弹匣"
-      ]
+      "weapon_name": "AK-74N",
+      "weapon_type": "冲锋枪",
+      "code": "AK-74N-MOD-947",
+      "description": "AK-74N最佳改装方案",
+      "components": [
+        {
+          "name": "枪口",
+          "item": "消音器"
+        },
+        {
+          "name": "握把",
+          "item": "垂直握把"
+        },
+        {
+          "name": "瞄准镜",
+          "item": "红点瞄准镜"
+        }
+      ],
+      "effectiveness": 90
     },
     {
       "id": 3,
-      "weapon_name": "MP5",
-      "weapon_type": "smg",
-      "code": "MP5-003",
-      "popularity": 88,
-      "price": 85000,
-      "damage": 28,
-      "description": "近战利器，高射速低后坐力",
-      "attachments": [
-        "消音器",
-        "激光指示器",
-        "全息瞄准镜",
-        "扩容弹匣"
-      ]
+      "weapon_name": "HK416",
+      "weapon_type": "突击步枪",
+      "code": "HK416-MOD-440",
+      "description": "HK416最佳改装方案",
+      "components": [
+        {
+          "name": "枪口",
+          "item": "消音器"
+        },
+        {
+          "name": "握把",
+          "item": "垂直握把"
+        },
+        {
+          "name": "瞄准镜",
+          "item": "红点瞄准镜"
+        }
+      ],
+      "effectiveness": 91
     },
     {
       "id": 4,
-      "weapon_name": "AWM",
-      "weapon_type": "sniper",
-      "code": "AWM-004",
-      "popularity": 75,
-      "price": 280000,
-      "damage": 120,
-      "description": "远程狙击王者，一击必杀",
-      "attachments": [
-        "消音器",
-        "8倍瞄准镜",
-        "两脚架",
-        "高倍镜"
-      ]
+      "weapon_name": "MP5",
+      "weapon_type": "狙击枪",
+      "code": "MP5-MOD-582",
+      "description": "MP5最佳改装方案",
+      "components": [
+        {
+          "name": "枪口",
+          "item": "消音器"
+        },
+        {
+          "name": "握把",
+          "item": "垂直握把"
+        },
+        {
+          "name": "瞄准镜",
+          "item": "红点瞄准镜"
+        }
+      ],
+      "effectiveness": 91
     },
     {
       "id": 5,
-      "weapon_name": "M870",
-      "weapon_type": "shotgun",
-      "code": "M870-005",
-      "popularity": 82,
-      "price": 65000,
-      "damage": 95,
-      "description": "近战爆发型，适合室内作战",
-      "attachments": [
-        "加长枪管",
-        "红点瞄准镜",
-        "战术握把"
-      ]
+      "weapon_name": "UMP45",
+      "weapon_type": "突击步枪",
+      "code": "UMP45-MOD-291",
+      "description": "UMP45最佳改装方案",
+      "components": [
+        {
+          "name": "枪口",
+          "item": "消音器"
+        },
+        {
+          "name": "握把",
+          "item": "垂直握把"
+        },
+        {
+          "name": "瞄准镜",
+          "item": "红点瞄准镜"
+        }
+      ],
+      "effectiveness": 90
     },
     {
       "id": 6,
       "weapon_name": "Vector",
-      "weapon_type": "smg",
-      "code": "VEC-006",
-      "popularity": 90,
-      "price": 110000,
-      "damage": 22,
-      "description": "超高射速冲锋枪，近战压制力强",
-      "attachments": [
-        "消音器",
-        "激光指示器",
-        "全息瞄准镜",
-        "扩容弹匣"
+      "weapon_type": "狙击枪",
+      "code": "Vector-MOD-174",
+      "description": "Vector最佳改装方案",
+      "components": [
+        {
+          "name": "枪口",
+          "item": "消音器"
+        },
+        {
+          "name": "握把",
+          "item": "垂直握把"
+        },
+        {
+          "name": "瞄准镜",
+          "item": "红点瞄准镜"
+        }
+      ],
+      "effectiveness": 96
+    }
+  ],
+  "map_points": [
+    {
+      "map_id": 1,
+      "map_name": "农场",
+      "points": [
+        {
+          "id": 1,
+          "name": "农场点位1",
+          "type": "物资箱",
+          "description": "农场的重要点位",
+          "coordinates": {
+            "x": 614,
+            "y": 538
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 2,
+          "name": "农场点位2",
+          "type": "撤离点",
+          "description": "农场的重要点位",
+          "coordinates": {
+            "x": 440,
+            "y": 886
+          },
+          "risk_level": "中"
+        },
+        {
+          "id": 3,
+          "name": "农场点位3",
+          "type": "撤离点",
+          "description": "农场的重要点位",
+          "coordinates": {
+            "x": 238,
+            "y": 330
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 4,
+          "name": "农场点位4",
+          "type": "物资箱",
+          "description": "农场的重要点位",
+          "coordinates": {
+            "x": 338,
+            "y": 464
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 5,
+          "name": "农场点位5",
+          "type": "物资箱",
+          "description": "农场的重要点位",
+          "coordinates": {
+            "x": 237,
+            "y": 27
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 6,
+          "name": "农场点位6",
+          "type": "撤离点",
+          "description": "农场的重要点位",
+          "coordinates": {
+            "x": 174,
+            "y": 346
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 7,
+          "name": "农场点位7",
+          "type": "资源点",
+          "description": "农场的重要点位",
+          "coordinates": {
+            "x": 486,
+            "y": 161
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 8,
+          "name": "农场点位8",
+          "type": "物资箱",
+          "description": "农场的重要点位",
+          "coordinates": {
+            "x": 65,
+            "y": 445
+          },
+          "risk_level": "低"
+        }
       ]
     },
     {
-      "id": 7,
-      "weapon_name": "SCAR-H",
-      "weapon_type": "ar",
-      "code": "SCAR-007",
-      "popularity": 85,
-      "price": 165000,
-      "damage": 55,
-      "description": "高伤害突击步枪，适合中距离作战",
-      "attachments": [
-        "消音器",
-        "战术握把",
-        "4倍瞄准镜",
-        "扩容弹匣"
+      "map_id": 2,
+      "map_name": "山谷",
+      "points": [
+        {
+          "id": 1,
+          "name": "山谷点位1",
+          "type": "撤离点",
+          "description": "山谷的重要点位",
+          "coordinates": {
+            "x": 939,
+            "y": 146
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 2,
+          "name": "山谷点位2",
+          "type": "Boss刷新点",
+          "description": "山谷的重要点位",
+          "coordinates": {
+            "x": 701,
+            "y": 643
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 3,
+          "name": "山谷点位3",
+          "type": "Boss刷新点",
+          "description": "山谷的重要点位",
+          "coordinates": {
+            "x": 357,
+            "y": 781
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 4,
+          "name": "山谷点位4",
+          "type": "物资箱",
+          "description": "山谷的重要点位",
+          "coordinates": {
+            "x": 480,
+            "y": 313
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 5,
+          "name": "山谷点位5",
+          "type": "撤离点",
+          "description": "山谷的重要点位",
+          "coordinates": {
+            "x": 954,
+            "y": 148
+          },
+          "risk_level": "低"
+        }
       ]
     },
     {
-      "id": 8,
-      "weapon_name": "MP7",
-      "weapon_type": "smg",
-      "code": "MP7-008",
-      "popularity": 87,
-      "price": 95000,
-      "damage": 25,
-      "description": "紧凑型冲锋枪，适合快速反应",
-      "attachments": [
-        "消音器",
-        "激光指示器",
-        "红点瞄准镜",
-        "扩容弹匣"
+      "map_id": 3,
+      "map_name": "酒店",
+      "points": [
+        {
+          "id": 1,
+          "name": "酒店点位1",
+          "type": "资源点",
+          "description": "酒店的重要点位",
+          "coordinates": {
+            "x": 835,
+            "y": 489
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 2,
+          "name": "酒店点位2",
+          "type": "Boss刷新点",
+          "description": "酒店的重要点位",
+          "coordinates": {
+            "x": 684,
+            "y": 306
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 3,
+          "name": "酒店点位3",
+          "type": "Boss刷新点",
+          "description": "酒店的重要点位",
+          "coordinates": {
+            "x": 760,
+            "y": 410
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 4,
+          "name": "酒店点位4",
+          "type": "资源点",
+          "description": "酒店的重要点位",
+          "coordinates": {
+            "x": 688,
+            "y": 532
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 5,
+          "name": "酒店点位5",
+          "type": "撤离点",
+          "description": "酒店的重要点位",
+          "coordinates": {
+            "x": 338,
+            "y": 783
+          },
+          "risk_level": "中"
+        },
+        {
+          "id": 6,
+          "name": "酒店点位6",
+          "type": "撤离点",
+          "description": "酒店的重要点位",
+          "coordinates": {
+            "x": 21,
+            "y": 347
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 7,
+          "name": "酒店点位7",
+          "type": "资源点",
+          "description": "酒店的重要点位",
+          "coordinates": {
+            "x": 61,
+            "y": 426
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 8,
+          "name": "酒店点位8",
+          "type": "物资箱",
+          "description": "酒店的重要点位",
+          "coordinates": {
+            "x": 134,
+            "y": 169
+          },
+          "risk_level": "中"
+        },
+        {
+          "id": 9,
+          "name": "酒店点位9",
+          "type": "资源点",
+          "description": "酒店的重要点位",
+          "coordinates": {
+            "x": 503,
+            "y": 400
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 10,
+          "name": "酒店点位10",
+          "type": "资源点",
+          "description": "酒店的重要点位",
+          "coordinates": {
+            "x": 156,
+            "y": 317
+          },
+          "risk_level": "中"
+        }
       ]
     },
     {
-      "id": 9,
-      "weapon_name": "GROZA",
-      "weapon_type": "ar",
-      "code": "GROZA-009",
-      "popularity": 86,
-      "price": 135000,
-      "damage": 48,
-      "description": "俄制突击步枪，火力凶猛",
-      "attachments": [
-        "消音器",
-        "战术握把",
-        "4倍瞄准镜",
-        "扩容弹匣"
+      "map_id": 4,
+      "map_name": "军械库",
+      "points": [
+        {
+          "id": 1,
+          "name": "军械库点位1",
+          "type": "物资箱",
+          "description": "军械库的重要点位",
+          "coordinates": {
+            "x": 161,
+            "y": 787
+          },
+          "risk_level": "中"
+        },
+        {
+          "id": 2,
+          "name": "军械库点位2",
+          "type": "撤离点",
+          "description": "军械库的重要点位",
+          "coordinates": {
+            "x": 761,
+            "y": 426
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 3,
+          "name": "军械库点位3",
+          "type": "撤离点",
+          "description": "军械库的重要点位",
+          "coordinates": {
+            "x": 504,
+            "y": 89
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 4,
+          "name": "军械库点位4",
+          "type": "物资箱",
+          "description": "军械库的重要点位",
+          "coordinates": {
+            "x": 183,
+            "y": 954
+          },
+          "risk_level": "中"
+        },
+        {
+          "id": 5,
+          "name": "军械库点位5",
+          "type": "撤离点",
+          "description": "军械库的重要点位",
+          "coordinates": {
+            "x": 219,
+            "y": 220
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 6,
+          "name": "军械库点位6",
+          "type": "撤离点",
+          "description": "军械库的重要点位",
+          "coordinates": {
+            "x": 635,
+            "y": 917
+          },
+          "risk_level": "低"
+        }
       ]
     },
     {
-      "id": 10,
-      "weapon_name": "SKS",
-      "weapon_type": "sniper",
-      "code": "SKS-010",
-      "popularity": 80,
-      "price": 75000,
-      "damage": 55,
-      "description": "半自动狙击枪，性价比高",
-      "attachments": [
-        "消音器",
-        "4倍瞄准镜",
-        "战术握把",
-        "扩容弹匣"
+      "map_id": 5,
+      "map_name": "前线要塞",
+      "points": [
+        {
+          "id": 1,
+          "name": "前线要塞点位1",
+          "type": "资源点",
+          "description": "前线要塞的重要点位",
+          "coordinates": {
+            "x": 811,
+            "y": 531
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 2,
+          "name": "前线要塞点位2",
+          "type": "Boss刷新点",
+          "description": "前线要塞的重要点位",
+          "coordinates": {
+            "x": 808,
+            "y": 305
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 3,
+          "name": "前线要塞点位3",
+          "type": "资源点",
+          "description": "前线要塞的重要点位",
+          "coordinates": {
+            "x": 236,
+            "y": 936
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 4,
+          "name": "前线要塞点位4",
+          "type": "Boss刷新点",
+          "description": "前线要塞的重要点位",
+          "coordinates": {
+            "x": 656,
+            "y": 303
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 5,
+          "name": "前线要塞点位5",
+          "type": "Boss刷新点",
+          "description": "前线要塞的重要点位",
+          "coordinates": {
+            "x": 970,
+            "y": 661
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 6,
+          "name": "前线要塞点位6",
+          "type": "Boss刷新点",
+          "description": "前线要塞的重要点位",
+          "coordinates": {
+            "x": 165,
+            "y": 376
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 7,
+          "name": "前线要塞点位7",
+          "type": "物资箱",
+          "description": "前线要塞的重要点位",
+          "coordinates": {
+            "x": 465,
+            "y": 2
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 8,
+          "name": "前线要塞点位8",
+          "type": "物资箱",
+          "description": "前线要塞的重要点位",
+          "coordinates": {
+            "x": 774,
+            "y": 668
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 9,
+          "name": "前线要塞点位9",
+          "type": "Boss刷新点",
+          "description": "前线要塞的重要点位",
+          "coordinates": {
+            "x": 164,
+            "y": 33
+          },
+          "risk_level": "高"
+        }
+      ]
+    },
+    {
+      "map_id": 6,
+      "map_name": "电视台",
+      "points": [
+        {
+          "id": 1,
+          "name": "电视台点位1",
+          "type": "资源点",
+          "description": "电视台的重要点位",
+          "coordinates": {
+            "x": 956,
+            "y": 876
+          },
+          "risk_level": "中"
+        },
+        {
+          "id": 2,
+          "name": "电视台点位2",
+          "type": "物资箱",
+          "description": "电视台的重要点位",
+          "coordinates": {
+            "x": 812,
+            "y": 202
+          },
+          "risk_level": "中"
+        },
+        {
+          "id": 3,
+          "name": "电视台点位3",
+          "type": "Boss刷新点",
+          "description": "电视台的重要点位",
+          "coordinates": {
+            "x": 478,
+            "y": 309
+          },
+          "risk_level": "中"
+        },
+        {
+          "id": 4,
+          "name": "电视台点位4",
+          "type": "资源点",
+          "description": "电视台的重要点位",
+          "coordinates": {
+            "x": 983,
+            "y": 213
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 5,
+          "name": "电视台点位5",
+          "type": "物资箱",
+          "description": "电视台的重要点位",
+          "coordinates": {
+            "x": 381,
+            "y": 161
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 6,
+          "name": "电视台点位6",
+          "type": "资源点",
+          "description": "电视台的重要点位",
+          "coordinates": {
+            "x": 88,
+            "y": 408
+          },
+          "risk_level": "低"
+        }
+      ]
+    },
+    {
+      "map_id": 7,
+      "map_name": "机场",
+      "points": [
+        {
+          "id": 1,
+          "name": "机场点位1",
+          "type": "Boss刷新点",
+          "description": "机场的重要点位",
+          "coordinates": {
+            "x": 624,
+            "y": 728
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 2,
+          "name": "机场点位2",
+          "type": "物资箱",
+          "description": "机场的重要点位",
+          "coordinates": {
+            "x": 249,
+            "y": 596
+          },
+          "risk_level": "低"
+        },
+        {
+          "id": 3,
+          "name": "机场点位3",
+          "type": "物资箱",
+          "description": "机场的重要点位",
+          "coordinates": {
+            "x": 397,
+            "y": 10
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 4,
+          "name": "机场点位4",
+          "type": "Boss刷新点",
+          "description": "机场的重要点位",
+          "coordinates": {
+            "x": 224,
+            "y": 241
+          },
+          "risk_level": "高"
+        },
+        {
+          "id": 5,
+          "name": "机场点位5",
+          "type": "Boss刷新点",
+          "description": "机场的重要点位",
+          "coordinates": {
+            "x": 982,
+            "y": 25
+          },
+          "risk_level": "中"
+        }
       ]
     }
   ],
-  "map_points": {
-    "farm": {
-      "map_name": "农场",
-      "gold": [
+  "s4_missions": [
+    {
+      "id": 1,
+      "mission_name": "完成10局经典模式",
+      "reward": 50000,
+      "difficulty": "简单",
+      "progress": 92,
+      "status": "进行中",
+      "description": "完成完成10局经典模式以获得奖励"
+    },
+    {
+      "id": 2,
+      "mission_name": "击败50名敌人",
+      "reward": 80000,
+      "difficulty": "中等",
+      "progress": 19,
+      "status": "进行中",
+      "description": "完成击败50名敌人以获得奖励"
+    },
+    {
+      "id": 3,
+      "mission_name": "收集100个物资箱",
+      "reward": 60000,
+      "difficulty": "中等",
+      "progress": 67,
+      "status": "进行中",
+      "description": "完成收集100个物资箱以获得奖励"
+    },
+    {
+      "id": 4,
+      "mission_name": "在山谷地图撤离5次",
+      "reward": 70000,
+      "difficulty": "困难",
+      "progress": 34,
+      "status": "已完成",
+      "description": "完成在山谷地图撤离5次以获得奖励"
+    },
+    {
+      "id": 5,
+      "mission_name": "使用指定武器击败20人",
+      "reward": 90000,
+      "difficulty": "困难",
+      "progress": 83,
+      "status": "未开始",
+      "description": "完成使用指定武器击败20人以获得奖励"
+    }
+  ],
+  "boss_spawns": [
+    {
+      "boss_id": 1,
+      "boss_name": "农场首领",
+      "map": "农场",
+      "spawn_rate": 35,
+      "locations": [
         {
-          "id": 1,
-          "location": "主楼二楼",
-          "description": "主楼二楼保险箱",
-          "avg_value": 85000,
-          "spawn_rate": 25
+          "location_id": 1,
+          "name": "农场点位1",
+          "description": "农场的刷新点位",
+          "spawn_probability": 40,
+          "guards": 5,
+          "difficulty": "简单"
         },
         {
-          "id": 2,
-          "location": "谷仓",
-          "description": "谷仓阁楼",
-          "avg_value": 65000,
-          "spawn_rate": 20
+          "location_id": 2,
+          "name": "农场点位2",
+          "description": "农场的刷新点位",
+          "spawn_probability": 22,
+          "guards": 5,
+          "difficulty": "困难"
         },
         {
-          "id": 3,
-          "location": "加油站",
-          "description": "加油站后房",
-          "avg_value": 55000,
-          "spawn_rate": 18
+          "location_id": 3,
+          "name": "农场点位3",
+          "description": "农场的刷新点位",
+          "spawn_probability": 25,
+          "guards": 4,
+          "difficulty": "困难"
+        },
+        {
+          "location_id": 4,
+          "name": "农场点位4",
+          "description": "农场的刷新点位",
+          "spawn_probability": 31,
+          "guards": 3,
+          "difficulty": "中等"
         }
       ],
-      "keys": [
+      "drops": [
         {
-          "id": 1,
-          "location": "主楼",
-          "description": "主楼钥匙",
-          "price": 25000
+          "item": "首领信物",
+          "drop_rate": 100,
+          "value": 80000
         },
         {
-          "id": 2,
-          "location": "谷仓",
-          "description": "谷仓钥匙",
-          "price": 18000
-        }
-      ],
-      "boss": [
-        {
-          "id": 1,
-          "location": "主楼周围",
-          "description": "农场Boss",
-          "spawn_rate": 30
-        }
-      ],
-      "safe": [
-        {
-          "id": 1,
-          "location": "主楼二楼",
-          "description": "主楼保险箱",
-          "spawn_rate": 80
+          "item": "高级武器箱",
+          "drop_rate": 72,
+          "value": 150000
         },
         {
-          "id": 2,
-          "location": "谷仓",
-          "description": "谷仓保险箱",
-          "spawn_rate": 60
+          "item": "医疗包",
+          "drop_rate": 88,
+          "value": 5000
         }
       ]
     },
-    "valley": {
-      "map_name": "山谷",
-      "gold": [
+    {
+      "boss_id": 2,
+      "boss_name": "山谷首领",
+      "map": "山谷",
+      "spawn_rate": 40,
+      "locations": [
         {
-          "id": 1,
-          "location": "别墅二楼",
-          "description": "别墅二楼保险箱",
-          "avg_value": 120000,
-          "spawn_rate": 30
+          "location_id": 1,
+          "name": "山谷点位1",
+          "description": "山谷的刷新点位",
+          "spawn_probability": 41,
+          "guards": 6,
+          "difficulty": "简单"
         },
         {
-          "id": 2,
-          "location": "军火库",
-          "description": "军火库密室",
-          "avg_value": 150000,
-          "spawn_rate": 25
-        },
-        {
-          "id": 3,
-          "location": "防空洞",
-          "description": "防空洞深处",
-          "avg_value": 95000,
-          "spawn_rate": 22
+          "location_id": 2,
+          "name": "山谷点位2",
+          "description": "山谷的刷新点位",
+          "spawn_probability": 46,
+          "guards": 7,
+          "difficulty": "困难"
         }
       ],
-      "keys": [
+      "drops": [
         {
-          "id": 1,
-          "location": "别墅",
-          "description": "别墅钥匙",
-          "price": 38000
+          "item": "首领信物",
+          "drop_rate": 100,
+          "value": 80000
         },
         {
-          "id": 2,
-          "location": "军火库",
-          "description": "军火库钥匙",
-          "price": 45000
+          "item": "高级武器箱",
+          "drop_rate": 79,
+          "value": 150000
         },
         {
-          "id": 3,
-          "location": "防空洞",
-          "description": "防空洞钥匙",
-          "price": 28000
-        }
-      ],
-      "boss": [
-        {
-          "id": 1,
-          "location": "别墅周围",
-          "description": "山谷Boss",
-          "spawn_rate": 35
-        }
-      ],
-      "safe": [
-        {
-          "id": 1,
-          "location": "别墅二楼",
-          "description": "别墅保险箱",
-          "spawn_rate": 85
-        },
-        {
-          "id": 2,
-          "location": "军火库",
-          "description": "军火库保险箱",
-          "spawn_rate": 75
+          "item": "医疗包",
+          "drop_rate": 90,
+          "value": 5000
         }
       ]
     },
-    "hotel": {
-      "map_name": "酒店",
-      "gold": [
+    {
+      "boss_id": 3,
+      "boss_name": "酒店首领",
+      "map": "酒店",
+      "spawn_rate": 30,
+      "locations": [
         {
-          "id": 1,
-          "location": "酒店顶层",
-          "description": "顶层总统套房",
-          "avg_value": 180000,
-          "spawn_rate": 35
+          "location_id": 1,
+          "name": "酒店点位1",
+          "description": "酒店的刷新点位",
+          "spawn_probability": 45,
+          "guards": 4,
+          "difficulty": "中等"
         },
         {
-          "id": 2,
-          "location": "酒店中庭",
-          "description": "中庭贵宾室",
-          "avg_value": 110000,
-          "spawn_rate": 28
+          "location_id": 2,
+          "name": "酒店点位2",
+          "description": "酒店的刷新点位",
+          "spawn_probability": 49,
+          "guards": 5,
+          "difficulty": "中等"
         }
       ],
-      "keys": [
+      "drops": [
         {
-          "id": 1,
-          "location": "酒店顶层",
-          "description": "顶层钥匙",
-          "price": 52000
+          "item": "首领信物",
+          "drop_rate": 100,
+          "value": 80000
         },
         {
-          "id": 2,
-          "location": "酒店中庭",
-          "description": "中庭钥匙",
-          "price": 35000
-        }
-      ],
-      "boss": [
+          "item": "高级武器箱",
+          "drop_rate": 61,
+          "value": 150000
+        },
         {
-          "id": 1,
-          "location": "酒店顶层",
-          "description": "酒店Boss",
-          "spawn_rate": 40
-        }
-      ],
-      "safe": [
-        {
-          "id": 1,
-          "location": "酒店顶层",
-          "description": "顶层保险箱",
-          "spawn_rate": 90
+          "item": "医疗包",
+          "drop_rate": 80,
+          "value": 5000
         }
       ]
     },
-    "armory": {
-      "map_name": "军械库",
-      "gold": [
+    {
+      "boss_id": 4,
+      "boss_name": "军械库首领",
+      "map": "军械库",
+      "spawn_rate": 45,
+      "locations": [
         {
-          "id": 1,
-          "location": "军械库密室",
-          "description": "密室保险箱",
-          "avg_value": 160000,
-          "spawn_rate": 32
+          "location_id": 1,
+          "name": "军械库点位1",
+          "description": "军械库的刷新点位",
+          "spawn_probability": 21,
+          "guards": 5,
+          "difficulty": "中等"
         },
         {
-          "id": 2,
-          "location": "军械库二楼",
-          "description": "二楼储藏室",
-          "avg_value": 95000,
-          "spawn_rate": 25
-        }
-      ],
-      "keys": [
-        {
-          "id": 1,
-          "location": "军械库密室",
-          "description": "密室钥匙",
-          "price": 68000
+          "location_id": 2,
+          "name": "军械库点位2",
+          "description": "军械库的刷新点位",
+          "spawn_probability": 39,
+          "guards": 5,
+          "difficulty": "困难"
         },
         {
-          "id": 2,
-          "location": "军械库二楼",
-          "description": "二楼钥匙",
-          "price": 32000
-        }
-      ],
-      "boss": [
-        {
-          "id": 1,
-          "location": "军械库内部",
-          "description": "军械库Boss",
-          "spawn_rate": 38
-        }
-      ],
-      "safe": [
-        {
-          "id": 1,
-          "location": "军械库密室",
-          "description": "密室保险箱",
-          "spawn_rate": 88
+          "location_id": 3,
+          "name": "军械库点位3",
+          "description": "军械库的刷新点位",
+          "spawn_probability": 29,
+          "guards": 7,
+          "difficulty": "简单"
         },
         {
-          "id": 2,
-          "location": "军械库二楼",
-          "description": "二楼保险箱",
-          "spawn_rate": 70
+          "location_id": 4,
+          "name": "军械库点位4",
+          "description": "军械库的刷新点位",
+          "spawn_probability": 31,
+          "guards": 5,
+          "difficulty": "中等"
+        }
+      ],
+      "drops": [
+        {
+          "item": "首领信物",
+          "drop_rate": 100,
+          "value": 80000
+        },
+        {
+          "item": "高级武器箱",
+          "drop_rate": 53,
+          "value": 150000
+        },
+        {
+          "item": "医疗包",
+          "drop_rate": 78,
+          "value": 5000
         }
       ]
     },
-    "frontier": {
-      "map_name": "前线要塞",
-      "gold": [
+    {
+      "boss_id": 5,
+      "boss_name": "前线首领",
+      "map": "前线要塞",
+      "spawn_rate": 38,
+      "locations": [
         {
-          "id": 1,
-          "location": "指挥中心",
-          "description": "指挥官办公室",
-          "avg_value": 145000,
-          "spawn_rate": 28
+          "location_id": 1,
+          "name": "前线要塞点位1",
+          "description": "前线要塞的刷新点位",
+          "spawn_probability": 36,
+          "guards": 6,
+          "difficulty": "简单"
         },
         {
-          "id": 2,
-          "location": "兵营",
-          "description": "兵营储藏室",
-          "avg_value": 85000,
-          "spawn_rate": 22
-        }
-      ],
-      "keys": [
-        {
-          "id": 1,
-          "location": "指挥中心",
-          "description": "指挥中心钥匙",
-          "price": 48000
+          "location_id": 2,
+          "name": "前线要塞点位2",
+          "description": "前线要塞的刷新点位",
+          "spawn_probability": 47,
+          "guards": 3,
+          "difficulty": "简单"
         },
         {
-          "id": 2,
-          "location": "兵营",
-          "description": "兵营钥匙",
-          "price": 26000
-        }
-      ],
-      "boss": [
-        {
-          "id": 1,
-          "location": "指挥中心",
-          "description": "前线Boss",
-          "spawn_rate": 42
-        }
-      ],
-      "safe": [
-        {
-          "id": 1,
-          "location": "指挥中心",
-          "description": "指挥中心保险箱",
-          "spawn_rate": 82
+          "location_id": 3,
+          "name": "前线要塞点位3",
+          "description": "前线要塞的刷新点位",
+          "spawn_probability": 34,
+          "guards": 5,
+          "difficulty": "简单"
         },
         {
-          "id": 2,
-          "location": "兵营",
-          "description": "兵营保险箱",
-          "spawn_rate": 65
+          "location_id": 4,
+          "name": "前线要塞点位4",
+          "description": "前线要塞的刷新点位",
+          "spawn_probability": 24,
+          "guards": 8,
+          "difficulty": "简单"
+        }
+      ],
+      "drops": [
+        {
+          "item": "首领信物",
+          "drop_rate": 100,
+          "value": 80000
+        },
+        {
+          "item": "高级武器箱",
+          "drop_rate": 63,
+          "value": 150000
+        },
+        {
+          "item": "医疗包",
+          "drop_rate": 72,
+          "value": 5000
         }
       ]
     }
-  }
+  ],
+  "news": [
+    {
+      "id": 1,
+      "title": "S4赛季全新地图即将上线",
+      "content": "这是关于S4赛季全新地图即将上线的详细内容...",
+      "publish_time": "2026-01-06 13:27:28",
+      "category": "更新"
+    },
+    {
+      "id": 2,
+      "title": "武器平衡性调整公告",
+      "content": "这是关于武器平衡性调整公告的详细内容...",
+      "publish_time": "2026-01-06 13:27:28",
+      "category": "活动"
+    },
+    {
+      "id": 3,
+      "title": "限时活动：双倍经验周末",
+      "content": "这是关于限时活动：双倍经验周末的详细内容...",
+      "publish_time": "2026-01-06 13:27:28",
+      "category": "公告"
+    },
+    {
+      "id": 4,
+      "title": "新武器系统更新说明",
+      "content": "这是关于新武器系统更新说明的详细内容...",
+      "publish_time": "2026-01-06 13:27:28",
+      "category": "公告"
+    },
+    {
+      "id": 5,
+      "title": "服务器维护通知",
+      "content": "这是关于服务器维护通知的详细内容...",
+      "publish_time": "2026-01-06 13:27:28",
+      "category": "更新"
+    },
+    {
+      "id": 6,
+      "title": "玩家社区活动开启",
+      "content": "这是关于玩家社区活动开启的详细内容...",
+      "publish_time": "2026-01-06 13:27:28",
+      "category": "公告"
+    }
+  ],
+  "last_updated": "2026-01-06 13:27:28"
 }

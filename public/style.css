@@ -920,6 +920,17 @@ footer p {
     .container {
         padding: 0 15px;
     }
+    
+    .mission-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    
+    .mission-controls select {
+        width: 100%;
+        min-width: auto;
+    }
 }
 
 .search-box {
@@ -1388,6 +1399,75 @@ footer p {
 .reward-label {
     font-size: 0.8em;
     color: #a0a0a0;
+}
+
+.mission-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.mission-controls select {
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(233, 69, 96, 0.3);
+    border-radius: 10px;
+    color: #e0e0e0;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.mission-controls select:hover {
+    border-color: rgba(233, 69, 96, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.mission-controls select:focus {
+    outline: none;
+    border-color: #e94560;
+    box-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
+}
+
+.s4-mission-card {
+    background: rgba(233, 69, 96, 0.08);
+    border: 2px solid rgba(233, 69, 96, 0.5);
+    box-shadow: 0 0 20px rgba(233, 69, 96, 0.2);
+}
+
+.s4-mission-card .mission-header h3 {
+    color: #ff6b8a;
+    font-size: 1.6em;
+}
+
+.mission-badges {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.mission-difficulty {
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.difficulty-简单 {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+}
+
+.difficulty-中等 {
+    background: rgba(255, 152, 0, 0.2);
+    color: #ff9800;
+}
+
+.difficulty-困难 {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
 }
 
 .urgency-极高 {
@@ -2550,4 +2630,247 @@ footer p {
 .restock-item .urgency.urgency-低 {
     color: #4caf50;
     background: rgba(76, 175, 80, 0.1);
+}
+
+.boss-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.boss-controls select {
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(233, 69, 96, 0.3);
+    border-radius: 10px;
+    color: #e0e0e0;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.boss-controls select:hover {
+    border-color: rgba(233, 69, 96, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.boss-controls select:focus {
+    outline: none;
+    border-color: #e94560;
+    box-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
+}
+
+.boss-card {
+    background: rgba(22, 27, 34, 0.6);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(233, 69, 96, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.boss-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(233, 69, 96, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.boss-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(233, 69, 96, 0.3);
+    border-color: rgba(233, 69, 96, 0.4);
+}
+
+.boss-card:hover::before {
+    opacity: 1;
+}
+
+.boss-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(233, 69, 96, 0.3);
+}
+
+.boss-header h3 {
+    background: linear-gradient(135deg, #e94560 0%, #ff6b8a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+.boss-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.boss-map {
+    padding: 8px 20px;
+    background: rgba(33, 150, 243, 0.2);
+    color: #2196f3;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95em;
+    border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.boss-spawn-rate {
+    padding: 8px 20px;
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95em;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.boss-locations {
+    margin-bottom: 25px;
+}
+
+.boss-locations h4 {
+    color: #e94560;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.boss-location {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid rgba(233, 69, 96, 0.5);
+    transition: all 0.3s ease;
+}
+
+.boss-location:hover {
+    background: rgba(0, 0, 0, 0.4);
+    border-left-color: #e94560;
+    transform: translateX(5px);
+}
+
+.location-details h5 {
+    color: #e0e0e0;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.location-details p {
+    color: #a0a0a0;
+    line-height: 1.6;
+    font-size: 0.95em;
+}
+
+.location-stats {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.location-stats span {
+    padding: 6px 15px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.spawn-prob {
+    background: rgba(255, 152, 0, 0.2);
+    color: #ff9800;
+    border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.guards {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.difficulty {
+    font-weight: 600;
+}
+
+.difficulty-简单 {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.difficulty-中等 {
+    background: rgba(255, 152, 0, 0.2);
+    color: #ff9800;
+    border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.difficulty-困难 {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.boss-drops {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.boss-drops h4 {
+    color: #e94560;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.boss-drop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.boss-drop:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.drop-name {
+    color: #e0e0e0;
+    font-weight: 600;
+    font-size: 1.05em;
+}
+
+.drop-rate {
+    color: #ff9800;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.drop-value {
+    color: #4caf50;
+    font-weight: 600;
+    font-size: 0.95em;
 }

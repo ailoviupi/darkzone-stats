@@ -147,6 +147,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadWorkbenchProfit();
             } else if (sectionId === 'mission-flow') {
                 loadMissionFlow();
+            } else if (sectionId === 's4-missions') {
+                loadS4MissionFlow();
             } else if (sectionId === 'restock-prediction') {
                 loadRestockPrediction();
             } else if (sectionId === 'market-trends') {
@@ -159,6 +161,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadWeaponCodes();
             } else if (sectionId === 'map-points') {
                 loadMapPoints();
+            } else if (sectionId === 'boss-spawns') {
+                loadBossSpawns();
             }
         });
     });
@@ -910,6 +914,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const exportMissionJson = document.getElementById('export-mission-json');
         const exportRestockCsv = document.getElementById('export-restock-csv');
         const exportRestockJson = document.getElementById('export-restock-json');
+        const exportS4MissionCsv = document.getElementById('export-s4-mission-csv');
+        const exportS4MissionJson = document.getElementById('export-s4-mission-json');
+        const exportBossCsv = document.getElementById('export-boss-csv');
+        const exportBossJson = document.getElementById('export-boss-json');
 
         if (exportWeaponsCsv) {
             exportWeaponsCsv.addEventListener('click', () => {
@@ -1020,6 +1028,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!gameData) return;
                 exportToJSON(gameData.restock_prediction, 'restock-prediction.json');
                 showToast('补货预测已导出为JSON', 'success');
+            });
+        }
+
+        if (exportS4MissionCsv) {
+            exportS4MissionCsv.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToCSV(gameData.s4_missions, 's4-missions.csv');
+                showToast('S4赛季任务已导出为CSV', 'success');
+            });
+        }
+
+        if (exportS4MissionJson) {
+            exportS4MissionJson.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToJSON(gameData.s4_missions, 's4-missions.json');
+                showToast('S4赛季任务已导出为JSON', 'success');
+            });
+        }
+
+        if (exportBossCsv) {
+            exportBossCsv.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToCSV(gameData.boss_spawns, 'boss-spawns.csv');
+                showToast('Boss刷新点位已导出为CSV', 'success');
+            });
+        }
+
+        if (exportBossJson) {
+            exportBossJson.addEventListener('click', () => {
+                if (!gameData) return;
+                exportToJSON(gameData.boss_spawns, 'boss-spawns.json');
+                showToast('Boss刷新点位已导出为JSON', 'success');
             });
         }
     }
@@ -1162,6 +1202,59 @@ document.addEventListener('DOMContentLoaded', function() {
         hideLoading();
     }
 
+    function loadS4MissionFlow() {
+        if (!gameData) return;
+        
+        showLoading();
+        const filterSelect = document.getElementById('s4-mission-filter');
+        let missions = [...gameData.s4_missions];
+        
+        if (filterSelect.value === 'completed') {
+            missions = missions.filter(m => m.stage === '完成');
+        } else if (filterSelect.value === 'in_progress') {
+            missions = missions.filter(m => m.stage === '进行中');
+        } else if (filterSelect.value === 'not_started') {
+            missions = missions.filter(m => m.stage === '未开始');
+        } else if (filterSelect.value === 'easy') {
+            missions = missions.filter(m => m.difficulty === '简单');
+        } else if (filterSelect.value === 'medium') {
+            missions = missions.filter(m => m.difficulty === '中等');
+        } else if (filterSelect.value === 'hard') {
+            missions = missions.filter(m => m.difficulty === '困难');
+        }
+        
+        const content = document.getElementById('s4-mission-content');
+        content.innerHTML = missions.map(mission => `
+            <div class="mission-card s4-mission-card">
+                <div class="mission-header">
+                    <h3>${mission.mission_name}</h3>
+                    <div class="mission-badges">
+                        <span class="mission-difficulty difficulty-${mission.difficulty}">${mission.difficulty}</span>
+                        <span class="mission-status status-${mission.stage}">${mission.stage}</span>
+                    </div>
+                </div>
+                <div class="mission-stages">
+                    ${mission.stages.map(stage => `
+                        <div class="mission-stage stage-${stage.status}">
+                            <div class="stage-info">
+                                <h4>${stage.stage_name}</h4>
+                                <p>${stage.description}</p>
+                            </div>
+                            <div class="stage-reward">
+                                <span class="reward-amount">${stage.reward.toLocaleString()}</span>
+                                <span class="reward-label">科恩币</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+        
+        filterSelect.onchange = loadS4MissionFlow;
+        showToast('S4赛季任务加载成功', 'success');
+        hideLoading();
+    }
+
     function loadRestockPrediction() {
         if (!gameData) return;
         
@@ -1252,6 +1345,61 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+    }
+
+    function loadBossSpawns() {
+        if (!gameData) return;
+        
+        showLoading();
+        const filterSelect = document.getElementById('boss-map-filter');
+        let bosses = [...gameData.boss_spawns];
+        
+        if (filterSelect.value !== 'all') {
+            bosses = bosses.filter(b => b.map === filterSelect.value);
+        }
+        
+        const content = document.getElementById('boss-spawns-content');
+        content.innerHTML = bosses.map(boss => `
+            <div class="boss-card">
+                <div class="boss-header">
+                    <h3>${boss.boss_name}</h3>
+                    <div class="boss-info">
+                        <span class="boss-map">${boss.map}</span>
+                        <span class="boss-spawn-rate">刷新率: ${boss.spawn_rate}%</span>
+                    </div>
+                </div>
+                <div class="boss-locations">
+                    <h4>刷新点位</h4>
+                    ${boss.locations.map(location => `
+                        <div class="boss-location">
+                            <div class="location-details">
+                                <h5>${location.name}</h5>
+                                <p>${location.description}</p>
+                            </div>
+                            <div class="location-stats">
+                                <span class="spawn-prob">概率: ${location.spawn_probability}%</span>
+                                <span class="guards">护卫: ${location.guards}人</span>
+                                <span class="difficulty difficulty-${location.difficulty}">${location.difficulty}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="boss-drops">
+                    <h4>掉落物品</h4>
+                    ${boss.drops.map(drop => `
+                        <div class="boss-drop">
+                            <span class="drop-name">${drop.item}</span>
+                            <span class="drop-rate">掉率: ${drop.drop_rate}%</span>
+                            <span class="drop-value">价值: ${drop.value.toLocaleString()}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+        
+        filterSelect.onchange = loadBossSpawns;
+        showToast('Boss刷新点位加载成功', 'success');
+        hideLoading();
     }
 
     function loadMarketTrends() {
