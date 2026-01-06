@@ -120,6 +120,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 closeAllDropdowns();
             }
             
+            hideLoading();
+            
             sections.forEach(section => {
                 section.classList.remove('active');
                 if (section.id === sectionId) {
@@ -1432,12 +1434,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const updateChart = () => {
             const ctx = document.getElementById('market-trends-chart').getContext('2d');
-            let data = currentTab === 'rise' ? gameData.market_trends.rise : gameData.market_trends.fall;
+            let data = gameData.market_trends.trends || [];
             
             const topItems = data.slice(0, 5);
             const labels = topItems.map(item => item.item_name);
-            const prices = topItems.map(item => item.current_price);
-            const changes = topItems.map(item => item.change_rate);
+            const prices = topItems.map(item => item.price);
+            const changes = topItems.map(item => item.change);
             
             const gradient = ctx.createLinearGradient(0, 0, 0, 400);
             gradient.addColorStop(0, currentTab === 'rise' ? 'rgba(76, 175, 80, 0.3)' : 'rgba(244, 67, 54, 0.3)');
@@ -1452,20 +1454,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: currentTab === 'rise' ? '涨幅 (%)' : '跌幅 (%)',
+                        label: '涨跌幅 (%)',
                         data: changes,
-                        borderColor: currentTab === 'rise' ? '#4CAF50' : '#F44336',
+                        borderColor: '#e94560',
                         backgroundColor: gradient,
                         borderWidth: 3,
                         fill: true,
                         tension: 0.4,
-                        pointBackgroundColor: currentTab === 'rise' ? '#4CAF50' : '#F44336',
+                        pointBackgroundColor: '#e94560',
                         pointBorderColor: '#fff',
                         pointBorderWidth: 2,
                         pointRadius: 6,
                         pointHoverRadius: 8,
                         pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: currentTab === 'rise' ? '#4CAF50' : '#F44336',
+                        pointHoverBorderColor: '#e94560',
                         pointHoverBorderWidth: 3
                     }]
                 },
@@ -1505,9 +1507,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                     const item = topItems[context.dataIndex];
                                     return [
                                         `${item.item_name}`,
-                                        `当前价格: ${item.current_price.toLocaleString()} 柯恩币`,
-                                        `涨跌幅: ${item.change_rate >= 0 ? '+' : ''}${item.change_rate}%`,
-                                        `变化金额: ${item.change_amount >= 0 ? '+' : ''}${item.change_amount.toLocaleString()} 柯恩币`
+                                        `当前价格: ${item.price.toLocaleString()} 柯恩币`,
+                                        `涨跌幅: ${item.change >= 0 ? '+' : ''}${item.change.toFixed(2)}%`,
+                                        `变化金额: ${(item.price * item.change / 100).toFixed(0).toLocaleString()} 柯恩币`
                                     ];
                                 }
                             }
@@ -1559,17 +1561,17 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         const updateTrends = () => {
-            let data = currentTab === 'rise' ? gameData.market_trends.rise : gameData.market_trends.fall;
+            let data = gameData.market_trends.trends || [];
             data = sortData(data, currentSort.column, currentSort.direction);
             const tbody = document.getElementById('market-trends-body');
             
             tbody.innerHTML = data.map(item => `
                 <tr>
-                    <td class="rank rank-${item.rank}">${item.rank}</td>
+                    <td class="rank rank-${item.rank || 1}">${item.rank || 1}</td>
                     <td class="item-name">${item.item_name}</td>
-                    <td>${item.current_price.toLocaleString()}</td>
-                    <td class="change-${item.change_rate >= 0 ? 'positive' : 'negative'}">${item.change_rate >= 0 ? '+' : ''}${item.change_rate}%</td>
-                    <td class="change-${item.change_amount >= 0 ? 'positive' : 'negative'}">${item.change_amount >= 0 ? '+' : ''}${item.change_amount.toLocaleString()}</td>
+                    <td>${item.price.toLocaleString()}</td>
+                    <td class="change-${item.change >= 0 ? 'positive' : 'negative'}">${item.change >= 0 ? '+' : ''}${item.change.toFixed(2)}%</td>
+                    <td class="change-${item.change >= 0 ? 'positive' : 'negative'}">${(item.price * item.change / 100).toFixed(0).toLocaleString()}</td>
                 </tr>
             `).join('');
             
@@ -1649,17 +1651,26 @@ document.addEventListener('DOMContentLoaded', function() {
             
             switch(currentTab) {
                 case 'items':
-                    data = gameData.market_hot.items;
+                    data = gameData.market_hot.items || [];
                     title = '热门物品';
                     break;
                 case 'keys':
-                    data = gameData.market_hot.keys;
+                    data = gameData.market_hot.keys || [];
                     title = '热门钥匙';
                     break;
                 case 'price':
-                    data = gameData.market_hot.price;
+                    data = gameData.market_hot.price || [];
                     title = '价格排行榜';
                     break;
+                default:
+                    data = gameData.market_hot.items || [];
+                    title = '热门物品';
+            }
+            
+            if (!data || data.length === 0) {
+                console.error('市场热度数据为空:', currentTab);
+                hideLoading();
+                return;
             }
             
             const topItems = data.slice(0, 6);
@@ -1780,17 +1791,26 @@ document.addEventListener('DOMContentLoaded', function() {
             
             switch(currentTab) {
                 case 'items':
-                    data = gameData.market_hot.items;
+                    data = gameData.market_hot.items || [];
                     title = '热门物品';
                     break;
                 case 'keys':
-                    data = gameData.market_hot.keys;
+                    data = gameData.market_hot.keys || [];
                     title = '热门钥匙';
                     break;
                 case 'price':
-                    data = gameData.market_hot.price;
+                    data = gameData.market_hot.price || [];
                     title = '价格排行榜';
                     break;
+                default:
+                    data = gameData.market_hot.items || [];
+                    title = '热门物品';
+            }
+            
+            if (!data || data.length === 0) {
+                console.error('市场热度数据为空:', currentTab);
+                hideLoading();
+                return;
             }
             
             data = sortData(data, currentSort.column, currentSort.direction);
@@ -1906,13 +1926,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (weaponSort) {
             switch(weaponSort.value) {
                 case 'popularity':
-                    codes.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+                    codes.sort((a, b) => (b.effectiveness || 0) - (a.effectiveness || 0));
                     break;
                 case 'price':
-                    codes.sort((a, b) => (b.price || 0) - (a.price || 0));
+                    codes.sort((a, b) => (b.effectiveness || 0) - (a.effectiveness || 0));
                     break;
                 case 'damage':
-                    codes.sort((a, b) => (b.damage || 0) - (a.damage || 0));
+                    codes.sort((a, b) => (b.effectiveness || 0) - (a.effectiveness || 0));
                     break;
             }
         }
@@ -1931,8 +1951,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 <div class="code-stats">
-                    <span>热度: ${code.popularity || 0}</span>
-                    <span>价格: ${(code.price || 0).toLocaleString()} 柯恩币</span>
+                    <span>效果: ${code.effectiveness || 0}%</span>
+                    <span>描述: ${code.description || '暂无描述'}</span>
                 </div>
             </div>
         `).join('');
